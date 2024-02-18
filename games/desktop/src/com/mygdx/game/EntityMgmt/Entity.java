@@ -9,6 +9,8 @@ public abstract class Entity implements IMovable{
     private float x;
     private float y;
     private float speed;
+    private float radius; // Add this field
+
 
     public abstract void draw(ShapeRenderer shape);
 
@@ -22,6 +24,10 @@ public abstract class Entity implements IMovable{
         this.x = x;
         this.y = y;
         this.speed = speed;
+    }
+
+    public float getRadius() {
+        return radius;
     }
 
     public float getX() {
@@ -54,6 +60,12 @@ public abstract class Entity implements IMovable{
             setMethod.accept(getMethod.get() + 200 * delta);
         }
     }
+
+    public void applyKnockback(float dx, float dy) {
+        this.x += dx;
+        this.y += dy;
+    }
+    
     
 }
 

@@ -6,6 +6,8 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.mygdx.game.CollisionMgmt.Collision;
+import com.mygdx.game.CollisionMgmt.CollisionManager;
 import com.mygdx.game.EntityMgmt.CircleObject;
 import com.mygdx.game.EntityMgmt.Entity;
 import com.mygdx.game.EntityMgmt.TexturedObject;
@@ -18,12 +20,17 @@ public class GameMaster extends ApplicationAdapter {
     private List<Entity> entities;
     private SpriteBatch batch;
     private ShapeRenderer shape;
+    //private CollisionManager collisionManager;
+    private CollisionManager collisionManager = new CollisionManager();
+
+    
 
     @Override
     public void create() {
         entities = new ArrayList<>();
         batch = new SpriteBatch();
         shape = new ShapeRenderer();
+        collisionManager = new CollisionManager();
     
         for (int i = 0; i < 10; i++) {
             float initialX = (float) (Math.random() * Gdx.graphics.getWidth());
@@ -68,6 +75,18 @@ public class GameMaster extends ApplicationAdapter {
 
         for (Entity entity : entities) {
             entity.moveUserControlled();
+        }
+
+        // In your GameMaster or similar class where you handle game updates
+        for (int i = 0; i < entities.size(); i++) {
+            for (int j = i + 1; j < entities.size(); j++) {
+                Entity entity1 = entities.get(i);
+                Entity entity2 = entities.get(j);
+                Collision collision = new Collision(entity1, entity2);
+                if (collision.checkCollision()) {
+                    collisionManager.applyCollisionEffects(collision);
+                }
+            }
         }
     }
 
