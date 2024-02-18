@@ -11,7 +11,7 @@ public class CollisionManager {
         float dx = entity2.getX() - entity1.getX();
         float dy = entity2.getY() - entity1.getY();
         float distance = (float) Math.sqrt(dx * dx + dy * dy);
-        float knockbackDistance = 10; // Example knockback distance
+        float knockbackDistance = 10; 
         
         // Normalize direction
         dx /= distance;

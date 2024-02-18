@@ -20,10 +20,7 @@ public class GameMaster extends ApplicationAdapter {
     private List<Entity> entities;
     private SpriteBatch batch;
     private ShapeRenderer shape;
-    //private CollisionManager collisionManager;
-    private CollisionManager collisionManager = new CollisionManager();
-
-    
+    private CollisionManager collisionManager;
 
     @Override
     public void create() {
@@ -77,7 +74,7 @@ public class GameMaster extends ApplicationAdapter {
             entity.moveUserControlled();
         }
 
-        // In your GameMaster or similar class where you handle game updates
+        // collision
         for (int i = 0; i < entities.size(); i++) {
             for (int j = i + 1; j < entities.size(); j++) {
                 Entity entity1 = entities.get(i);

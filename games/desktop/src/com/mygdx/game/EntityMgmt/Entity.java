@@ -9,7 +9,7 @@ public abstract class Entity implements IMovable{
     private float x;
     private float y;
     private float speed;
-    private float radius; // Add this field
+    private float radius; 
 
 
     public abstract void draw(ShapeRenderer shape);
