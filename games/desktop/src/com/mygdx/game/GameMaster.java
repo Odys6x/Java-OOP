@@ -34,7 +34,7 @@ public class GameMaster extends ApplicationAdapter {
         bucket.setUserControlled(true); // Make the bucket user-controlled
         entities.add(bucket);
 
-        entities.add(new CircleObject(50, Color.YELLOW, 500, 150, 0));
+        entities.add(new CircleObject(50, Color.BLUE, 500, 150, 0));
         entities.add(new TriangleObject(50, 20, 150, 20, 100, 100, Color.RED, 50, 50, 0));
     }
 
