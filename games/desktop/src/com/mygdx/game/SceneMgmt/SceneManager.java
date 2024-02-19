@@ -26,8 +26,11 @@ public class SceneManager {
         currentScene = Menu;
     }
     public void changeScene(int sceneStage){
+        scenes.get(currentScene).hide(); // hides current screen
         currentScene = sceneStage;
-        scenes.get(sceneStage).init();
+        SceneScreen newScreen = scenes.get(sceneStage);
+        newScreen.init(); 
+        newScreen.show(); //init and shows the new screen
     }
     public SceneScreen getCurrentScene(){
         return scenes.get(currentScene);
