@@ -21,7 +21,7 @@ import com.mygdx.game.EntityMgmt.TriangleObject;
 public class Simulation {
 
     private boolean gameRunning;
-    private sceneScreen Scenes; // yet to implement, will see how lol
+    private sceneScreen Scenes; // yet to implement, will see in the future
     private List<Entity> entities;
     private SpriteBatch batch;
     private ShapeRenderer shape;
@@ -32,7 +32,7 @@ public class Simulation {
     }
 
     public void initialise() {
-        // start making the objects in the game
+        // start making the objects in the game, from create
 
         entities = new ArrayList<>();
         batch = new SpriteBatch();
@@ -54,6 +54,7 @@ public class Simulation {
     }
 
     public void update() {
+        //render part
         ScreenUtils.clear(0, 0, 0.2f, 1);
 
         batch.begin();
@@ -99,6 +100,7 @@ public class Simulation {
     }
 
     public void end() {
+        //this was from the dispose part of gamemaster 
         gameRunning = false;
         batch.dispose();
         shape.dispose();
