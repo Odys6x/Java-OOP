@@ -6,6 +6,8 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.mygdx.game.CollisionMgmt.Collision;
+import com.mygdx.game.CollisionMgmt.CollisionManager;
 import com.mygdx.game.EntityMgmt.CircleObject;
 import com.mygdx.game.EntityMgmt.Entity;
 import com.mygdx.game.EntityMgmt.TexturedObject;
@@ -18,12 +20,14 @@ public class GameMaster extends ApplicationAdapter {
     private List<Entity> entities;
     private SpriteBatch batch;
     private ShapeRenderer shape;
+    private CollisionManager collisionManager;
 
     @Override
     public void create() {
         entities = new ArrayList<>();
         batch = new SpriteBatch();
         shape = new ShapeRenderer();
+        collisionManager = new CollisionManager();
     
         for (int i = 0; i < 10; i++) {
             float initialX = (float) (Math.random() * Gdx.graphics.getWidth());
@@ -34,7 +38,7 @@ public class GameMaster extends ApplicationAdapter {
         bucket.setUserControlled(true); // Make the bucket user-controlled
         entities.add(bucket);
 
-        entities.add(new CircleObject(50, Color.YELLOW, 500, 150, 0));
+        entities.add(new CircleObject(50, Color.BLUE, 500, 150, 0));
         entities.add(new TriangleObject(50, 20, 150, 20, 100, 100, Color.RED, 50, 50, 0));
     }
 
@@ -68,6 +72,18 @@ public class GameMaster extends ApplicationAdapter {
 
         for (Entity entity : entities) {
             entity.moveUserControlled();
+        }
+
+        // collision
+        for (int i = 0; i < entities.size(); i++) {
+            for (int j = i + 1; j < entities.size(); j++) {
+                Entity entity1 = entities.get(i);
+                Entity entity2 = entities.get(j);
+                Collision collision = new Collision(entity1, entity2);
+                if (collision.checkCollision()) {
+                    collisionManager.applyCollisionEffects(collision);
+                }
+            }
         }
     }
 
