@@ -1,5 +1,7 @@
 package com.mygdx.game.EntityMgmt;
 
+import com.mygdx.game.EntityMgmt.EntityClass.Entity;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,5 +20,8 @@ public class EntityManager {
         for (Entity entity : entityList) {
             entity.update();
         }
+    }
+    public List<Entity> getEntityList() {
+        return entityList;
     }
 }

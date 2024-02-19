@@ -1,10 +1,11 @@
-package com.mygdx.game.EntityMgmt;
+package com.mygdx.game.EntityMgmt.EntityClass.Inheritance;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.mygdx.game.EntityMgmt.EntityClass.Entity;
 
 public class TexturedObject extends Entity {
     private Texture tex;

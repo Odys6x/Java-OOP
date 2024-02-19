@@ -1,6 +1,5 @@
 package com.mygdx.game.CollisionMgmt;
-import com.mygdx.game.EntityMgmt.Entity;
-import com.badlogic.gdx.math.Vector2;
+import com.mygdx.game.EntityMgmt.EntityClass.Entity;
 
 public class CollisionManager {
     public void applyCollisionEffects(Collision collision) {

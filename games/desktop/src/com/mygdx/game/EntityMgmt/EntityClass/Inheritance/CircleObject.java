@@ -1,12 +1,12 @@
-package com.mygdx.game.EntityMgmt;
+package com.mygdx.game.EntityMgmt.EntityClass.Inheritance;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.Input;
+import com.mygdx.game.EntityMgmt.EntityClass.Entity;
 
-public class CircleObject extends Entity{
+public class CircleObject extends Entity {
     private float radius;
-
     private Color colour;
 
     public CircleObject(float radius, Color colour, float x, float y, float speed)
@@ -43,7 +43,6 @@ public class CircleObject extends Entity{
     public void setRadius(float radius) {
         this.radius = radius;
     }
-
     public Color getColour() {
         return colour;
     }

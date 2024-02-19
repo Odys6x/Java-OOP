@@ -1,10 +1,11 @@
-package com.mygdx.game.EntityMgmt;
+package com.mygdx.game.EntityMgmt.EntityClass.Inheritance;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.mygdx.game.EntityMgmt.EntityClass.Entity;
 
-public class TriangleObject extends Entity{
+public class TriangleObject extends Entity {
     private float p1x;
     private float p1y;
     private float p2x;
@@ -36,7 +37,7 @@ public class TriangleObject extends Entity{
         System.out.println("In triangle at " + getX() + "," + getY() + " position");
     }
 
-        @Override
+    @Override
     public void moveAIControlled() {
     }
 

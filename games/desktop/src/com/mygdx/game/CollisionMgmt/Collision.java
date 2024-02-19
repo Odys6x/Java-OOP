@@ -1,5 +1,6 @@
 package com.mygdx.game.CollisionMgmt;
-import com.mygdx.game.EntityMgmt.Entity;
+import com.mygdx.game.EntityMgmt.EntityClass.Entity;
+import com.mygdx.game.EntityMgmt.EntityClass.Inheritance.CircleObject;
 
 
 public class Collision {
@@ -18,17 +19,21 @@ public class Collision {
     public Entity getEntity2() {
         return this.entity2;
     }
-    
-    
+
+
     public boolean checkCollision() {
-        float dx = entity1.getX() - entity2.getX();
-        float dy = entity1.getY() - entity2.getY();
-        float distance = (float)Math.sqrt(dx * dx + dy * dy);
-        return distance <= (entity1.getRadius() + entity2.getRadius());
+        if (entity1 instanceof CircleObject && entity2 instanceof CircleObject) {
+            float dx = entity1.getX() - entity2.getX();
+            float dy = entity1.getY() - entity2.getY();
+            float distance = (float)Math.sqrt(dx * dx + dy * dy);
+            return distance <= (((CircleObject)entity1).getRadius() + ((CircleObject)entity2).getRadius());
+        } else {
+            return false;
+        }
     }
 
-    
-    
+
+
     public void notifyCollisionListener(CollisionListener listener) {
         if(checkCollision()) {
             listener.onCollision(this);

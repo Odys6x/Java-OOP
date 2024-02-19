@@ -1,15 +1,16 @@
-package com.mygdx.game.EntityMgmt;
+package com.mygdx.game.EntityMgmt.EntityClass;
 
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.mygdx.game.EntityMgmt.EntityClass.Interface.IMovable;
 
-public abstract class Entity implements IMovable{
+public abstract class Entity implements IMovable {
     private float x;
     private float y;
     private float speed;
-    private float radius; 
+
 
 
     public abstract void draw(ShapeRenderer shape);
@@ -24,10 +25,6 @@ public abstract class Entity implements IMovable{
         this.x = x;
         this.y = y;
         this.speed = speed;
-    }
-
-    public float getRadius() {
-        return radius;
     }
 
     public float getX() {

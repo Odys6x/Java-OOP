@@ -1,30 +1,26 @@
 package com.mygdx.game.SimulationMgmt;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.badlogic.gdx.graphics.g3d.particles.influencers.ColorInfluencer.Single;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygdx.game.CollisionMgmt.CollisionManager;
-import com.mygdx.game.EntityMgmt.Entity;
+import com.mygdx.game.EntityMgmt.EntityClass.Entity;
+import com.mygdx.game.EntityMgmt.EntityManager;
 import com.mygdx.game.SceneMgmt.sceneScreen;
 import com.mygdx.game.CollisionMgmt.Collision;
-import com.mygdx.game.EntityMgmt.CircleObject;
-import com.mygdx.game.EntityMgmt.TexturedObject;
-import com.mygdx.game.EntityMgmt.TriangleObject;
+import com.mygdx.game.EntityMgmt.EntityClass.Inheritance.CircleObject;
+import com.mygdx.game.EntityMgmt.EntityClass.Inheritance.TexturedObject;
+import com.mygdx.game.EntityMgmt.EntityClass.Inheritance.TriangleObject;
 
 public class Simulation {
 
     private boolean gameRunning; // is game running or not
     private sceneScreen Scenes; // yet to implement, will see in the future
-    private List<Entity> entities;
     private SpriteBatch batch;
     private ShapeRenderer shape;
+    private EntityManager entities;
     private CollisionManager collisionManager;
 
     public Simulation() {
@@ -34,21 +30,21 @@ public class Simulation {
     public void initialise() {
         // start making the objects in the game, from create
 
-        entities = new ArrayList<>();
+        entities = new EntityManager();
         batch = new SpriteBatch();
         shape = new ShapeRenderer();
         collisionManager = new CollisionManager();
         for (int i = 0; i < 10; i++) {
             float initialX = (float) (Math.random() * Gdx.graphics.getWidth());
-            entities.add(new TexturedObject("droplet.png", initialX, 400, 100));
+            entities.addEntity(new TexturedObject("droplet.png", initialX, 400, 100));
         }
 
         TexturedObject bucket = new TexturedObject("bucket.png", 300, 0, 0);
         bucket.setUserControlled(true); // Make the bucket user-controlled
-        entities.add(bucket);
+        entities.addEntity(bucket);
 
-        entities.add(new CircleObject(50, Color.BLUE, 500, 150, 0));
-        entities.add(new TriangleObject(50, 20, 150, 20, 100, 100, Color.RED, 50, 50, 0));
+        entities.addEntity(new CircleObject(50, Color.BLUE, 500, 150, 0));
+        entities.addEntity(new TriangleObject(50, 20, 150, 20, 100, 100, Color.RED, 50, 50, 0));
         gameRunning = true;
 
     }
@@ -58,7 +54,7 @@ public class Simulation {
         ScreenUtils.clear(0, 0, 0.2f, 1);
 
         batch.begin();
-        for (Entity entity : entities) {
+        for (Entity entity : entities.getEntityList()) {
             if (entity instanceof TexturedObject) {
                 TexturedObject texturedEntity = (TexturedObject) entity;
                 // Check if the entity is user-controlled
@@ -74,22 +70,22 @@ public class Simulation {
         batch.end();
 
         shape.begin(ShapeRenderer.ShapeType.Filled);
-        for (Entity entity : entities) {
+        for (Entity entity : entities.getEntityList()) {
             if (entity instanceof CircleObject || entity instanceof TriangleObject) {
                 entity.draw(shape);
             }
         }
         shape.end();
 
-        for (Entity entity : entities) {
+        for (Entity entity : entities.getEntityList()) {
             entity.moveUserControlled();
         }
 
         // collision
-        for (int i = 0; i < entities.size(); i++) {
-            for (int j = i + 1; j < entities.size(); j++) {
-                Entity entity1 = entities.get(i);
-                Entity entity2 = entities.get(j);
+        for (int i = 0; i < entities.getEntityList().size(); i++) {
+            for (int j = i + 1; j < entities.getEntityList().size(); j++) {
+                Entity entity1 = entities.getEntityList().get(i);
+                Entity entity2 = entities.getEntityList().get(j);
                 Collision collision = new Collision(entity1, entity2);
                 if (collision.checkCollision()) {
                     collisionManager.applyCollisionEffects(collision);
@@ -104,7 +100,7 @@ public class Simulation {
         gameRunning = false;
         batch.dispose();
         shape.dispose();
-        for (Entity entity : entities) {
+        for (Entity entity : entities.getEntityList()) {
             if (entity instanceof TexturedObject) {
                 ((TexturedObject) entity).dispose();
             }
