@@ -1,24 +1,20 @@
 package com.mygdx.game;
-
 import com.badlogic.gdx.ApplicationAdapter;
-
 import com.mygdx.game.SimulationMgmt.Simulation;
 
-
 public class GameMaster extends ApplicationAdapter {
-    private Simulation SimulationMgmt;
+    private Simulation Simulation;
     @Override
     public void create() {
-        SimulationMgmt.initialise();
+        Simulation = new Simulation();
+        Simulation.initialise();
     }
-
     @Override
     public void render() {
-        SimulationMgmt.update();
+        Simulation.update();
     }
-
     @Override
     public void dispose() {
-        SimulationMgmt.end();
+        Simulation.end();
     }
 }

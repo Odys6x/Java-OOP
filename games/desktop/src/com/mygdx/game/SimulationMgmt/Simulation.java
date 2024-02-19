@@ -3,6 +3,8 @@ package com.mygdx.game.SimulationMgmt;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.badlogic.gdx.graphics.g3d.particles.influencers.ColorInfluencer.Single;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -25,30 +27,30 @@ public class Simulation {
     private ShapeRenderer shape;
     private CollisionManager collisionManager;
 
-
-
-
+    public Simulation() {
+        gameRunning = false;
+    }
 
     public void initialise() {
-        gameRunning = true;
-        //start making the objects in the game
-        while (gameRunning) {
-            entities = new ArrayList<>();
-            batch = new SpriteBatch();
-            shape = new ShapeRenderer();
-            collisionManager = new CollisionManager();
-            for (int i = 0; i < 10; i++) {
-                float initialX = (float) (Math.random() * Gdx.graphics.getWidth());
-                entities.add(new TexturedObject("droplet.png", initialX, 400, 100));
-            }
+        // start making the objects in the game
 
-            TexturedObject bucket = new TexturedObject("bucket.png", 300, 0, 0);
-            bucket.setUserControlled(true); // Make the bucket user-controlled
-            entities.add(bucket);
-
-            entities.add(new CircleObject(50, Color.BLUE, 500, 150, 0));
-            entities.add(new TriangleObject(50, 20, 150, 20, 100, 100, Color.RED, 50, 50, 0));
+        entities = new ArrayList<>();
+        batch = new SpriteBatch();
+        shape = new ShapeRenderer();
+        collisionManager = new CollisionManager();
+        for (int i = 0; i < 10; i++) {
+            float initialX = (float) (Math.random() * Gdx.graphics.getWidth());
+            entities.add(new TexturedObject("droplet.png", initialX, 400, 100));
         }
+
+        TexturedObject bucket = new TexturedObject("bucket.png", 300, 0, 0);
+        bucket.setUserControlled(true); // Make the bucket user-controlled
+        entities.add(bucket);
+
+        entities.add(new CircleObject(50, Color.BLUE, 500, 150, 0));
+        entities.add(new TriangleObject(50, 20, 150, 20, 100, 100, Color.RED, 50, 50, 0));
+        gameRunning = true;
+
     }
 
     public void update() {
