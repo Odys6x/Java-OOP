@@ -1,5 +1,7 @@
 package com.mygdx.game.SceneMgmt;
 
-public class gameoverScreen extends sceneScreen {
-    
+public class gameoverScreen extends SceneScreen {
+    public void init(){
+ 
+    }
 }

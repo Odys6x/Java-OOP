@@ -8,7 +8,7 @@ public class SceneManager {
     public static final int End = 2;
     public static final int Gameover = 3;
 
-    private ArrayList<sceneScreen> scenes; // add the scenes to an array
+    private ArrayList<SceneScreen> scenes; // add the scenes to an array
     private int currentScene; // this is the current active screen
 
     public static SceneManager getInstance() { // to ensure that only one instance of scenemanager exists
@@ -25,8 +25,11 @@ public class SceneManager {
         scenes.add(new gameoverScreen());
         currentScene = Menu;
     }
+    public void changeScene(int sceneStage){
+        currentScene = sceneStage;
+        scenes.get(sceneStage).init();
+    }
+    public SceneScreen getCurrentScene(){
+        return scenes.get(currentScene);
+    }
 }   
-
-abstract class sceneScreen{
-
-}
