@@ -20,7 +20,7 @@ import com.mygdx.game.EntityMgmt.TriangleObject;
 
 public class Simulation {
 
-    private boolean gameRunning;
+    private boolean gameRunning; // is game running or not
     private sceneScreen Scenes; // yet to implement, will see in the future
     private List<Entity> entities;
     private SpriteBatch batch;
