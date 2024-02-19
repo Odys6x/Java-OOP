@@ -12,7 +12,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygdx.game.CollisionMgmt.CollisionManager;
 import com.mygdx.game.EntityMgmt.Entity;
-import com.mygdx.game.SceneMgmt.sceneScreen;
+import com.mygdx.game.SceneMgmt.SceneScreen;
 import com.mygdx.game.CollisionMgmt.Collision;
 import com.mygdx.game.EntityMgmt.CircleObject;
 import com.mygdx.game.EntityMgmt.TexturedObject;
@@ -21,7 +21,7 @@ import com.mygdx.game.EntityMgmt.TriangleObject;
 public class Simulation {
 
     private boolean gameRunning;
-    private sceneScreen Scenes; // yet to implement, will see in the future
+    private SceneScreen Scenes; // yet to implement, will see in the future
     private List<Entity> entities;
     private SpriteBatch batch;
     private ShapeRenderer shape;

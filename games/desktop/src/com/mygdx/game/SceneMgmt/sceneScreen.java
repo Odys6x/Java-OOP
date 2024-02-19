@@ -1,5 +1,5 @@
 package com.mygdx.game.SceneMgmt;
 
-public class sceneScreen {
-    
+public abstract class SceneScreen {
+    public abstract void init();
 }
