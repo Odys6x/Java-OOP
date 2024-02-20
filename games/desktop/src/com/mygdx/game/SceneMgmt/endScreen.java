@@ -21,7 +21,7 @@ public class endScreen extends SceneScreen {
     @Override
     public void show() {
         stage = new Stage(new ScreenViewport());
-        background = new Texture(Gdx.files.internal("endscreen.jpg"));
+        background = new Texture(Gdx.files.internal("end.png"));
 
         Image backgroundImage = new Image(background);
         stage.addActor(backgroundImage);

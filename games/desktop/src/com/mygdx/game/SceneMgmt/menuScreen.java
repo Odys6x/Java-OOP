@@ -22,7 +22,7 @@ public class menuScreen extends SceneScreen{
     @Override
     public void show() {
         stage = new Stage(new ScreenViewport());
-        background = new Texture(Gdx.files.internal("background.png"));
+        background = new Texture(Gdx.files.internal("start.png"));
 
         Image backgroundImage = new Image(background);
         backgroundImage.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
