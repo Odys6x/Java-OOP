@@ -11,12 +11,12 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 public class menuScreen extends SceneScreen{
-    private SceneManager SceneManager;
+    private SceneManager sceneManager;
     private Texture background;
     private Stage stage;
-    public menuScreen (SceneManager SceneManager){
+    public menuScreen (SceneManager sceneManager){
         super();
-        this.SceneManager = SceneManager.getInstance();
+        this.sceneManager = sceneManager.getInstance();
     }
     
     @Override
@@ -38,8 +38,8 @@ public class menuScreen extends SceneScreen{
             public void clicked(InputEvent event, float x, float y){
                 Gdx.app.log("menuScreen", "Screen clicked, attempting to transition to gameScreen.");
                 System.out.println("Next Screen (Menu Screen)");
-                if (SceneManager != null) {
-                    SceneManager.setScene(new gameScreen(SceneManager)); // supposed to transition here. but not working
+                if (sceneManager != null) {
+                    sceneManager.setScene(new gameScreen(sceneManager)); // supposed to transition here. but not working
                 } else {
                     System.out.println("SceneManager is null"); // error handling cos game screen not transitioning..
                 }

@@ -28,7 +28,8 @@ public class SceneManager {
             currentScene.dispose(); // Dispose resources of the current screen
         }
         currentScene = scene;
-        currentScene.show(); 
+        currentScene.show();
+        game.setScreen(currentScene); 
     }
     public void render(float delta){
         if (currentScene != null){
