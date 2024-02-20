@@ -3,27 +3,23 @@ package com.mygdx.game.EntityMgmt.EntityClass;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.mygdx.game.EntityMgmt.EntityClass.Interface.IMovable;
 
-public abstract class Entity implements IMovable {
-    private float x;
-    private float y;
+public abstract class Entity implements IMovable{
+    private float x,y;
     private float speed;
+    private Color color;
+    public Entity(){
 
-
-
-    public abstract void draw(ShapeRenderer shape);
-
-    public abstract void update();
-
-    public abstract void moveAIControlled();
-
-    public abstract void moveUserControlled();
-
-    public Entity(float x, float y, float speed) {
+    }
+    public Entity(float x, float y, Color color,float speed) {
         this.x = x;
         this.y = y;
+        this.color = color;
         this.speed = speed;
     }
 
@@ -48,16 +44,20 @@ public abstract class Entity implements IMovable {
         this.speed = speed;
     }
 
-    public void movement(Object instance, Consumer<Float> setMethod, Supplier<Float> getMethod, int leftKey, int rightKey) {
-        float delta = Gdx.graphics.getDeltaTime();
-        if (Gdx.input.isKeyPressed(leftKey)) {
-            setMethod.accept(getMethod.get() - 200 * delta);
-        }
-        if (Gdx.input.isKeyPressed(rightKey)) {
-            setMethod.accept(getMethod.get() + 200 * delta);
-        }
+    public Color getColor() {
+        return color;
+    }
+    public void setColor(Color color) {
+        this.color = color;
     }
 
+    public void movement() {}
+
+    public void draw(ShapeRenderer shape){};
+
+    public void draw(SpriteBatch batch){};
+
+    public abstract void update();
     public void applyKnockback(float dx, float dy) {
         this.x += dx;
         this.y += dy;

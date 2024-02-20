@@ -22,10 +22,12 @@ public class Simulation {
     private ShapeRenderer shape;
     private EntityManager entities;
     private CollisionManager collisionManager;
-
     public Simulation() {
         gameRunning = false;
     }
+
+    Entity Circle;
+    Entity Triangle;
 
     public void initialise() {
         // start making the objects in the game, from create
@@ -36,15 +38,17 @@ public class Simulation {
         collisionManager = new CollisionManager();
         for (int i = 0; i < 10; i++) {
             float initialX = (float) (Math.random() * Gdx.graphics.getWidth());
-            entities.addEntity(new TexturedObject("droplet.png", initialX, 400, 100));
+            entities.addEntity(new TexturedObject("droplet.png", initialX, 400, 400,false));
         }
 
-        TexturedObject bucket = new TexturedObject("bucket.png", 300, 0, 0);
-        bucket.setUserControlled(true); // Make the bucket user-controlled
+        TexturedObject bucket = new TexturedObject("bucket.png", 300, 0, 200,true);
         entities.addEntity(bucket);
 
-        entities.addEntity(new CircleObject(50, Color.BLUE, 500, 150, 0));
-        entities.addEntity(new TriangleObject(50, 20, 150, 20, 100, 100, Color.RED, 50, 50, 0));
+        Circle = new CircleObject(50, Color.BLUE, 500, 150, 0);
+        Triangle = new TriangleObject(Color.RED, 100, 100, 200);
+
+        entities.addEntity(Circle);
+        entities.addEntity(Triangle);
         gameRunning = true;
 
     }
@@ -52,34 +56,9 @@ public class Simulation {
     public void update() {
         //render part
         ScreenUtils.clear(0, 0, 0.2f, 1);
-
-        batch.begin();
-        for (Entity entity : entities.getEntityList()) {
-            if (entity instanceof TexturedObject) {
-                TexturedObject texturedEntity = (TexturedObject) entity;
-                // Check if the entity is user-controlled
-                if (texturedEntity.isUserControlled()) {
-                    texturedEntity.moveUserControlled();
-                } else {
-                    // sssume all other TexturedObjects are droplets and make them AI-controlled
-                    texturedEntity.moveAIControlled();
-                }
-                texturedEntity.drawTexture(batch);
-            }
-        }
-        batch.end();
-
-        shape.begin(ShapeRenderer.ShapeType.Filled);
-        for (Entity entity : entities.getEntityList()) {
-            if (entity instanceof CircleObject || entity instanceof TriangleObject) {
-                entity.draw(shape);
-            }
-        }
-        shape.end();
-
-        for (Entity entity : entities.getEntityList()) {
-            entity.moveUserControlled();
-        }
+        entities.movement();
+        entities.draw(batch,shape);
+        entities.update();
 
         // collision
         for (int i = 0; i < entities.getEntityList().size(); i++) {

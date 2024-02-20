@@ -28,11 +28,10 @@ public class Collision {
             float distance = (float)Math.sqrt(dx * dx + dy * dy);
             return distance <= (((CircleObject)entity1).getRadius() + ((CircleObject)entity2).getRadius());
         } else {
+            // Handle the case where one or both entities are not instances of CircleObject
             return false;
         }
     }
-
-
 
     public void notifyCollisionListener(CollisionListener listener) {
         if(checkCollision()) {
