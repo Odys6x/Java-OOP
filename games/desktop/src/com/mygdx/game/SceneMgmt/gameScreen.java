@@ -42,6 +42,20 @@ public class gameScreen extends SceneScreen {
         // Start or resume the simulation logic
         simulation.initialise();
         Gdx.input.setInputProcessor(stage); 
+        stage.addListener(new ClickListener(){ // adds a listener to the stage for touch events
+
+            // when clicked will transition to the next scene
+            @Override
+            public void clicked(InputEvent event, float x, float y){
+                Gdx.app.log("menuScreen", "Screen clicked, attempting to transition to gameScreen.");
+                System.out.println("Next Screen (Menu Screen)");
+                if (sceneManager != null) {
+                    sceneManager.setScene(new endScreen(sceneManager)); // supposed to transition here. but not working
+                } else {
+                    System.out.println("SceneManager is null"); // error handling cos game screen not transitioning..
+                }
+                            }
+        });
     }
     
     @Override
