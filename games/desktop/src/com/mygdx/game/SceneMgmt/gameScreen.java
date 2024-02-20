@@ -13,15 +13,15 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 public class gameScreen extends SceneScreen {
-    private SceneManager SceneManager;
+    private SceneManager sceneManager;
     private Simulation simulation; // Assuming this is your game's simulation class
     private Texture background;
     private Stage stage;
 
 
-    public gameScreen(SceneManager SceneManager) {
+    public gameScreen(SceneManager sceneManager) {
         super();
-        this.SceneManager = SceneManager.getInstance();
+        this.sceneManager = sceneManager.getInstance();
         // this.SceneManager = SceneManager;
         // show();
     }

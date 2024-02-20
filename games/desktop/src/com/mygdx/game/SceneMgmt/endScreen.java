@@ -9,7 +9,7 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 public class endScreen extends SceneScreen {
     private SceneManager sceneManager;
     private Texture background;
-    private Stage Stage;
+    private Stage stage;
 
     public endScreen(SceneManager sceneManager){
         this.sceneManager = sceneManager;
@@ -20,11 +20,11 @@ public class endScreen extends SceneScreen {
 
     @Override
     public void show() {
-        Stage = new Stage(new ScreenViewport());
+        stage = new Stage(new ScreenViewport());
         background = new Texture(Gdx.files.internal("endscreen.jpg"));
 
         Image backgroundImage = new Image(background);
-        Stage.addActor(backgroundImage);
+        stage.addActor(backgroundImage);
 
         backgroundImage.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
     }
@@ -32,8 +32,8 @@ public class endScreen extends SceneScreen {
     @Override
     public void render(float delta) {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        Stage.act(Math.min(Gdx.graphics.getDeltaTime(),1 / 30f));
-        Stage.draw();
+        stage.act(Math.min(Gdx.graphics.getDeltaTime(),1 / 30f));
+        stage.draw();
     }
 
     @Override
