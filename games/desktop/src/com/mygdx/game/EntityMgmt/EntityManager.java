@@ -48,17 +48,15 @@ public class EntityManager {
     public List<Entity> getEntityList() {
         return entityList;
     }
-    /*public Entity getUserControlledEntity() {
+
+    public Entity getUserControlledEntity() {
         for (Entity entity : entityList) {
             if (entity.isUserControlled()) {
-
+                return entity;
             }
         }
         return null; // Return null if no user-controlled entity is found
-        return entity;
     }
-
-     */
     public void createShape(int number) {
         if (number == 1){
             CircleObject circle = new CircleObject();
@@ -92,13 +90,21 @@ public class EntityManager {
             } else if (entityType == 2 && entity instanceof TexturedObject) {
                 TexturedObject textured = (TexturedObject) entity;
                 dimension.add((float) textured.getTexture().getHeight());
+                dimension.add((float) textured.getTexture().getWidth());
             }
         }
         return dimension;
     }
 
-
-
+    public float getSpeed() {
+        float speed = 0;
+        for (Entity entity : entityList) {
+            if (entity.isUserControlled()) {
+                speed = entity.getSpeed();
+            }
+        }
+        return speed;
+    }
 
     public void dispose(){
         for (Entity entity : entityList) {

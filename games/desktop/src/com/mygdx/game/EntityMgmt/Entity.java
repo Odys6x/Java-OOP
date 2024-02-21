@@ -8,6 +8,7 @@ abstract class Entity implements IMovable{
     private float x,y;
     private float speed;
     private Color color;
+    private boolean userControlled;
     Entity(){
 
     }
@@ -53,5 +54,11 @@ abstract class Entity implements IMovable{
     void draw(SpriteBatch batch){};
 
     abstract void update();
+    public boolean isUserControlled() {
+        return userControlled;
+    }
+    public void setUserControlled(boolean userControlled) {
+        this.userControlled = userControlled;
+    }
 
 }

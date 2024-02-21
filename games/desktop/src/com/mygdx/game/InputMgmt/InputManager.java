@@ -1,6 +1,5 @@
-/*package com.mygdx.game.InputMgmt;
+package com.mygdx.game.InputMgmt;
 
-import com.mygdx.game.EntityMgmt.Entity;
 import com.mygdx.game.EntityMgmt.EntityManager;
 
 public class InputManager {
@@ -14,11 +13,9 @@ public class InputManager {
 
     public void update() {
         // Get user input from input handler and control user-controlled entities
-        Entity userControlledEntity = entityManager.getUserControlledEntity();
-        if (userControlledEntity != null) {
+        if (entityManager.getUserControlledEntity() != null) {
             inputHandler.handleInput();
         }
     }
 }
 
- */

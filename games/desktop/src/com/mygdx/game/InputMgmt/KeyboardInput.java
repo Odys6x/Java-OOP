@@ -1,9 +1,8 @@
-/*package com.mygdx.game.InputMgmt;
+package com.mygdx.game.InputMgmt;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.mygdx.game.EntityMgmt.EntityManager;
-import com.mygdx.game.EntityMgmt.Entity;
 
 public class KeyboardInput implements InputHandler {
 	private EntityManager entityManager;
@@ -16,9 +15,9 @@ public class KeyboardInput implements InputHandler {
     }
 	
 	public void handleInput() {
-		Entity userControlledEntity = entityManager.getUserControlledEntity();
-        if (userControlledEntity != null) {
-            float speed = userControlledEntity.getSpeed(); // Get the speed of the user-controlled entity
+		;
+        if (entityManager.getUserControlledEntity() != null) {
+            float speed = entityManager.getSpeed(); // Get the speed of the user-controlled entity
 
             // Calculate delta values based on keyboard input and delta time
             float deltaX = 0, deltaY = 0;
@@ -36,11 +35,10 @@ public class KeyboardInput implements InputHandler {
             }
 
             // Update entity position using EntityManager
-            entityManager.updateEntityPosition(userControlledEntity, deltaX, deltaY);
+            entityManager.updateEntityPosition(entityManager.getUserControlledEntity(), deltaX, deltaY);
         }
     }
 
 
 }
 
- */
