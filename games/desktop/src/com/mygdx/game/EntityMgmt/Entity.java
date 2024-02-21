@@ -61,4 +61,7 @@ abstract class Entity implements IMovable{
         this.userControlled = userControlled;
     }
 
+    abstract float getWidth();
+    
+    abstract float getHeight();
 }

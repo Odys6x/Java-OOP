@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.ScreenUtils;
-// import com.mygdx.game.CollisionMgmt.CollisionManager;
+import com.mygdx.game.CollisionMgmt.CollisionManager;
 // import com.mygdx.game.EntityMgmt.EntityClass.Entity;
 import com.mygdx.game.EntityMgmt.EntityManager;
 import com.mygdx.game.SceneMgmt.SceneScreen;
@@ -27,7 +27,7 @@ public class Simulation {
     private ShapeRenderer shape;
     private EntityManager entities;
     private InputManager inputManager;
-    // private CollisionManager collisionManager;
+    private CollisionManager collisionManager;
     public Simulation() {
         gameRunning = false;
     }
@@ -38,10 +38,7 @@ public class Simulation {
         entities = new EntityManager();
         batch = new SpriteBatch();
         shape = new ShapeRenderer();
-        /*
-        collisionManager = new CollisionManager();
-
-         */
+        collisionManager = new CollisionManager(entities);
         KeyboardInput keyboardInput = new KeyboardInput(entities);
         inputManager = new InputManager(entities, keyboardInput);
 
@@ -62,19 +59,7 @@ public class Simulation {
         entities.movement();
         entities.draw(batch,shape);
         inputManager.update();
-
-        /*
-        for (int i = 0; i < entities.getEntityList().size(); i++) {
-            for (int j = i + 1; j < entities.getEntityList().size(); j++) {
-                Entity entity1 = entities.getEntityList().get(i);
-                Entity entity2 = entities.getEntityList().get(j);
-                Collision collision = new Collision(entity1, entity2);
-                if (collision.checkCollision()) {
-                    collisionManager.applyCollisionEffects(collision);
-                }
-            }
-        }
-         */
+        collisionManager.update();
 
     }
     public void end() {

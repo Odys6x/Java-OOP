@@ -50,4 +50,15 @@ class CircleObject extends Entity {
     void setRadius(float radius) {
         this.radius = radius;
     }
+
+    @Override
+    public float getWidth() {
+        return 2 * radius;
+    }
+    
+    // Implementation of getHeight() for CircleObject
+    @Override
+    public float getHeight() {
+        return 2 * radius;
+    }
 }

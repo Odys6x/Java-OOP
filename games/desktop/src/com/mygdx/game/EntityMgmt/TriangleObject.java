@@ -48,5 +48,15 @@ class TriangleObject extends Entity {
 
     }
 
+    @Override
+    float getWidth() {
+        return 50; // Provide a default width
+    }
+
+    @Override
+    float getHeight() {
+        return 50; // Provide a default height
+    }
+
 
 }
