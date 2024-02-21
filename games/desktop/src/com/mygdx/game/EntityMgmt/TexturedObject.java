@@ -28,6 +28,13 @@ class TexturedObject extends Entity{
     void draw(ShapeRenderer shape) {
     }
 
+    public boolean isUserControlled() {
+        return isUserControlled;
+    }
+    public void setUserControlled(boolean isUserControlled) {
+        this.isUserControlled = isUserControlled;
+    }
+
     public void moveAIControlled() {
         float newY = getY() - getSpeed() * Gdx.graphics.getDeltaTime();
         setY(newY);

@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class EntityManager {
     private List<Entity> entityList;
 
@@ -79,8 +80,8 @@ public class EntityManager {
                 addEntity(text.createDrop());
             }
         }
-
     }
+
     public List<Float> getDimensions(int entityType) {
         List<Float> dimension = new ArrayList<>();
         for (Entity entity : entityList) {

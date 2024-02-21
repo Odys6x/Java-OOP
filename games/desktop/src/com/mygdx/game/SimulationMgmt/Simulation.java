@@ -11,6 +11,8 @@ import com.mygdx.game.CollisionMgmt.Collision;
 
  */
 import com.mygdx.game.EntityMgmt.EntityManager;
+import com.mygdx.game.InputMgmt.InputManager;
+import com.mygdx.game.InputMgmt.KeyboardInput;
 import com.mygdx.game.SceneMgmt.sceneScreen;
 
 import java.util.List;
@@ -22,6 +24,7 @@ public class Simulation {
     private SpriteBatch batch;
     private ShapeRenderer shape;
     private EntityManager entities;
+    private InputManager inputManager;
     /*
     private CollisionManager collisionManager;
 
@@ -40,6 +43,9 @@ public class Simulation {
         collisionManager = new CollisionManager();
 
          */
+        KeyboardInput keyboardInput = new KeyboardInput(entities);
+        inputManager = new InputManager(entities, keyboardInput);
+
         entities.createText(1);
         entities.createText(2);
         entities.createShape(1);
