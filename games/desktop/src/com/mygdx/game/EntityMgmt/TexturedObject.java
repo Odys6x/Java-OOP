@@ -1,4 +1,4 @@
-package com.mygdx.game.EntityMgmt.EntityClass.Inheritance;
+package com.mygdx.game.EntityMgmt;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -6,14 +6,18 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.mygdx.game.EntityMgmt.EntityClass.Entity;
+import org.w3c.dom.Text;
 
-public class TexturedObject extends Entity {
+class TexturedObject extends Entity{
     private Texture tex;
     private String path;
     private boolean isUserControlled;
 
-    public TexturedObject(String path, float x, float y, float speed, Boolean isUserControlled) {
+    TexturedObject() {
+
+    }
+
+    TexturedObject(String path, float x, float y, float speed, Boolean isUserControlled) {
         super(x, y, Color.BLACK, speed);
         this.tex = new Texture(path);
         this.path = path;
@@ -21,7 +25,7 @@ public class TexturedObject extends Entity {
     }
 
     @Override
-    public void draw(ShapeRenderer shape) {
+    void draw(ShapeRenderer shape) {
     }
 
     public void moveAIControlled() {
@@ -37,20 +41,23 @@ public class TexturedObject extends Entity {
         }
     }
 
-    public boolean isUserControlled() {
-        return isUserControlled;
+    public void moveUserControlled() {
+        float delta = Gdx.graphics.getDeltaTime();
+        if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+            setX(getX() - getSpeed() * delta);
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+            setX(getX() + getSpeed() * delta);
+        }
     }
 
-    public void setUserControlled(boolean isUserControlled) {
-        this.isUserControlled = isUserControlled;
-    }
 
-    public void update() {
+    void update() {
         System.out.println("TexturedObject with texture at " + path + " is at position (" + getX() + ", " + getY() + ")");
     }
 
     @Override
-    public void movement(){
+    void movement(){
         if (isUserControlled){
             moveUserControlled();
         }
@@ -60,30 +67,36 @@ public class TexturedObject extends Entity {
     }
 
     @Override
-    public void draw(SpriteBatch batch) {
+    void draw(SpriteBatch batch) {
         batch.draw(getTexture(), getX(), getY(), getTexture().getWidth(),getTexture().getHeight());
     }
-    public Texture getTexture() {
+    Texture getTexture() {
         return tex;
     }
+
+    TexturedObject createText(){
+        return new TexturedObject("bucket.png", 300, 0, 200,true);
+    }
+
+    TexturedObject createDrop(){
+        float initialX = (float) (Math.random() * Gdx.graphics.getWidth());
+        return new TexturedObject("droplet.png", initialX, 400, 400,false);
+    }
+
     void setTexture(Texture tex) {
         this.tex = tex;
     }
 
-    public String getPath() {
+    String getPath() {
         return path;
     }
-    public void setPath(String path) {
+    void setPath(String path) {
         this.path = path;
     }
-    public void dispose() {
+
+
+
+    void dispose() {
         tex.dispose();
     }
-
-	@Override
-	public void moveUserControlled() {
-		// TODO Auto-generated method stub
-		
-	}
 }
-

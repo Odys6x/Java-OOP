@@ -1,6 +1,6 @@
-package com.mygdx.game.InputMgmt;
+/*package com.mygdx.game.InputMgmt;
 
-import com.mygdx.game.EntityMgmt.EntityClass.Entity;
+import com.mygdx.game.EntityMgmt.Entity;
 import com.mygdx.game.EntityMgmt.EntityManager;
 
 public class InputManager {
@@ -20,3 +20,5 @@ public class InputManager {
         }
     }
 }
+
+ */

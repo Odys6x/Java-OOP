@@ -1,5 +1,7 @@
-package com.mygdx.game.InputMgmt;
+/*package com.mygdx.game.InputMgmt;
 
 public interface InputHandler {
 	void handleInput();
 }
+
+ */

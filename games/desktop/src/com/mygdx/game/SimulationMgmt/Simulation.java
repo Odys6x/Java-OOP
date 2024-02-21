@@ -5,16 +5,15 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.ScreenUtils;
+/*
 import com.mygdx.game.CollisionMgmt.CollisionManager;
-import com.mygdx.game.EntityMgmt.EntityClass.Entity;
+import com.mygdx.game.CollisionMgmt.Collision;
+
+ */
 import com.mygdx.game.EntityMgmt.EntityManager;
 import com.mygdx.game.SceneMgmt.sceneScreen;
-import com.mygdx.game.CollisionMgmt.Collision;
-import com.mygdx.game.EntityMgmt.EntityClass.Inheritance.CircleObject;
-import com.mygdx.game.EntityMgmt.EntityClass.Inheritance.TexturedObject;
-import com.mygdx.game.EntityMgmt.EntityClass.Inheritance.TriangleObject;
-import com.mygdx.game.InputMgmt.KeyboardInput;
-import com.mygdx.game.InputMgmt.InputManager;
+
+import java.util.List;
 
 public class Simulation {
 
@@ -23,14 +22,13 @@ public class Simulation {
     private SpriteBatch batch;
     private ShapeRenderer shape;
     private EntityManager entities;
+    /*
     private CollisionManager collisionManager;
-    private InputManager inputManager;
+
+     */
     public Simulation() {
         gameRunning = false;
     }
-
-    Entity Circle;
-    Entity Triangle;
 
     public void initialise() {
         // start making the objects in the game, from create
@@ -38,22 +36,15 @@ public class Simulation {
         entities = new EntityManager();
         batch = new SpriteBatch();
         shape = new ShapeRenderer();
+        /*
         collisionManager = new CollisionManager();
-        KeyboardInput keyboardInput = new KeyboardInput(entities);
-        inputManager = new InputManager(entities, keyboardInput);
-        for (int i = 0; i < 10; i++) {
-            float initialX = (float) (Math.random() * Gdx.graphics.getWidth());
-            entities.addEntity(new TexturedObject("droplet.png", initialX, 400, 400,false));
-        }
 
-        TexturedObject bucket = new TexturedObject("bucket.png", 300, 0, 200,true);
-        entities.addEntity(bucket);
-
-        Circle = new CircleObject(50, Color.BLUE, 500, 150, 0);
-        Triangle = new TriangleObject(Color.RED, 100, 100, 200);
-
-        entities.addEntity(Circle);
-        entities.addEntity(Triangle);
+         */
+        entities.createText(1);
+        entities.createText(2);
+        entities.createShape(1);
+        entities.createShape(2);
+        System.out.println(entities.getDimensions(1));
         gameRunning = true;
 
     }
@@ -63,9 +54,8 @@ public class Simulation {
         ScreenUtils.clear(0, 0, 0.2f, 1);
         entities.movement();
         entities.draw(batch,shape);
-        entities.update();
-        inputManager.update();
-        // collision
+
+        /*
         for (int i = 0; i < entities.getEntityList().size(); i++) {
             for (int j = i + 1; j < entities.getEntityList().size(); j++) {
                 Entity entity1 = entities.getEntityList().get(i);
@@ -76,18 +66,14 @@ public class Simulation {
                 }
             }
         }
+         */
 
     }
-
     public void end() {
-        //this was from the dispose part of gamemaster 
+        //this was from the dispose part of gamemaster
         gameRunning = false;
         batch.dispose();
         shape.dispose();
-        for (Entity entity : entities.getEntityList()) {
-            if (entity instanceof TexturedObject) {
-                ((TexturedObject) entity).dispose();
-            }
-        }
+        entities.dispose();
     }
 }

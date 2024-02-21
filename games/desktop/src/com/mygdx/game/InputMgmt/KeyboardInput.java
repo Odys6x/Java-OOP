@@ -1,9 +1,9 @@
-package com.mygdx.game.InputMgmt;
+/*package com.mygdx.game.InputMgmt;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.mygdx.game.EntityMgmt.EntityManager;
-import com.mygdx.game.EntityMgmt.EntityClass.Entity;
+import com.mygdx.game.EntityMgmt.Entity;
 
 public class KeyboardInput implements InputHandler {
 	private EntityManager entityManager;
@@ -42,3 +42,5 @@ public class KeyboardInput implements InputHandler {
 
 
 }
+
+ */

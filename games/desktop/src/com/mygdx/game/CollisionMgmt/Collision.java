@@ -1,6 +1,6 @@
-package com.mygdx.game.CollisionMgmt;
-import com.mygdx.game.EntityMgmt.EntityClass.Entity;
-import com.mygdx.game.EntityMgmt.EntityClass.Inheritance.CircleObject;
+/*package com.mygdx.game.CollisionMgmt;
+import com.mygdx.game.EntityMgmt.Entity;
+import com.mygdx.game.EntityMgmt.CircleObject;
 
 
 public class Collision {
@@ -39,3 +39,5 @@ public class Collision {
         }
     }
 }
+
+ */
