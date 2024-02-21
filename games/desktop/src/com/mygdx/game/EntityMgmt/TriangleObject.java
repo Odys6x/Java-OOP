@@ -35,13 +35,6 @@ class TriangleObject extends Entity {
 
     @Override
     void movement() {
-        if (Gdx.input.isKeyPressed(Input.Keys.A)) {
-            setX(getX() - getSpeed() * Gdx.graphics.getDeltaTime());
-        }
-        if (Gdx.input.isKeyPressed(Input.Keys.D)) {
-            setX(getX() + getSpeed() * Gdx.graphics.getDeltaTime());
-
-        }
     }
     TriangleObject createTriangle(){
         return new TriangleObject(Color.RED, 50, 50, 100);

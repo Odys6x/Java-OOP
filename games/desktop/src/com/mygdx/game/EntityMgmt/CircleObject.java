@@ -31,13 +31,7 @@ class CircleObject extends Entity {
 
     @Override
     void movement() {
-        float delta = Gdx.graphics.getDeltaTime();
-        if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
-            setY(getY() + 200 * delta);
-        }
-        if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
-            setY(getY() - 200 * delta);
-        }
+
     }
 
     public void moveAIControlled() {

@@ -34,7 +34,7 @@ public class Simulation {
 
     public void initialise() {
         // start making the objects in the game, from create
-
+    	
         entities = new EntityManager();
         batch = new SpriteBatch();
         shape = new ShapeRenderer();
@@ -61,6 +61,7 @@ public class Simulation {
         ScreenUtils.clear(0, 0, 0.2f, 1);
         entities.movement();
         entities.draw(batch,shape);
+        inputManager.update();
 
         /*
         for (int i = 0; i < entities.getEntityList().size(); i++) {
