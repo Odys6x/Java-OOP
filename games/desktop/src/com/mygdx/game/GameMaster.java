@@ -3,7 +3,7 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Game;
 import com.mygdx.game.SceneMgmt.SceneManager;
 import com.mygdx.game.SceneMgmt.SceneScreen;
-import com.mygdx.game.SceneMgmt.menuScreen;
+import com.mygdx.game.SceneMgmt.MenuScreen;
 import com.mygdx.game.SimulationMgmt.Simulation;
 
 public class GameMaster extends Game { //changed from application adapter to game
@@ -16,7 +16,7 @@ public class GameMaster extends Game { //changed from application adapter to gam
         Simulation.initialise();
         SceneManager = SceneManager.getInstance();
         SceneManager.setGame(this); // Pass the GameMaster instance to SceneManager
-        this.setScreen(new menuScreen(SceneManager));
+        this.setScreen(new MenuScreen(SceneManager));
     }
     @Override
     public void render() {

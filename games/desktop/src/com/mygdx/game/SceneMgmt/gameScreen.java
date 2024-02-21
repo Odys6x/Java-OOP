@@ -9,14 +9,14 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
-public class gameScreen extends SceneScreen {
+public class GameScreen extends SceneScreen {
     private SceneManager sceneManager;
     private Simulation simulation; 
     private Texture background;
     private Stage stage;
 
 
-    public gameScreen(SceneManager sceneManager) {
+    public GameScreen(SceneManager sceneManager) {
         super();
         this.sceneManager = sceneManager.getInstance();
         // this.SceneManager = SceneManager;
@@ -43,10 +43,10 @@ public class gameScreen extends SceneScreen {
             // when clicked will transition to the next scene
             @Override
             public void clicked(InputEvent event, float x, float y){
-                Gdx.app.log("menuScreen", "Screen clicked, attempting to transition to gameScreen.");
+                Gdx.app.log("MenuScreen", "Screen clicked, attempting to transition to GameScreen.");
                 System.out.println("Next Screen (Menu Screen)");
                 if (sceneManager != null) {
-                    sceneManager.setScene(new endScreen(sceneManager)); 
+                    sceneManager.setScene(new EndScreen(sceneManager)); 
                 } else {
                     System.out.println("SceneManager is null"); 
                 }
