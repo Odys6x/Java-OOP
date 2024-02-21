@@ -13,6 +13,7 @@ public abstract class Entity implements IMovable{
     private float x,y;
     private float speed;
     private Color color;
+    private boolean userControlled;
     public Entity(){
 
     }
@@ -62,7 +63,12 @@ public abstract class Entity implements IMovable{
         this.x += dx;
         this.y += dy;
     }
-    
+    public boolean isUserControlled() {
+        return userControlled;
+    }
+    public void setUserControlled(boolean userControlled) {
+        this.userControlled = userControlled;
+    }
     
 }
 

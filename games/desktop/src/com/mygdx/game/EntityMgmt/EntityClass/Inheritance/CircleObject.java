@@ -31,17 +31,6 @@ public class CircleObject extends Entity {
         System.out.println("In circle of radius " + radius + " at " + getX() + "," + getY() + " position");
     }
 
-    @Override
-    public void movement() {
-        float delta = Gdx.graphics.getDeltaTime();
-        if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
-            setY(getY() + 200 * delta);
-        }
-        if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
-            setY(getY() - 200 * delta);
-        }
-    }
-
     public void moveAIControlled() {
     }
 

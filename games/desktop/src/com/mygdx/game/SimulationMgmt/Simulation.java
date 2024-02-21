@@ -13,6 +13,8 @@ import com.mygdx.game.CollisionMgmt.Collision;
 import com.mygdx.game.EntityMgmt.EntityClass.Inheritance.CircleObject;
 import com.mygdx.game.EntityMgmt.EntityClass.Inheritance.TexturedObject;
 import com.mygdx.game.EntityMgmt.EntityClass.Inheritance.TriangleObject;
+import com.mygdx.game.InputMgmt.KeyboardInput;
+import com.mygdx.game.InputMgmt.InputManager;
 
 public class Simulation {
 
@@ -22,6 +24,7 @@ public class Simulation {
     private ShapeRenderer shape;
     private EntityManager entities;
     private CollisionManager collisionManager;
+    private InputManager inputManager;
     public Simulation() {
         gameRunning = false;
     }
@@ -36,6 +39,8 @@ public class Simulation {
         batch = new SpriteBatch();
         shape = new ShapeRenderer();
         collisionManager = new CollisionManager();
+        KeyboardInput keyboardInput = new KeyboardInput(entities);
+        inputManager = new InputManager(entities, keyboardInput);
         for (int i = 0; i < 10; i++) {
             float initialX = (float) (Math.random() * Gdx.graphics.getWidth());
             entities.addEntity(new TexturedObject("droplet.png", initialX, 400, 400,false));
@@ -59,7 +64,7 @@ public class Simulation {
         entities.movement();
         entities.draw(batch,shape);
         entities.update();
-
+        inputManager.update();
         // collision
         for (int i = 0; i < entities.getEntityList().size(); i++) {
             for (int j = i + 1; j < entities.getEntityList().size(); j++) {

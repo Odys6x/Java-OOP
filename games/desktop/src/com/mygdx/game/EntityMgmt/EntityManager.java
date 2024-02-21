@@ -49,4 +49,17 @@ public class EntityManager {
     public List<Entity> getEntityList() {
         return entityList;
     }
+    public Entity getUserControlledEntity() {
+        for (Entity entity : entityList) {
+            if (entity.isUserControlled()) {
+                return entity;
+            }
+        }
+        return null; // Return null if no user-controlled entity is found
+    }
+    public void updateEntityPosition(Entity entity, float deltaX, float deltaY) {
+        entity.setX(entity.getX() + deltaX);
+        entity.setY(entity.getY() + deltaY);
+    }
 }
+

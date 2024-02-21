@@ -37,14 +37,12 @@ public class TexturedObject extends Entity {
         }
     }
 
-    public void moveUserControlled() {
-        float delta = Gdx.graphics.getDeltaTime();
-        if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-            setX(getX() - getSpeed() * delta);
-            }
-            if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-                setX(getX() + getSpeed() * delta);
-            }
+    public boolean isUserControlled() {
+        return isUserControlled;
+    }
+
+    public void setUserControlled(boolean isUserControlled) {
+        this.isUserControlled = isUserControlled;
     }
 
     public void update() {
@@ -81,5 +79,11 @@ public class TexturedObject extends Entity {
     public void dispose() {
         tex.dispose();
     }
+
+	@Override
+	public void moveUserControlled() {
+		// TODO Auto-generated method stub
+		
+	}
 }
 

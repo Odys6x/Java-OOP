@@ -36,16 +36,6 @@ public class TriangleObject extends Entity {
         System.out.println("In triangle at " + getX() + "," + getY() + " position");
     }
 
-    @Override
-    public void movement() {
-        if (Gdx.input.isKeyPressed(Input.Keys.A)) {
-            setX(getX() - getSpeed() * Gdx.graphics.getDeltaTime());
-        }
-        if (Gdx.input.isKeyPressed(Input.Keys.D)) {
-            setX(getX() + getSpeed() * Gdx.graphics.getDeltaTime());
-
-        }
-    }
 
     public void moveAIControlled() {
 
