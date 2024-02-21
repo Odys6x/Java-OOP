@@ -2,10 +2,10 @@ package com.mygdx.game.EntityMgmt;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.mygdx.game.EntityMgmt.EntityClass.Entity;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class EntityManager {
     private List<Entity> entityList;
@@ -49,6 +49,7 @@ public class EntityManager {
     public List<Entity> getEntityList() {
         return entityList;
     }
+
     public Entity getUserControlledEntity() {
         for (Entity entity : entityList) {
             if (entity.isUserControlled()) {
@@ -56,6 +57,62 @@ public class EntityManager {
             }
         }
         return null; // Return null if no user-controlled entity is found
+    }
+    public void createShape(int number) {
+        if (number == 1){
+            CircleObject circle = new CircleObject();
+            addEntity(circle.createCircle());
+        }
+        else if(number == 2){
+            TriangleObject triangle = new TriangleObject();
+            addEntity(triangle.createTriangle());
+        }
+    }
+
+    public void createText(int number) {
+        if (number == 1){
+            TexturedObject text = new TexturedObject();
+            addEntity(text.createText());
+        }
+        else if (number == 2){
+            TexturedObject text = new TexturedObject();
+            for (int i = 0; i < 10; i++) {
+                addEntity(text.createDrop());
+            }
+        }
+    }
+
+    public List<Float> getDimensions(int entityType) {
+        List<Float> dimension = new ArrayList<>();
+        for (Entity entity : entityList) {
+            if (entityType == 1 && entity instanceof CircleObject) {
+                CircleObject circle = (CircleObject) entity;
+                dimension.add(circle.getRadius());
+            } else if (entityType == 2 && entity instanceof TexturedObject) {
+                TexturedObject textured = (TexturedObject) entity;
+                dimension.add((float) textured.getTexture().getHeight());
+                dimension.add((float) textured.getTexture().getWidth());
+            }
+        }
+        return dimension;
+    }
+
+    public float getSpeed() {
+        float speed = 0;
+        for (Entity entity : entityList) {
+            if (entity.isUserControlled()) {
+                speed = entity.getSpeed();
+            }
+        }
+        return speed;
+    }
+
+    public void dispose(){
+        for (Entity entity : entityList) {
+            if (entity instanceof TexturedObject) {
+                ((TexturedObject) entity).dispose();
+            }
+        }
     }
     public void updateEntityPosition(Entity entity, float deltaX, float deltaY) {
         entity.setX(entity.getX() + deltaX);

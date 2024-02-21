@@ -1,5 +1,5 @@
-package com.mygdx.game.CollisionMgmt;
-import com.mygdx.game.EntityMgmt.EntityClass.Entity;
+/*package com.mygdx.game.CollisionMgmt;
+import com.mygdx.game.EntityMgmt.Entity;
 
 public class CollisionManager {
     public void applyCollisionEffects(Collision collision) {
@@ -24,3 +24,5 @@ public class CollisionManager {
 }
 
 }
+
+ */
