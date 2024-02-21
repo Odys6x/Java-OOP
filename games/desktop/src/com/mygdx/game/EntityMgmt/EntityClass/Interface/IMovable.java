@@ -1,4 +1,4 @@
-package com.mygdx.game.EntityMgmt;
+package com.mygdx.game.EntityMgmt.EntityClass.Interface;
 
 
 public interface IMovable {
