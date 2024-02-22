@@ -47,12 +47,12 @@ class TriangleObject extends Entity implements CreateShape{
 
     @Override
     public float getWidth() {
-        return 50; // Provide a default width
+        return 50; 
     }
 
     @Override
     public float getHeight() {
-        return 50; // Provide a default height
+        return 50; 
     }
 
 
