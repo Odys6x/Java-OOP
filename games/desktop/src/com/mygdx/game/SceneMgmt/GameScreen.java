@@ -26,13 +26,13 @@ public class GameScreen extends SceneScreen {
 
     @Override
     public void show() {
-        simulation = new Simulation();
         stage = new Stage(new ScreenViewport());
         background = new Texture(Gdx.files.internal("gamescreen.jpg"));
         Image backgroundImage = new Image(background);
         backgroundImage.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         stage.addActor(backgroundImage);
-
+        
+        simulation = new Simulation();
         simulation.initialise(); // starts the simulation logic
         Gdx.input.setInputProcessor(stage); 
         stage.addListener(new ClickListener(){ // adds a listener to the stage for touch events
