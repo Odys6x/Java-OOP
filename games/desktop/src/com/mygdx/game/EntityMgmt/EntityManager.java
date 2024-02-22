@@ -61,7 +61,7 @@ public class EntityManager {
     public void createShape(int number) {
         if (number == 1){
             CircleObject circle = new CircleObject();
-            addEntity(circle.createCircle());
+            addEntity(circle.create());
         }
         else if(number == 2){
             TriangleObject triangle = new TriangleObject();

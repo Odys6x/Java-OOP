@@ -50,8 +50,6 @@ public class Simulation {
         entities.createShape(1);
         entities.createShape(2);
 
-        System.out.println(entities.getDimensions(2));
-
         gameRunning = true;
 
     }

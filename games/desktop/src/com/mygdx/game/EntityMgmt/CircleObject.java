@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.Input;
 
-class CircleObject extends Entity {
+class CircleObject extends Entity{
     private float radius;
 
     CircleObject()
@@ -29,18 +29,13 @@ class CircleObject extends Entity {
         System.out.println("In circle of radius " + radius + " at " + getX() + "," + getY() + " position");
     }
 
-    @Override
-    void movement() {
-
-    }
-
     public void moveAIControlled() {
     }
 
     public void moveUserControlled() {
     }
 
-    CircleObject createCircle(){
+    CircleObject create(){
         return new CircleObject(50, Color.BLUE, 300, 300, 100);
     }
 
