@@ -4,32 +4,39 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
-abstract class Entity implements IMovable{
+public abstract class Entity implements IMovable{
     private float x,y;
     private float speed;
     private Color color;
     private boolean userControlled;
-    Entity(){
+    public Entity(){
 
     }
-    Entity(float x, float y, Color color,float speed) {
+    public Entity(float x, float y, Color color,float speed,boolean userControlled) {
+        this.x = x;
+        this.y = y;
+        this.color = color;
+        this.speed = speed;
+        this.userControlled = userControlled;
+    }
+    public Entity(float x, float y, Color color,float speed) {
         this.x = x;
         this.y = y;
         this.color = color;
         this.speed = speed;
     }
 
-    float getX() {
+    public float getX() {
         return x;
     }
-    void setX(float x) {
+    public void setX(float x) {
         this.x = x;
     }
 
-    float getY() {
+    public float getY() {
         return y;
     }
-    void setY(float y) {
+    public void setY(float y) {
         this.y = y;
     }
 
@@ -47,8 +54,6 @@ abstract class Entity implements IMovable{
         this.color = color;
     }
 
-    void movement() {}
-
     void draw(ShapeRenderer shape){};
 
     void draw(SpriteBatch batch){};
@@ -57,11 +62,12 @@ abstract class Entity implements IMovable{
     public boolean isUserControlled() {
         return userControlled;
     }
-    public void setUserControlled(boolean userControlled) {
+    void setUserControlled(boolean userControlled) {
         this.userControlled = userControlled;
     }
+    void movement() {}
 
-    abstract float getWidth();
-    
-    abstract float getHeight();
+    public abstract float getWidth();
+
+    public abstract float getHeight();
 }

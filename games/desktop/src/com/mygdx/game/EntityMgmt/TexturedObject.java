@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import org.w3c.dom.Text;
 
-class TexturedObject extends Entity{
+class TexturedObject extends Entity implements CreateTexture{
     private Texture tex;
     private String path;
     private boolean isUserControlled;
@@ -25,12 +25,12 @@ class TexturedObject extends Entity{
     }
 
     @Override
-    float getWidth() {
+    public float getWidth() {
         return tex.getWidth();
     }
 
     @Override
-    float getHeight() {
+    public float getHeight() {
         return tex.getHeight();
     }
 
@@ -108,5 +108,15 @@ class TexturedObject extends Entity{
         tex.dispose();
     }
 
-    
+
+    @Override
+    public Entity CreateTexture(int number) {
+        if (number == 1){
+            return createText();
+        }
+        else if (number == 2) {
+           return createDrop();
+        }
+        return null;
+    }
 }
