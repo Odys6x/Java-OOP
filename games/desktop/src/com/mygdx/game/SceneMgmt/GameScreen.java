@@ -19,8 +19,6 @@ public class GameScreen extends SceneScreen {
     public GameScreen(SceneManager sceneManager) {
         super();
         this.sceneManager = sceneManager.getInstance();
-        // this.SceneManager = SceneManager;
-        // show();
     }
     public void init(){
         
@@ -29,7 +27,6 @@ public class GameScreen extends SceneScreen {
     @Override
     public void show() {
         simulation = new Simulation();
-        simulation.initialise();
         stage = new Stage(new ScreenViewport());
         background = new Texture(Gdx.files.internal("gamescreen.jpg"));
         Image backgroundImage = new Image(background);
@@ -43,8 +40,8 @@ public class GameScreen extends SceneScreen {
             // when clicked will transition to the next scene
             @Override
             public void clicked(InputEvent event, float x, float y){
-                Gdx.app.log("MenuScreen", "Screen clicked, attempting to transition to GameScreen.");
-                System.out.println("Next Screen (Menu Screen)");
+                Gdx.app.log("GameScreen", "Screen clicked, attempting to transition to EndScreen.");
+                System.out.println("Next Screen (End Screen)");
                 if (sceneManager != null) {
                     sceneManager.setScene(new EndScreen(sceneManager)); 
                 } else {
