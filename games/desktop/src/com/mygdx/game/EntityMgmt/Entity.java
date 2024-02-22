@@ -18,6 +18,13 @@ abstract class Entity implements IMovable{
         this.color = color;
         this.speed = speed;
     }
+    Entity(float x, float y, Color color,float speed,boolean userControlled) {
+        this.x = x;
+        this.y = y;
+        this.color = color;
+        this.speed = speed;
+        this.userControlled = userControlled;
+    }
 
     float getX() {
         return x;

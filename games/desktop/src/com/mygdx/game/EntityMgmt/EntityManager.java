@@ -9,8 +9,6 @@ import java.util.List;
 
 public class EntityManager {
     private List<Entity> entityList;
-    
-    
 
     public EntityManager() {
         entityList = new ArrayList<>();
@@ -63,18 +61,18 @@ public class EntityManager {
     public void createShape(int number) {
         if (number == 1){
             CircleObject circle = new CircleObject();
-            addEntity(circle.createCircle());
+            addEntity(circle.CreateShape());
         }
         else if(number == 2){
             TriangleObject triangle = new TriangleObject();
-            addEntity(triangle.createTriangle());
+            addEntity(triangle.CreateShape());
         }
     }
 
     public void createText(int number) {
         if (number == 1){
             TexturedObject text = new TexturedObject();
-            addEntity(text.createText());
+            addEntity(text.CreateTexture());
         }
         else if (number == 2){
             TexturedObject text = new TexturedObject();

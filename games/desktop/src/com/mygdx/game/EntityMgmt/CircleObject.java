@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.Input;
 
-class CircleObject extends Entity {
+class CircleObject extends Entity implements CreateShape{
     private float radius;
 
     CircleObject()
@@ -36,11 +36,8 @@ class CircleObject extends Entity {
 
     public void moveAIControlled() {
     }
-
-    public void moveUserControlled() {
-    }
-
-    CircleObject createCircle(){
+    @Override
+    public CircleObject CreateShape(){
         return new CircleObject(50, Color.BLUE, 300, 300, 100);
     }
 

@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 
-class TriangleObject extends Entity {
+class TriangleObject extends Entity implements CreateShape{
     Vector2 point1 = new Vector2();
     Vector2 point2= new Vector2();
     Vector2 point3= new Vector2();
@@ -36,15 +36,12 @@ class TriangleObject extends Entity {
     @Override
     void movement() {
     }
-    TriangleObject createTriangle(){
+    @Override
+    public TriangleObject CreateShape(){
         return new TriangleObject(Color.RED, 50, 50, 100);
     }
 
     public void moveAIControlled() {
-
-    }
-
-    public void moveUserControlled() {
 
     }
 
