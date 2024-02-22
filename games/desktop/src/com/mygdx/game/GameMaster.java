@@ -19,15 +19,10 @@ public class GameMaster extends Game { //changed from application adapter to gam
     @Override
     public void render() {
         super.render();
-        // Simulation.update();
-        // SceneManager.render();
     }
     @Override
     public void dispose() {
         Simulation.end();
-        // SceneManager.dispose();
-        if (sceneManager != null) {
-            sceneManager.dispose(); 
-        }
+        sceneManager.dispose();
     }
 }
