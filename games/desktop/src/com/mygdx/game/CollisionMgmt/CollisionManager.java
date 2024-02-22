@@ -3,10 +3,12 @@ package com.mygdx.game.CollisionMgmt;
 import com.mygdx.game.EntityMgmt.Entity;
 import com.mygdx.game.EntityMgmt.EntityManager;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CollisionManager {
     private EntityManager entityManager;
+    private final List<CollisionListener> listeners = new ArrayList<>();
 
     public CollisionManager(EntityManager entityManager) {
         this.entityManager = entityManager;
@@ -22,6 +24,20 @@ public class CollisionManager {
                     Collision.applyKnockback(e1, e2);
                 }
             }
+        }
+    }
+
+    public void addCollisionListener(CollisionListener listener) {
+        listeners.add(listener);
+    }
+
+    public void removeCollisionListener(CollisionListener listener) {
+        listeners.remove(listener);
+    }
+
+    protected void notifyCollision(Entity entity1, Entity entity2) {
+        for (CollisionListener listener : listeners) {
+            listener.onCollision(entity1, entity2);
         }
     }
 }
