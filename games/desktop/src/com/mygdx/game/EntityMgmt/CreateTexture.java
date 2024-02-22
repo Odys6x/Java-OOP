@@ -1,5 +1,5 @@
 package com.mygdx.game.EntityMgmt;
 
 interface CreateTexture {
-    Entity CreateTexture(int number);
+    Entity createTexture(int number);
 }

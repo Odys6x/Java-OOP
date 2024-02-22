@@ -64,23 +64,23 @@ public class EntityManager {
     public void createShape(int number) {
         if (number == 1){
             CircleObject circle = new CircleObject();
-            addEntity(circle.CreateShape());
+            addEntity(circle.createShape());
         }
         else if(number == 2){
             TriangleObject triangle = new TriangleObject();
-            addEntity(triangle.CreateShape());
+            addEntity(triangle.createShape());
         }
     }
 
     public void createText(int number) {
         if (number == 1){
             TexturedObject text = new TexturedObject();
-            addEntity(text.CreateTexture(number));
+            addEntity(text.createTexture(number));
         }
         else if (number == 2){
             TexturedObject text = new TexturedObject();
             for (int i = 0; i < 10; i++) {
-                addEntity(text.CreateTexture(number));
+                addEntity(text.createTexture(number));
             }
         }
     }

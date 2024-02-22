@@ -1,7 +1,5 @@
 package com.mygdx.game.EntityMgmt;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
@@ -34,7 +32,7 @@ class TriangleObject extends Entity implements CreateShape{
     }
 
     @Override
-    public TriangleObject CreateShape(){
+    public TriangleObject createShape(){
         return new TriangleObject(Color.RED, 50, 50, 100);
     }
 

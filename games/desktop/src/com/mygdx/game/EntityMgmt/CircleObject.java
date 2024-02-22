@@ -1,9 +1,7 @@
 package com.mygdx.game.EntityMgmt;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.Input;
 
 
 class CircleObject extends Entity implements CreateShape{
@@ -40,7 +38,7 @@ class CircleObject extends Entity implements CreateShape{
 
 
     @Override
-    public CircleObject CreateShape(){
+    public CircleObject createShape(){
         return new CircleObject(50, Color.BLUE, 300, 300, 100);
     }
 

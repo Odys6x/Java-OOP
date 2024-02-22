@@ -7,7 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 public class EndScreen extends SceneScreen {
-    private SceneManager sceneManager;
+    private SceneManager sceneManager; //future implementation
     private Texture background;
     private Stage stage;
 
