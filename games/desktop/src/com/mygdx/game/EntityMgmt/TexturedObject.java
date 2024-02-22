@@ -1,12 +1,10 @@
 package com.mygdx.game.EntityMgmt;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import org.w3c.dom.Text;
 
 class TexturedObject extends Entity implements CreateTexture{
     private Texture tex;
@@ -110,7 +108,7 @@ class TexturedObject extends Entity implements CreateTexture{
 
 
     @Override
-    public Entity CreateTexture(int number) {
+    public Entity createTexture(int number) {
         if (number == 1){
             return createText();
         }
