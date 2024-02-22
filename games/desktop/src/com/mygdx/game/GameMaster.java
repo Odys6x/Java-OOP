@@ -1,22 +1,20 @@
-    package com.mygdx.game;
-import com.badlogic.gdx.ApplicationAdapter;
+package com.mygdx.game;
 import com.badlogic.gdx.Game;
 import com.mygdx.game.SceneMgmt.SceneManager;
-import com.mygdx.game.SceneMgmt.SceneScreen;
 import com.mygdx.game.SceneMgmt.MenuScreen;
 import com.mygdx.game.SimulationMgmt.Simulation;
 
 public class GameMaster extends Game { //changed from application adapter to game
     private Simulation Simulation;
-    private SceneManager SceneManager;
+    private SceneManager sceneManager;
     
     @Override
     public void create() {
         Simulation = new Simulation();
         Simulation.initialise();
-        SceneManager = SceneManager.getInstance();
-        SceneManager.setGame(this); // Pass the GameMaster instance to SceneManager
-        this.setScreen(new MenuScreen(SceneManager));
+        SceneManager sceneManager = SceneManager.getInstance();
+        sceneManager.setGame(this); // Pass the GameMaster instance to SceneManager
+        this.setScreen(new MenuScreen(sceneManager));
     }
     @Override
     public void render() {
@@ -28,8 +26,8 @@ public class GameMaster extends Game { //changed from application adapter to gam
     public void dispose() {
         Simulation.end();
         // SceneManager.dispose();
-        if (SceneManager != null) {
-            SceneManager.dispose(); 
+        if (sceneManager != null) {
+            sceneManager.dispose(); 
         }
     }
 }

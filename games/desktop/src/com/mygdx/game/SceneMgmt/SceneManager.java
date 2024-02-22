@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 
 public class SceneManager {
     private SceneScreen currentScene;
+    private static SceneManager instance;
     private Game game;
 
     public static SceneManager getInstance() {
@@ -39,7 +40,6 @@ public class SceneManager {
             currentScene.dispose();
         }
     }
-    private static SceneManager instance;
     private SceneManager() {
     }
 
