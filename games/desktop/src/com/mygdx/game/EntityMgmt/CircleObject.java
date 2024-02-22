@@ -29,13 +29,15 @@ class CircleObject extends Entity implements CreateShape{
         System.out.println("In circle of radius " + radius + " at " + getX() + "," + getY() + " position");
     }
 
-    @Override
-    void movement() {
-
-    }
 
     public void moveAIControlled() {
     }
+
+    @Override
+    public void moveUserControlled() {
+
+    }
+
     @Override
     public CircleObject CreateShape(){
         return new CircleObject(50, Color.BLUE, 300, 300, 100);

@@ -58,7 +58,6 @@ public class Simulation {
         entities.draw(batch,shape);
         inputManager.update();
         collisionManager.update();
-
     }
     public void end() {
         //this was from the dispose part of gamemaster

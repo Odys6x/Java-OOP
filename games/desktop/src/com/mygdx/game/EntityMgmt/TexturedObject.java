@@ -6,27 +6,31 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.utils.Null;
 import org.w3c.dom.Text;
 
-class TexturedObject extends Entity{
+class TexturedObject extends Entity implements CreateTexture{
     private Texture tex;
     private String path;
+    private boolean isUserControlled;
 
+    TexturedObject() {
 
-    TexturedObject(String path, float x, float y, float speed, Boolean userControlled) {
-        super(x, y, Color.BLACK, speed,userControlled);
+    }
+
+    TexturedObject(String path, float x, float y, float speed, Boolean isUserControlled) {
+        super(x, y, Color.BLACK, speed);
         this.tex = new Texture(path);
         this.path = path;
+        this.isUserControlled = isUserControlled;
     }
 
     @Override
-    float getWidth() {
+    public float getWidth() {
         return tex.getWidth();
     }
 
     @Override
-    float getHeight() {
+    public float getHeight() {
         return tex.getHeight();
     }
 
@@ -34,6 +38,12 @@ class TexturedObject extends Entity{
     void draw(ShapeRenderer shape) {
     }
 
+    public boolean isUserControlled() {
+        return isUserControlled;
+    }
+    public void setUserControlled(boolean isUserControlled) {
+        this.isUserControlled = isUserControlled;
+    }
 
     public void moveAIControlled() {
         float newY = getY() - getSpeed() * Gdx.graphics.getDeltaTime();
@@ -58,7 +68,12 @@ class TexturedObject extends Entity{
 
     @Override
     void movement(){
-        moveAIControlled();
+        if (isUserControlled){
+            moveUserControlled();
+        }
+        else {
+            moveAIControlled();
+        }
     }
 
     @Override
@@ -69,10 +84,14 @@ class TexturedObject extends Entity{
         return tex;
     }
 
-    TexturedObject CreateDrop(){
-        return new TexturedObject("bucket.png",0,500,100,false);}
+    TexturedObject createText(){
+        return new TexturedObject("bucket.png", 300, 0, 200,true);
     }
 
+    TexturedObject createDrop(){
+        float initialX = (float) (Math.random() * Gdx.graphics.getWidth());
+        return new TexturedObject("droplet.png", initialX, 400, 400,false);
+    }
 
     void setTexture(Texture tex) {
         this.tex = tex;
@@ -89,5 +108,15 @@ class TexturedObject extends Entity{
         tex.dispose();
     }
 
-    
+
+    @Override
+    public Entity CreateTexture(int number) {
+        if (number == 1){
+            return createText();
+        }
+        else if (number == 2) {
+           return createDrop();
+        }
+        return null;
+    }
 }
