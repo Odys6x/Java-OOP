@@ -18,7 +18,7 @@ public class GameScreen extends SceneScreen {
 
     public GameScreen(SceneManager sceneManager) {
         super();
-        this.sceneManager = sceneManager.getInstance();
+        this.sceneManager = sceneManager;
     }
     public void init(){
         

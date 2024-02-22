@@ -15,7 +15,7 @@ public class MenuScreen extends SceneScreen{
     private Stage stage;
     public MenuScreen (SceneManager sceneManager){
         super();
-        this.sceneManager = sceneManager.getInstance();
+        this.sceneManager = sceneManager;
     }
     
     @Override
