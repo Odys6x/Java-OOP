@@ -25,6 +25,16 @@ class TexturedObject extends Entity{
     }
 
     @Override
+    float getWidth() {
+        return tex.getWidth();
+    }
+
+    @Override
+    float getHeight() {
+        return tex.getHeight();
+    }
+
+    @Override
     void draw(ShapeRenderer shape) {
     }
 
@@ -94,9 +104,9 @@ class TexturedObject extends Entity{
         this.path = path;
     }
 
-
-
     void dispose() {
         tex.dispose();
     }
+
+    
 }

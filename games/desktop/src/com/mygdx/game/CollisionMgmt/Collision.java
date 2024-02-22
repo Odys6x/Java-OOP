@@ -1,43 +1,20 @@
-/*package com.mygdx.game.CollisionMgmt;
-import com.mygdx.game.EntityMgmt.Entity;
-import com.mygdx.game.EntityMgmt.CircleObject;
+// package com.mygdx.game.CollisionMgmt;
+// import com.mygdx.game.EntityMgmt.Entity;
 
 
-public class Collision {
-    private Entity entity1;
-    private Entity entity2;
-    
-    public Collision(Entity entity1, Entity entity2) {
-        this.entity1 = entity1;
-        this.entity2 = entity2;
-    }
+// public class Collision {
+//     private boolean checkCollision(Entity e1, Entity e2) {
+//         // Implement collision detection logic
+//         float e1Left = e1.getX();
+//         float e1Right = e1.getX() + e1.getWidth();
+//         float e1Top = e1.getY() + e1.getHeight();
+//         float e1Bottom = e1.getY();
 
-    public Entity getEntity1() {
-        return this.entity1;
-    }
-    
-    public Entity getEntity2() {
-        return this.entity2;
-    }
+//         float e2Left = e2.getX();
+//         float e2Right = e2.getX() + e2.getWidth();
+//         float e2Top = e2.getY() + e2.getHeight();
+//         float e2Bottom = e2.getY();
 
-
-    public boolean checkCollision() {
-        if (entity1 instanceof CircleObject && entity2 instanceof CircleObject) {
-            float dx = entity1.getX() - entity2.getX();
-            float dy = entity1.getY() - entity2.getY();
-            float distance = (float)Math.sqrt(dx * dx + dy * dy);
-            return distance <= (((CircleObject)entity1).getRadius() + ((CircleObject)entity2).getRadius());
-        } else {
-            // Handle the case where one or both entities are not instances of CircleObject
-            return false;
-        }
-    }
-
-    public void notifyCollisionListener(CollisionListener listener) {
-        if(checkCollision()) {
-            listener.onCollision(this);
-        }
-    }
-}
-
- */
+//         return e1Right >= e2Left && e1Left <= e2Right && e1Top >= e2Bottom && e1Bottom <= e2Top;
+//     }
+// }
