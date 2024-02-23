@@ -14,22 +14,22 @@ public class AIControllerManager {
     public void moveAIControlledEntities() {
         List<Entity> entityList = entityManager.getEntityList();
         for (Entity entity : entityList) {
-            if (entity instanceof TexturedObject && !((TexturedObject) entity).isUserControlled()) {
-                moveAIControlled((TexturedObject) entity);
+            if (!entity.isUserControlled()) {
+                moveAIControlled(entity);
             }
         }
     }
 
-    private void moveAIControlled(TexturedObject texturedObject) {
-        float newY = texturedObject.getY() - texturedObject.getSpeed() * Gdx.graphics.getDeltaTime();
-        texturedObject.setY(newY);
+    private void moveAIControlled(Entity entity) {
+        float newY = entity.getY() - entity.getSpeed() * Gdx.graphics.getDeltaTime();
+        entity.setY(newY);
 
-        if (texturedObject.getY() <= 0) {
-            float newSpeed = (float) (Math.random() * texturedObject.getSpeed()) + 50;
+        if (entity.getY() <= 0) {
+            float newSpeed = (float) (Math.random() * entity.getSpeed()) + 50;
             float newX = (float) (Math.random() * Gdx.graphics.getWidth());
-            texturedObject.setY(Gdx.graphics.getHeight());
-            texturedObject.setX(newX);
-            texturedObject.setSpeed(newSpeed);
+            entity.setY(Gdx.graphics.getHeight());
+            entity.setX(newX);
+            entity.setSpeed(newSpeed);
         }
     }
 }
