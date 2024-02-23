@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygdx.game.CollisionMgmt.CollisionManager;
+import com.mygdx.game.EntityMgmt.AIControllerManager;
 import com.mygdx.game.EntityMgmt.EntityManager;
 import com.mygdx.game.SceneMgmt.SceneScreen;
 import com.mygdx.game.InputMgmt.InputManager;
@@ -18,6 +19,7 @@ public class Simulation {
     private EntityManager entities;
     private InputManager inputManager;
     private CollisionManager collisionManager;
+    private AIControllerManager aiControllerManager;
 
     public void initialise() {
         // start making the objects in the game, from create
@@ -28,6 +30,7 @@ public class Simulation {
         collisionManager = new CollisionManager(entities);
         KeyboardInput keyboardInput = new KeyboardInput(entities);
         inputManager = new InputManager(entities, keyboardInput);
+        aiControllerManager = new AIControllerManager(entities);
 
         entities.createText(1);
         entities.createText(2);
@@ -42,6 +45,7 @@ public class Simulation {
         entities.draw(batch,shape);
         inputManager.update();
         collisionManager.update();
+        aiControllerManager.moveAIControlledEntities();
     }
     public void end() {
 

@@ -10,16 +10,18 @@ class TexturedObject extends Entity implements CreateTexture{
     private Texture tex;
     private String path;
     private boolean isUserControlled;
+    private AIControllerManager aiControllerManager;
 
     TexturedObject() {
 
     }
 
-    TexturedObject(String path, float x, float y, float speed, Boolean isUserControlled) {
+    TexturedObject(String path, float x, float y, float speed, Boolean isUserControlled, AIControllerManager aiControllerManager) {
         super(x, y, Color.BLACK, speed);
         this.tex = new Texture(path);
         this.path = path;
         this.isUserControlled = isUserControlled;
+        this.aiControllerManager = aiControllerManager;
     }
 
     @Override
@@ -64,15 +66,6 @@ class TexturedObject extends Entity implements CreateTexture{
         System.out.println("TexturedObject with texture at " + path + " is at position (" + getX() + ", " + getY() + ")");
     }
 
-    @Override
-    void movement(){
-        if (isUserControlled){
-            moveUserControlled();
-        }
-        else {
-            moveAIControlled();
-        }
-    }
 
     @Override
     void draw(SpriteBatch batch) {
@@ -83,13 +76,14 @@ class TexturedObject extends Entity implements CreateTexture{
     }
 
     TexturedObject createText(){
-        return new TexturedObject("bucket.png", 300, 0, 200,true);
+        return new TexturedObject("bucket.png", 300, 0, 200, true, aiControllerManager);
     }
 
-    TexturedObject createDrop(){
+    TexturedObject createDrop(AIControllerManager aiControllerManager){
         float initialX = (float) (Math.random() * Gdx.graphics.getWidth());
-        return new TexturedObject("droplet.png", initialX, 400, 400,false);
+        return new TexturedObject("droplet.png", initialX, 400, 400, false, aiControllerManager);
     }
+    
 
     void setTexture(Texture tex) {
         this.tex = tex;
@@ -113,7 +107,7 @@ class TexturedObject extends Entity implements CreateTexture{
             return createText();
         }
         else if (number == 2) {
-           return createDrop();
+           return createDrop(aiControllerManager);
         }
         return null;
     }
