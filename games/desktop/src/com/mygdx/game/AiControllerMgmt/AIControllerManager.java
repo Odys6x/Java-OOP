@@ -1,8 +1,10 @@
-package com.mygdx.game.EntityMgmt;
+package com.mygdx.game.AiControllerMgmt;
 
 import java.util.List;
 
 import com.badlogic.gdx.Gdx;
+import com.mygdx.game.EntityMgmt.Entity;
+import com.mygdx.game.EntityMgmt.EntityManager;
 
 public class AIControllerManager {
     private EntityManager entityManager;

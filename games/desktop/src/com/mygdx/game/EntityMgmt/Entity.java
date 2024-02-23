@@ -40,10 +40,10 @@ public abstract class Entity implements IMovable{
         this.y = y;
     }
 
-    float getSpeed() {
+    public float getSpeed() {
         return speed;
     }
-    void setSpeed(float speed) {
+    public void setSpeed(float speed) {
         this.speed = speed;
     }
 
