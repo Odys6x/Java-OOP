@@ -36,15 +36,6 @@ class TriangleObject extends Entity implements CreateShape{
         return new TriangleObject(Color.RED, 50, 50, 100);
     }
 
-    public void moveAIControlled() {
-
-    }
-
-    @Override
-    public void moveUserControlled() {
-
-    }
-
     @Override
     public float getWidth() {
         return 50; 

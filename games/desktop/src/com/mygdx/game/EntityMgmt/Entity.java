@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
-public abstract class Entity implements IMovable{
+public abstract class Entity{
     private float x,y;
     private float speed;
     private Color color;
