@@ -8,10 +8,8 @@ import java.util.List;
 import com.mygdx.game.CollisionMgmt.CollisionManager;
 
 
-public class EntityManager {
+public class EntityManager{
     private List<Entity> entityList;
-
-    CollisionManager collisionManager;
 
     public EntityManager() {
         entityList = new ArrayList<>();
@@ -21,31 +19,12 @@ public class EntityManager {
         entityList.add(entity);
     }
 
-    public void updateEntities() {
-        for (Entity entity : entityList) {
-            entity.update();
-        }
-    }
 
-    public void draw(SpriteBatch batch, ShapeRenderer shape){
+    public void draw(SpriteBatch batch){
         for (int i = 0; i < entityList.size(); i++){
             batch.begin();
                 entityList.get(i).draw(batch);
             batch.end();
-            shape.begin(ShapeRenderer.ShapeType.Filled);
-                entityList.get(i).draw(shape);
-            shape.end();
-
-        }
-    }
-    public void movement(){
-        for (int i=0;i<entityList.size();i++){
-            entityList.get(i).movement();
-        }
-    }
-    public void update(){
-        for (int i=0;i<entityList.size();i++){
-            entityList.get(i).update();
         }
     }
 
@@ -55,41 +34,30 @@ public class EntityManager {
 
     public Entity getUserControlledEntity() {
         for (Entity entity : entityList) {
-            if (entity.isUserControlled()) {
+            if (entity instanceof Player) {
                 return entity;
             }
         }
         return null; // Return null if no user-controlled entity is found
     }
-    public void createShape(int number) {
-        if (number == 1){
-            CircleObject circle = new CircleObject();
-            addEntity(circle.createShape());
-        }
-        else if(number == 2){
-            TriangleObject triangle = new TriangleObject();
-            addEntity(triangle.createShape());
-        }
+
+    public void createPlayer() {
+        Player text = new Player();
+        addEntity(text.createPlayer());
+
     }
 
-    public void createText(int number) {
-        if (number == 1){
-            TexturedObject text = new TexturedObject();
-            addEntity(text.createTexture(number));
-        }
-        else if (number == 2){
-            TexturedObject text = new TexturedObject();
-            for (int i = 0; i < 10; i++) {
-                addEntity(text.createTexture(number));
-            }
-        }
+    public void createAI() {
+        AI text = new AI();
+        addEntity(text.createAI());
+
     }
 
     public float getSpeed() {
         float speed = 0;
         for (Entity entity : entityList) {
-            if (entity.isUserControlled()) {
-                speed = entity.getSpeed();
+            if (entity instanceof Player) {
+                speed = ((Player) entity).getSpeed();
             }
         }
         return speed;
@@ -97,9 +65,7 @@ public class EntityManager {
 
     public void dispose(){
         for (Entity entity : entityList) {
-            if (entity instanceof TexturedObject) {
-                ((TexturedObject) entity).dispose();
-            }
+            entity.dispose();
         }
     }
     public void updateEntityPosition(Entity entity, float deltaX, float deltaY) {

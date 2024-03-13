@@ -1,30 +1,25 @@
 package com.mygdx.game.EntityMgmt;
 
-import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 public abstract class Entity{
     private float x,y;
-    private float speed;
-    private Color color;
-    private boolean userControlled;
+
+    private Texture texture;
+
+    private String path;
+
     public Entity(){
 
     }
-    public Entity(float x, float y, Color color,float speed,boolean userControlled) {
+    public Entity(String path, float x, float y) {
         this.x = x;
         this.y = y;
-        this.color = color;
-        this.speed = speed;
-        this.userControlled = userControlled;
+        this.path = path;
+        this.texture = new Texture(path);
     }
-    public Entity(float x, float y, Color color,float speed) {
-        this.x = x;
-        this.y = y;
-        this.color = color;
-        this.speed = speed;
-    }
+
 
     public float getX() {
         return x;
@@ -40,34 +35,21 @@ public abstract class Entity{
         this.y = y;
     }
 
-    public float getSpeed() {
-        return speed;
-    }
-    public void setSpeed(float speed) {
-        this.speed = speed;
-    }
+    public void draw(SpriteBatch batch){}
 
-    Color getColor() {
-        return color;
-    }
-    void setColor(Color color) {
-        this.color = color;
+    void dispose() {
+        texture.dispose();
     }
 
-    void draw(ShapeRenderer shape){};
-
-    void draw(SpriteBatch batch){};
-
-    abstract void update();
-    public boolean isUserControlled() {
-        return userControlled;
+    public float getWidth(){
+        return texture.getWidth();
     }
-    void setUserControlled(boolean userControlled) {
-        this.userControlled = userControlled;
+
+    public float getHeight(){
+        return texture.getHeight();
     }
-    void movement() {}
+    Texture getTexture() {
+        return texture;
+    }
 
-    public abstract float getWidth();
-
-    public abstract float getHeight();
 }
