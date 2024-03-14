@@ -9,21 +9,29 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class Player extends Entity implements PlayerManagement{
     private float speed;
-    private Animation<TextureRegion> walkAnimation;
+    private Animation<TextureRegion> walkAnimationForward,walkAnimationBackward,standAnimation;
+
     private float stateTime;
+
+    private String direction;
 
     public Player(){
         stateTime = 0f;
     }
 
-    public Player(String path, float x, float y, float speed){
+    public Player(String path, float x, float y, float speed,String direction){
         super(path, x, y);
         this.speed = speed;
+        this.direction = direction;
         Texture spriteSheet = new Texture("Player.png");
         TextureRegion[][] tmp = TextureRegion.split(spriteSheet, spriteSheet.getWidth() / 10, spriteSheet.getHeight() / 2);
-        TextureRegion[] frames = new TextureRegion[9]; // Assuming 10 frames in each row
-        System.arraycopy(tmp[0], 1, frames, 0, 9); // Assuming the first row contains the frames for the walk animation
-        walkAnimation = new Animation<>(0.5f, frames);
+        TextureRegion[] framesForward = new TextureRegion[9]; // Frames for walking forward
+        TextureRegion[] framesBackward = new TextureRegion[9]; // Frames for walking backward
+        System.arraycopy(tmp[0], 1, framesForward, 0, 9); // Start from index 1 for walking forward
+        System.arraycopy(tmp[1], 1, framesBackward, 0, 9); // Start from index 1 for walking backward
+        walkAnimationForward = new Animation<>(0.1f, framesForward); // Animation for walking forward
+        walkAnimationBackward = new Animation<>(0.1f, framesBackward);
+        standAnimation = new Animation<>(0.1f, tmp[0][0]); // Standing frame
     }
 
     public float getSpeed() {
@@ -49,14 +57,23 @@ public class Player extends Entity implements PlayerManagement{
         float initialX = 300;
         float initialY = 0;
         float playerSpeed = 200;
-        return new Player("Player.png", initialX, initialY, playerSpeed);
+
+        return new Player("Player.png", initialX, initialY, playerSpeed,null);
     }
     @Override
     public void draw(SpriteBatch batch) {
         // Get the current frame of the animation
         stateTime += Gdx.graphics.getDeltaTime(); // Update the state time
-        TextureRegion currentFrame = walkAnimation.getKeyFrame(stateTime, true);
-
+        TextureRegion currentFrame = null;
+        if(direction == "RIGHT"){
+            currentFrame = walkAnimationForward.getKeyFrame(stateTime, true);
+        }
+        else if(direction == "LEFT"){
+            currentFrame = walkAnimationBackward.getKeyFrame(stateTime, true);
+        }
+        else {
+            currentFrame = standAnimation.getKeyFrame(stateTime, true);
+        }
         // Draw the current frame
         batch.draw(currentFrame, getX(), getY());
     }
