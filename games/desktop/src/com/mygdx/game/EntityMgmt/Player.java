@@ -10,10 +10,12 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 class Player extends Entity implements PlayerManagement{
     private float speed;
     private Animation<TextureRegion> walkAnimationForward,walkAnimationBackward,standAnimation;
-
     private float stateTime;
-
     private String direction;
+    private float score;
+    private float hp;
+    private int energyLevel;
+    private float Iradius;
 
     Player(){
         stateTime = 0f;
@@ -23,6 +25,8 @@ class Player extends Entity implements PlayerManagement{
         super(path, x, y);
         this.speed = speed;
         this.direction = direction;
+        this.energyLevel = 100;
+        this.hp = 1000;
         Texture spriteSheet = new Texture("Player.png");
         TextureRegion[][] tmp = TextureRegion.split(spriteSheet, spriteSheet.getWidth() / 10, spriteSheet.getHeight() / 2);
         TextureRegion[] framesForward = new TextureRegion[9]; // Frames for walking forward
@@ -39,6 +43,21 @@ class Player extends Entity implements PlayerManagement{
     }
     void setSpeed(float speed) {
         this.speed = speed;
+    }
+
+    public float getScore(){
+        return score;
+    }
+
+    public void setScore(float score){
+        score += score;
+    }
+
+    public float getEnergy(){
+        return energyLevel;
+    }
+    public void setEnergy(float energy){
+        energyLevel -= energy;
     }
 
     @Override
@@ -78,4 +97,30 @@ class Player extends Entity implements PlayerManagement{
         batch.draw(currentFrame, getX(), getY());
     }
 
+    public void turnOffAppliance(Appliance appliance) {
+        // Logic for turning off the specified appliance
+        // Deduct energy or update score as needed
+    }
+
+    public void interactWithAppliance(Appliance appliance) {
+        if (isWithinInteractionRange(appliance)) {
+            appliance.turnOff();
+            // Update player's attributes
+            setEnergy(getEnergy() - appliance.getEnergyConsumption());
+            setScore(getScore() + appliance.getScore());
+        }
+    }
+
+    private boolean isWithinInteractionRange(Appliance appliance) {
+        float distance = (float) Math.sqrt(Math.pow(getX() - appliance.getX(), 2) + Math.pow(getY() - appliance.getY(), 2));
+        return distance <= Iradius;
+    }
+
+
+    public void incrementScore(float scoreValue) {
+        setScore(scoreValue);
+    }
+
+    public void decreaseEnergy(float energyConsumption) {
+    }
 }
