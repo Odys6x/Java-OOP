@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
-public class Player extends Entity implements PlayerManagement{
+class Player extends Entity implements PlayerManagement{
     private float speed;
     private Animation<TextureRegion> walkAnimationForward,walkAnimationBackward,standAnimation;
 
@@ -15,11 +15,11 @@ public class Player extends Entity implements PlayerManagement{
 
     private String direction;
 
-    public Player(){
+    Player(){
         stateTime = 0f;
     }
 
-    public Player(String path, float x, float y, float speed,String direction){
+    Player(String path, float x, float y, float speed,String direction){
         super(path, x, y);
         this.speed = speed;
         this.direction = direction;
@@ -34,10 +34,10 @@ public class Player extends Entity implements PlayerManagement{
         standAnimation = new Animation<>(0.1f, tmp[0][0]); // Standing frame
     }
 
-    public float getSpeed() {
+    float getSpeed() {
         return speed;
     }
-    public void setSpeed(float speed) {
+    void setSpeed(float speed) {
         this.speed = speed;
     }
 

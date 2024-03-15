@@ -63,6 +63,14 @@ public class EntityManager{
         return speed;
     }
 
+    public float getWidth() {
+        float width = 0;
+        for (Entity entity : entityList) {
+            width = entity.getWidth();
+        }
+        return width;
+    }
+
     public void dispose(){
         for (Entity entity : entityList) {
             entity.dispose();

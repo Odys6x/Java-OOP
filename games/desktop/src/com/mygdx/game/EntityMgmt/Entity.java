@@ -20,7 +20,6 @@ public abstract class Entity{
         this.texture = new Texture(path);
     }
 
-
     public float getX() {
         return x;
     }
