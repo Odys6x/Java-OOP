@@ -28,6 +28,13 @@ public class EntityManager{
         }
     }
 
+    public void setDirection(String direction) {
+        for (Entity entity : entityList) {
+            if (entity instanceof Player) {
+                ((Player) entity).setDirection(direction);
+            }
+        }
+    }
     public List<Entity> getEntityList() {
         return entityList;
     }
@@ -82,6 +89,15 @@ public class EntityManager{
     }
 
 
+    public List<GameObject> getCollidableEntities() {
+        List<GameObject> collidableEntities = new ArrayList<>();
+
+        List<Entity> entities = getEntityList();
+
+        collidableEntities.addAll(entities);
+
+        return collidableEntities;
+    }
 
 }
 

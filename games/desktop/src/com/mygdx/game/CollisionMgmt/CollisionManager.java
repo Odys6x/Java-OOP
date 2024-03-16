@@ -1,7 +1,7 @@
 package com.mygdx.game.CollisionMgmt;
 
-import com.mygdx.game.EntityMgmt.Entity;
 import com.mygdx.game.EntityMgmt.EntityManager;
+import com.mygdx.game.EntityMgmt.GameObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,13 +15,14 @@ public class CollisionManager {
     }
 
     public void update() {
-        List<Entity> entities = entityManager.getEntityList();
+        List<GameObject> entities = entityManager.getCollidableEntities();
         for (int i = 0; i < entities.size(); i++) {
             for (int j = i + 1; j < entities.size(); j++) {
-                Entity e1 = entities.get(i);
-                Entity e2 = entities.get(j);
-                if (Collision.checkCollision(e1, e2)) {
-                    Collision.applyKnockback(e1, e2);
+                GameObject c1 = entities.get(i);
+                GameObject c2 = entities.get(j);
+                if (Collision.checkCollision(c1, c2)) {
+                    Collision.applyKnockback(c1, c2);
+                    notifyCollision(c1, c2);
                 }
             }
         }
@@ -35,9 +36,9 @@ public class CollisionManager {
         listeners.remove(listener);
     }
 
-    protected void notifyCollision(Entity entity1, Entity entity2) {
+    protected void notifyCollision(GameObject c1, GameObject c2) {
         for (CollisionListener listener : listeners) {
-            listener.onCollision(entity1, entity2);
+            listener.onCollision(c1, c2);
         }
     }
 }

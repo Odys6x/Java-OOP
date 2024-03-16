@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
-class Player extends Entity implements PlayerManagement{
+public class Player extends Entity implements PlayerManagement{
     private float speed;
     private Animation<TextureRegion> walkAnimationForward,walkAnimationBackward,standAnimation;
     private float stateTime;
@@ -17,11 +17,11 @@ class Player extends Entity implements PlayerManagement{
     private int energyLevel;
     private float Iradius;
 
-    Player(){
+    public Player(){
         stateTime = 0f;
     }
 
-    Player(String path, float x, float y, float speed,String direction){
+    public Player(String path, float x, float y, float speed,String direction){
         super(path, x, y);
         this.speed = speed;
         this.direction = direction;
@@ -38,10 +38,10 @@ class Player extends Entity implements PlayerManagement{
         standAnimation = new Animation<>(0.1f, tmp[0][0]); // Standing frame
     }
 
-    float getSpeed() {
+    public float getSpeed() {
         return speed;
     }
-    void setSpeed(float speed) {
+    public void setSpeed(float speed) {
         this.speed = speed;
     }
 
@@ -51,6 +51,14 @@ class Player extends Entity implements PlayerManagement{
 
     public void setScore(float score){
         score += score;
+    }
+
+    public String getDirection(){
+        return direction;
+    }
+
+    public void setDirection(String direction){
+        direction = direction;
     }
 
     public float getEnergy(){
