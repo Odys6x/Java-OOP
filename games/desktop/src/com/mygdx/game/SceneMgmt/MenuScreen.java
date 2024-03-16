@@ -1,5 +1,7 @@
 package com.mygdx.game.SceneMgmt;
 
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.Gdx; 
 import com.badlogic.gdx.graphics.GL20; 
 import com.badlogic.gdx.graphics.Texture; 
@@ -21,29 +23,69 @@ public class MenuScreen extends SceneScreen{
     @Override
     public void show() {
         stage = new Stage(new ScreenViewport());
+        Gdx.input.setInputProcessor(stage);
+    
         background = new Texture(Gdx.files.internal("start.png"));
-
         Image backgroundImage = new Image(background);
-        backgroundImage.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-
-        stage.addActor(backgroundImage); // adds the background image to stage
-
-        Gdx.input.setInputProcessor(stage); // sets the input processor to handle input events for actors
-
-        stage.addListener(new ClickListener(){ // adds a listener to the stage for touch events
-
-            // when clicked will transition to the next scene
+        backgroundImage.setFillParent(true);
+        stage.addActor(backgroundImage);
+    
+        Skin skin = new Skin(Gdx.files.internal("uiskin.json"));
+    
+        // Create buttons
+        TextButton playButton = new TextButton("Play", skin);
+        TextButton optionButton = new TextButton("Option", skin);
+        TextButton exitButton = new TextButton("Exit", skin); // Create the exit button
+    
+        final float buttonWidth = 200;
+        final float buttonHeight = 50;
+        final float buttonSpacing = 20; // Space between buttons
+    
+        // Positioning the play button
+        playButton.setSize(buttonWidth, buttonHeight);
+        playButton.setPosition(Gdx.graphics.getWidth() / 2 - buttonWidth / 2, 
+                               Gdx.graphics.getHeight() / 2 + buttonHeight / 2 + buttonSpacing);
+    
+        // Positioning the option button below the play button
+        optionButton.setSize(buttonWidth, buttonHeight);
+        optionButton.setPosition(Gdx.graphics.getWidth() / 2 - buttonWidth / 2, 
+                                 Gdx.graphics.getHeight() / 2 - buttonHeight / 2);
+    
+        // Positioning the exit button below the option button
+        exitButton.setSize(buttonWidth, buttonHeight);
+        exitButton.setPosition(Gdx.graphics.getWidth() / 2 - buttonWidth / 2, 
+                               Gdx.graphics.getHeight() / 2 - 3 * buttonHeight / 2 - buttonSpacing);
+    
+        // Play button click listener
+        playButton.addListener(new ClickListener() {
             @Override
-            public void clicked(InputEvent event, float x, float y){
-                Gdx.app.log("MenuScreen", "Screen clicked, attempting to transition to GameScreen.");
-                System.out.println("Next Screen (Menu Screen)");
+            public void clicked(InputEvent event, float x, float y) {
                 if (sceneManager != null) {
-                    sceneManager.setScene(new GameScreen(sceneManager)); // supposed to transition here. but not working
-                } else {
-                    System.out.println("SceneManager is null"); // error handling cos game screen not transitioning..
+                    sceneManager.setScene(new GameScreen(sceneManager)); // Transition to GameScreen
                 }
-                            }
+            }
         });
+    
+        // Option button click listener
+        optionButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                // Handle option button click here
+            }
+        });
+    
+        // Exit button click listener
+        exitButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                Gdx.app.exit(); // Exits the application
+            }
+        });
+    
+        // Add buttons to the stage
+        stage.addActor(playButton);
+        stage.addActor(optionButton);
+        stage.addActor(exitButton);
     }
     @Override
     public void render(float delta) {
