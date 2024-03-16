@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
-public class Player extends Entity implements PlayerManagement{
+public class Player extends Entity{
     private float speed;
     private Animation<TextureRegion> walkAnimationForward,walkAnimationBackward,standAnimation;
     private float stateTime;
@@ -78,7 +78,6 @@ public class Player extends Entity implements PlayerManagement{
         return super.getWidth()/10;
     }
 
-    @Override
     public Player createPlayer() {
         // Create a player with specific properties
         float initialX = 300;

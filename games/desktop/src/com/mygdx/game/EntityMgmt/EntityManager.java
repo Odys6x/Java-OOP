@@ -89,7 +89,7 @@ public class EntityManager{
     }
 
 
-    public List<GameObject> getCollidableEntities() {
+    public List<GameObject> getEntities() {
         List<GameObject> collidableEntities = new ArrayList<>();
 
         List<Entity> entities = getEntityList();

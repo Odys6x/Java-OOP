@@ -15,7 +15,7 @@ public class CollisionManager {
     }
 
     public void update() {
-        List<GameObject> entities = entityManager.getCollidableEntities();
+        List<GameObject> entities = entityManager.getEntities();
         for (int i = 0; i < entities.size(); i++) {
             for (int j = i + 1; j < entities.size(); j++) {
                 GameObject c1 = entities.get(i);
