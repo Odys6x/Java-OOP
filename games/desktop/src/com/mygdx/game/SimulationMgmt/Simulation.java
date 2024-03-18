@@ -21,6 +21,7 @@ public class Simulation {
     private CollisionManager collisionManager;
     private AIControllerManager aiControllerManager;
     private long startTime; 
+    //for any activity to run within a loop, where condition is game running or not
     private boolean isrunning;
 
     public void initialise() {
@@ -47,6 +48,7 @@ public class Simulation {
 
     }
     public void end() {
+        //dispose what was created
         isrunning = false;
         batch.dispose();
         entities.dispose();
