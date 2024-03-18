@@ -1,7 +1,10 @@
 package com.mygdx.game.EntityMgmt;
 
 
+import java.util.List;
+
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -36,6 +39,15 @@ public class Player extends Entity{
         walkAnimationForward = new Animation<>(0.1f, framesForward); // Animation for walking forward
         walkAnimationBackward = new Animation<>(0.1f, framesBackward);
         standAnimation = new Animation<>(0.1f, tmp[0][0]); // Standing frame
+    }
+    public void updateAnimations(List<Integer> pressedKeys) {
+        if (pressedKeys.contains(Keys.LEFT)) {
+            direction = "LEFT";
+        } else if (pressedKeys.contains(Keys.RIGHT)) {
+            direction = "RIGHT";
+        } else {
+            direction = null;
+        }
     }
 
     public float getSpeed() {
@@ -93,9 +105,11 @@ public class Player extends Entity{
         TextureRegion currentFrame = null;
         if(direction == "RIGHT"){
             currentFrame = walkAnimationForward.getKeyFrame(stateTime, true);
+            System.out.println("RIGHT ANI");
         }
         else if(direction == "LEFT"){
             currentFrame = walkAnimationBackward.getKeyFrame(stateTime, true);
+            System.out.println("LEFT ANI");
         }
         else {
             currentFrame = standAnimation.getKeyFrame(stateTime, true);
