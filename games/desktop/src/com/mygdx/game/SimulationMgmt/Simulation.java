@@ -9,6 +9,7 @@ import com.mygdx.game.EntityMgmt.EntityManager;
 import com.mygdx.game.SceneMgmt.SceneScreen;
 import com.mygdx.game.InputMgmt.InputManager;
 import com.mygdx.game.InputMgmt.KeyboardInput;
+import com.mygdx.game.InputMgmt.MouseInput;
 
 
 public class Simulation {
@@ -27,7 +28,8 @@ public class Simulation {
         batch = new SpriteBatch();
         collisionManager = new CollisionManager(entities);
         KeyboardInput keyboardInput = new KeyboardInput(entities);
-        inputManager = new InputManager(entities, keyboardInput);
+        MouseInput mouseInput = new MouseInput(entities);
+        inputManager = new InputManager(entities, keyboardInput, mouseInput);
         aiControllerManager = new AIControllerManager(entities);
 
         entities.createPlayer();

@@ -14,23 +14,27 @@ public class KeyboardInput implements InputHandler {
         this.entityManager = entityManager;
     }
 	
-	public void handleInput() {
-        if (entityManager.getUserControlledEntity() != null) {
+	public void handleInput(InputCommand command) {
+		if (entityManager.getUserControlledEntity() != null) {
             float speed = entityManager.getSpeed(); // Get the speed of the user-controlled entity
 
-            // Calculate delta values based on keyboard input and delta time
+            // Calculate delta values based on InputCommand and delta time
             float deltaX = 0, deltaY = 0;
-            if (Gdx.input.isKeyPressed(Input.Keys.LEFT))    {
-                deltaX -= speed * Gdx.graphics.getDeltaTime();
-            }
-            if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-                deltaX += speed * Gdx.graphics.getDeltaTime();
-            }
-            if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
-                deltaY += speed * Gdx.graphics.getDeltaTime();
-            }
-            if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
-                deltaY -= speed * Gdx.graphics.getDeltaTime();
+            switch (command) {
+                case MOVE_LEFT:
+                    deltaX -= speed * Gdx.graphics.getDeltaTime();
+                    break;
+                case MOVE_RIGHT:
+                    deltaX += speed * Gdx.graphics.getDeltaTime();
+                    break;
+                case MOVE_UP:
+                    deltaY += speed * Gdx.graphics.getDeltaTime();
+                    break;
+                case MOVE_DOWN:
+                    deltaY -= speed * Gdx.graphics.getDeltaTime();
+                    break;
+                default:
+                    break;
             }
             // Update entity position using EntityManager
             entityManager.updateEntityPosition(entityManager.getUserControlledEntity(), deltaX, deltaY);

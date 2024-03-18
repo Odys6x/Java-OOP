@@ -93,9 +93,11 @@ public class Player extends Entity{
         TextureRegion currentFrame = null;
         if(direction == "RIGHT"){
             currentFrame = walkAnimationForward.getKeyFrame(stateTime, true);
+            System.out.println("RIGHT ANI");
         }
         else if(direction == "LEFT"){
             currentFrame = walkAnimationBackward.getKeyFrame(stateTime, true);
+            System.out.println("LEFT ANI");
         }
         else {
             currentFrame = standAnimation.getKeyFrame(stateTime, true);
