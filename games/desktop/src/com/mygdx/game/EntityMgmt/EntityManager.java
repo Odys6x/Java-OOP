@@ -98,6 +98,13 @@ public class EntityManager{
 
         return collidableEntities;
     }
+    public void updatePlayerAnimations(List<Integer> pressedKeys) {
+        for (Entity entity : entityList) {
+            if (entity instanceof Player) {
+                ((Player) entity).updateAnimations(pressedKeys);
+            }
+        }
+    }
 
 }
 

@@ -2,6 +2,7 @@ package com.mygdx.game.SimulationMgmt;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.scenes.scene2d.ui.List;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygdx.game.AiControllerMgmt.AIControllerManager;
 import com.mygdx.game.CollisionMgmt.CollisionManager;
@@ -42,6 +43,8 @@ public class Simulation {
         ScreenUtils.clear(0, 0, 0.2f, 1);
         entities.draw(batch);
         inputManager.update();
+        java.util.List<Integer> pressedKeys = inputManager.getPressedKeys();
+        entities.updatePlayerAnimations(pressedKeys);
         collisionManager.update();
         aiControllerManager.moveAIControlledEntities();
     }

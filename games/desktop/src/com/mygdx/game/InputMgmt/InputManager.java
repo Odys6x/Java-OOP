@@ -1,5 +1,8 @@
 package com.mygdx.game.InputMgmt;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.mygdx.game.EntityMgmt.EntityManager;
@@ -36,6 +39,17 @@ public class InputManager {
                 mouseInput.handleInput(InputCommand.NONE);
             }
         }
+    }
+    public List<Integer> getPressedKeys() {
+        List<Integer> pressedKeys = new ArrayList<>();
+
+        if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+            pressedKeys.add(Input.Keys.LEFT);
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+            pressedKeys.add(Input.Keys.RIGHT);
+        }
+        return pressedKeys;
     }
 }
 

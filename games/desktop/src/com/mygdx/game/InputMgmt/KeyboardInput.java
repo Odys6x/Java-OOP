@@ -27,12 +27,6 @@ public class KeyboardInput implements InputHandler {
                 case MOVE_RIGHT:
                     deltaX += speed * Gdx.graphics.getDeltaTime();
                     break;
-                case MOVE_UP:
-                    deltaY += speed * Gdx.graphics.getDeltaTime();
-                    break;
-                case MOVE_DOWN:
-                    deltaY -= speed * Gdx.graphics.getDeltaTime();
-                    break;
                 default:
                     break;
             }
