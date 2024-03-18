@@ -3,7 +3,7 @@ package com.mygdx.game.EntityMgmt;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
-public class AI extends Entity implements AIManagement{
+public class AI extends Entity {
     private float speed;
 
     public AI(){}
@@ -20,7 +20,6 @@ public class AI extends Entity implements AIManagement{
         this.speed = speed;
     }
 
-    @Override
     public AI createAI() {
         return new AI("droplet.png", 300, 400, 200);
     }
