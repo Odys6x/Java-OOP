@@ -70,6 +70,9 @@ public class MenuScreen extends SceneScreen{
         optionButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                if (sceneManager != null){
+                    sceneManager.setScene(new OptionScreen(sceneManager));
+                }
                 // Handle option button click here
             }
         });
