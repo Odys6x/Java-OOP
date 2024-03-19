@@ -2,6 +2,7 @@ package com.mygdx.game.SimulationMgmt;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.scenes.scene2d.ui.List;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygdx.game.AiControllerMgmt.AIControllerManager;
 import com.mygdx.game.CollisionMgmt.CollisionManager;
@@ -9,6 +10,7 @@ import com.mygdx.game.EntityMgmt.EntityManager;
 import com.mygdx.game.SceneMgmt.SceneScreen;
 import com.mygdx.game.InputMgmt.InputManager;
 import com.mygdx.game.InputMgmt.KeyboardInput;
+import com.mygdx.game.InputMgmt.MouseInput;
 
 
 public class Simulation {
@@ -27,7 +29,8 @@ public class Simulation {
         batch = new SpriteBatch();
         collisionManager = new CollisionManager(entities);
         KeyboardInput keyboardInput = new KeyboardInput(entities);
-        inputManager = new InputManager(entities, keyboardInput);
+        MouseInput mouseInput = new MouseInput(entities);
+        inputManager = new InputManager(entities, keyboardInput, mouseInput);
         aiControllerManager = new AIControllerManager(entities);
 
         entities.createPlayer();
@@ -40,6 +43,8 @@ public class Simulation {
         ScreenUtils.clear(0, 0, 0.2f, 1);
         entities.draw(batch);
         inputManager.update();
+        java.util.List<Integer> pressedKeys = inputManager.getPressedKeys();
+        entities.updatePlayerAnimations(pressedKeys);
         collisionManager.update();
         aiControllerManager.moveAIControlledEntities();
     }
