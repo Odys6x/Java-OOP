@@ -1,0 +1,60 @@
+import java.util.ArrayList;
+import java.util.List;
+
+// Step 1: Define GameObject interface
+public interface GameObject {
+    // Define common methods for game objects
+}
+
+// Step 2: Define Player class implementing GameObject interface
+public class Player implements GameObject {
+    // Implementation of Player entity
+}
+
+// Step 3: Define EntityManager class
+public class EntityManager {
+    private List<GameObject> entities;
+
+    public EntityManager() {
+        entities = new ArrayList<>();
+    }
+
+    public void addEntity(GameObject entity) {
+        entities.add(entity);
+    }
+
+    public List<GameObject> getEntitiesList() {
+        return entities;
+    }
+
+    // Other methods for managing entities
+}
+
+// Step 4: Define Room class with composition
+public class Room {
+    private EntityManager entityManager;
+
+    public Room() {
+        entityManager = new EntityManager();
+    }
+
+    public void addEntity(List<GameObject> entities) {
+        entityManager.getEntitiesList().addAll(entities);
+    }
+
+    // Other methods for managing entities in the room
+}
+
+// Step 5: Instantiate entities and add them to Room
+public class Main {
+    public static void main(String[] args) {
+        // Instantiate Room
+        Room room = new Room();
+
+        // Create Player instance
+        Player player = new Player();
+
+        // Add Player to EntityManager
+        room.addEntity(List.of(player));
+    }
+}
