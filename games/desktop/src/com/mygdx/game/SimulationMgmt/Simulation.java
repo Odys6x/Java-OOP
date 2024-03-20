@@ -36,11 +36,12 @@ public class Simulation {
         entities = new EntityManager();
         batch = new SpriteBatch();
         collisionManager = new CollisionManager(entities);
-        behaviourManager = new BehaviourManager(entities);
+        //behaviourManager = new BehaviourManager(entities, inputManager);
 
-        KeyboardInput keyboardInput = new KeyboardInput(entities, behaviourManager);
+        KeyboardInput keyboardInput = new KeyboardInput(entities);
         MouseInput mouseInput = new MouseInput(entities);
         inputManager = new InputManager(entities, keyboardInput, mouseInput);
+        behaviourManager = new BehaviourManager(entities, inputManager);
         aiControllerManager = new AIControllerManager(entities);
         entities.createPlayer("Player");
         entities.createAI();
@@ -61,7 +62,7 @@ public class Simulation {
         entities.updatePlayerAnimations(pressedKeys);
         collisionManager.update();
         aiControllerManager.moveAIControlledEntities();
-        behaviourManager.updateBehaviours();
+        behaviourManager.updateBehaviours(pressedKeys);
     }
     public void end() {
         //dispose what was created
