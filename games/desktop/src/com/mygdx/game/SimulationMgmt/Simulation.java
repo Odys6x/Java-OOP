@@ -41,7 +41,9 @@ public class Simulation {
         entities = new EntityManager();
         batch = new SpriteBatch();
         collisionManager = new CollisionManager(entities);
-        KeyboardInput keyboardInput = new KeyboardInput(entities);
+        behaviourManager = new BehaviourManager(entities);
+
+        KeyboardInput keyboardInput = new KeyboardInput(entities, behaviourManager);
         MouseInput mouseInput = new MouseInput(entities);
         inputManager = new InputManager(entities, keyboardInput, mouseInput);
         aiControllerManager = new AIControllerManager(entities);
@@ -54,7 +56,6 @@ public class Simulation {
         entities.addEntity(Chicken);
         System.out.println(entities.getEntityList());
        
-        behaviourManager = new BehaviourManager(entities);
 
         isrunning = true;
         startTime = TimeUtils.nanoTime(); // Initialize the start time
