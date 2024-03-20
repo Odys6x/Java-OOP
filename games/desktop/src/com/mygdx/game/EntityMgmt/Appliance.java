@@ -83,4 +83,12 @@ public class Appliance extends Entity {
     public float getScore() {
         return scoreValue;
     }
+
+    public float getActivationRange(){
+        return activationRange;
+    }
+    public boolean getState(){
+        return isActivated;
+    }
+
 }
