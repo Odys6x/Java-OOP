@@ -63,7 +63,7 @@ public class Behaviour {
         if (entityRightBound >= applianceLeftBound && entityLeftBound <= applianceRightBound &&
                 entityDownBound >= applianceUpBound && entityUpBound <= applianceDownBound) {
             interacted = true;
-            System.out.println("in range, " + appliance + " and " + entity);
+            //System.out.println("in range, " + appliance + " and " + entity);
 
             // for making appliance "vibrate" when near
             // Calculate random displacement within a small range
@@ -80,7 +80,7 @@ public class Behaviour {
 
     public void updateApplianceBehaviour(Appliance appliance, GameObject entity, boolean interactPressed) {
         long currentTime = System.currentTimeMillis(); // Get the current time
-        System.err.println("interactPressed is" + interactPressed);
+        //System.err.println("interactPressed is" + interactPressed);
 
         // Check if the player is within interaction range and the E key is pressed
         // Gdx.input.isKeyJustPressed(Input.Keys.E)

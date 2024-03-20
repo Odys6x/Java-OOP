@@ -13,9 +13,8 @@ public class KeyboardInput implements InputHandler {
 	public KeyboardInput() {
         
     }
-    public KeyboardInput(EntityManager entityManager, BehaviourManager behaviour) {
+    public KeyboardInput(EntityManager entityManager) {
         this.entityManager = entityManager;
-        this.behaviour = behaviour;
     }
 	
 	public void handleInput(InputCommand command) {
@@ -24,7 +23,6 @@ public class KeyboardInput implements InputHandler {
 
             // Calculate delta values based on InputCommand and delta time
             float deltaX = 0, deltaY = 0;
-            boolean ePressed = false;
             switch (command) {
                 case MOVE_LEFT:
                     deltaX -= speed * Gdx.graphics.getDeltaTime();
@@ -33,14 +31,14 @@ public class KeyboardInput implements InputHandler {
                     deltaX += speed * Gdx.graphics.getDeltaTime();
                     break;
                 case INTERACT:
-                	ePressed = true;
+                	System.out.println("test");
                 	break;
                 default:
                     break;
             }
             // Update entity position using EntityManager
             entityManager.updateEntityPosition(entityManager.getUserControlledEntity(), deltaX, deltaY);
-            behaviour.setInteractPressed(ePressed);
+            //behaviour.setInteractPressed(ePressed);
         }
     }
 

@@ -11,6 +11,7 @@ public class InputManager {
 	private EntityManager entityManager;
     private InputHandler keyboardInput;
     private InputHandler mouseInput;
+    private List<Integer> pressedKeys = new ArrayList<>();
 
     public InputManager(EntityManager entityManager, InputHandler keyboardInput, InputHandler mouseInput) {
     	this.entityManager = entityManager;
@@ -37,17 +38,21 @@ public class InputManager {
             } if (Gdx.input.isButtonPressed(Input.Buttons.RIGHT)) {
                 mouseInput.handleInput(InputCommand.MOUSE_RIGHT_CLICK);
              
+               
         }
       }
+        
     }
     public List<Integer> getPressedKeys() {
         List<Integer> pressedKeys = new ArrayList<>();
-
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
             pressedKeys.add(Input.Keys.LEFT);
         }
         if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
             pressedKeys.add(Input.Keys.RIGHT);
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.E)) {
+            pressedKeys.add(Input.Keys.E);
         }
         return pressedKeys;
     }
