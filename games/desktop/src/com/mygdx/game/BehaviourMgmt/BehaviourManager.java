@@ -1,12 +1,8 @@
 package com.mygdx.game.BehaviourMgmt;
 
-import java.util.List;
-
-import com.mygdx.game.AiControllerMgmt.AIMovement;
-import com.mygdx.game.EntityMgmt.Appliance;
+import com.mygdx.game.EntityMgmt.Appliances.Appliance;
 import com.mygdx.game.EntityMgmt.EntityManager;
 import com.mygdx.game.EntityMgmt.GameObject;
-import com.mygdx.game.EntityMgmt.Microwave;
 
 public class BehaviourManager {
     private final EntityManager entityManager;

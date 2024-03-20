@@ -1,10 +1,10 @@
-package com.mygdx.game.EntityMgmt;
+package com.mygdx.game.EntityMgmt.Appliances;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Timer;
+import com.mygdx.game.EntityMgmt.Entity;
+import com.mygdx.game.EntityMgmt.Player.Player;
 
 public class Appliance extends Entity {
     private String type;
@@ -17,7 +17,7 @@ public class Appliance extends Entity {
     private boolean isActivated;
 
     public Appliance(String type, String path, float x, float y, float energyConsumption, float activationRange,
-            TextureRegion texture, float scoreValue, float interactionTime) {
+                     TextureRegion texture, float scoreValue, float interactionTime) {
         super(path, x, y);
         this.type = type;
         this.energyConsumption = energyConsumption;
@@ -27,6 +27,10 @@ public class Appliance extends Entity {
         this.interactionTime = interactionTime;
         this.isOn = false;
         this.isActivated = false;
+    }
+
+    public void draw(SpriteBatch batch) {
+        batch.draw(texture, getX(), getY());
     }
 
     public void turnOn() {
@@ -64,9 +68,12 @@ public class Appliance extends Entity {
     }
 
     private void performInteraction(Player player) {
-        if (type.equals("Refrigerator")) {
-            player.turnOffAppliance(this);
-        } else if (type.equals("Television")) {
+        // Interaction logic based on appliance type
+        if ("Chicken".equals(type)) {
+            player.incrementScore(scoreValue);
+        } else if ("Microwave".equals(type)) {
+            player.interactWithAppliance(this);
+        } else if ("Fridge".equals(type)) {
             player.turnOffAppliance(this);
         }
     }

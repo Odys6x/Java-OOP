@@ -1,7 +1,7 @@
-package com.mygdx.game.EntityMgmt;
+package com.mygdx.game.EntityMgmt.AI;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.mygdx.game.EntityMgmt.Entity;
 
 public class AI extends Entity {
     private float speed;

@@ -1,13 +1,8 @@
 package com.mygdx.game.BehaviourMgmt;
 
 import com.mygdx.game.EntityMgmt.*;
-import com.mygdx.game.InputMgmt.InputCommand;
-import com.mygdx.game.InputMgmt.KeyboardInput;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
+import com.mygdx.game.EntityMgmt.Appliances.Appliance;
 import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.ui.List;
 
 public class Behaviour {
     private String type;

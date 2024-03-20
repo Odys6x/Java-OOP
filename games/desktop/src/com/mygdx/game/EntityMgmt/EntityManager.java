@@ -1,11 +1,14 @@
 package com.mygdx.game.EntityMgmt;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 import java.util.ArrayList;
 import java.util.List;
-import com.mygdx.game.CollisionMgmt.CollisionManager;
+
+import com.mygdx.game.EntityMgmt.AI.AI;
+import com.mygdx.game.EntityMgmt.Appliances.ApplianceFactory;
+import com.mygdx.game.EntityMgmt.Player.Player;
+import com.mygdx.game.EntityMgmt.Player.PlayerFactory;
 
 
 public class EntityManager{
@@ -48,10 +51,18 @@ public class EntityManager{
         return null; // Return null if no user-controlled entity is found
     }
 
-    public void createPlayer() {
-        Player text = new Player();
-        addEntity(text.createPlayer());
+    public Entity createPlayer(String entityType) {
+        EntityFactory playerFactory = new PlayerFactory();
+        Entity playerEntity = playerFactory.createEntity(entityType);
+        addEntity(playerEntity); // Add the created entity to the entityList
+        return playerEntity; // Return the created entity
+    }
 
+    public Entity createAppliance(String entityType) {
+        EntityFactory applianceFactory = new ApplianceFactory();
+        Entity applianceEntity = applianceFactory.createEntity(entityType);
+        addEntity(applianceEntity); // Add the created entity to the entityList
+        return applianceEntity; // Return the created entity
     }
 
     public void createAI() {

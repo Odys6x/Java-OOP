@@ -1,19 +1,14 @@
 package com.mygdx.game.SimulationMgmt;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.scenes.scene2d.ui.List;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.mygdx.game.AiControllerMgmt.AIControllerManager;
-import com.mygdx.game.BehaviourMgmt.Behaviour;
 import com.mygdx.game.BehaviourMgmt.BehaviourManager;
 import com.mygdx.game.CollisionMgmt.CollisionManager;
-import com.mygdx.game.EntityMgmt.Appliance;
 import com.mygdx.game.EntityMgmt.EntityManager;
-import com.mygdx.game.EntityMgmt.Microwave;
-import com.mygdx.game.EntityMgmt.Chicken;
-import com.mygdx.game.EntityMgmt.Player;
+import com.mygdx.game.EntityMgmt.Appliances.Microwave;
+import com.mygdx.game.EntityMgmt.Appliances.Chicken;
 import com.mygdx.game.SceneMgmt.SceneScreen;
 import com.mygdx.game.InputMgmt.InputManager;
 import com.mygdx.game.InputMgmt.KeyboardInput;
@@ -47,13 +42,10 @@ public class Simulation {
         MouseInput mouseInput = new MouseInput(entities);
         inputManager = new InputManager(entities, keyboardInput, mouseInput);
         aiControllerManager = new AIControllerManager(entities);
-        entities.createPlayer();
+        entities.createPlayer("Player");
         entities.createAI();
-
-        Microwave = new Microwave();
-        Chicken = new Chicken();
-        entities.addEntity(Microwave);
-        entities.addEntity(Chicken);
+        entities.createAppliance("Chicken");
+        entities.createAppliance("Microwave");
         System.out.println(entities.getEntityList());
        
 

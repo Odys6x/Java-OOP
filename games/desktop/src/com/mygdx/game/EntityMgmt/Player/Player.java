@@ -1,4 +1,4 @@
-package com.mygdx.game.EntityMgmt;
+package com.mygdx.game.EntityMgmt.Player;
 
 
 import java.util.List;
@@ -9,8 +9,10 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.mygdx.game.EntityMgmt.Appliances.Appliance;
+import com.mygdx.game.EntityMgmt.Entity;
 
-public class Player extends Entity{
+public class Player extends Entity {
     private float speed;
     private Animation<TextureRegion> walkAnimationForward,walkAnimationBackward,standAnimation;
     private float stateTime;
