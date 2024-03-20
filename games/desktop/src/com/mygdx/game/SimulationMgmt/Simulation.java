@@ -16,7 +16,7 @@ import com.mygdx.game.InputMgmt.MouseInput;
 
 
 public class Simulation {
-    
+
     private Chicken Chicken;
     private Microwave Microwave;
     private BehaviourManager behaviourManager;
@@ -26,7 +26,7 @@ public class Simulation {
     private InputManager inputManager;
     private CollisionManager collisionManager;
     private AIControllerManager aiControllerManager;
-    private long startTime; 
+    private long startTime;
     //for any activity to run within a loop, where condition is game running or not
     private boolean isrunning;
 
@@ -47,8 +47,7 @@ public class Simulation {
         entities.createAI();
         entities.createAppliance("Chicken");
         entities.createAppliance("Microwave");
-        System.out.println(entities.getEntityList());
-       
+
 
         isrunning = true;
         startTime = TimeUtils.nanoTime(); // Initialize the start time
@@ -73,11 +72,11 @@ public class Simulation {
     public long getTime(){
         // Calculate elapsed time in milliseconds le
         //time stops when the simulation is disposed in gamemaster
-        // to print time, add         
+        // to print time, add
         //System.err.println(Simulation.getTime() + "seconds le.");
         // to simulation update
         if (isrunning){
-            long elapsedTime = TimeUtils.nanosToMillis(TimeUtils.nanoTime() - startTime); 
+            long elapsedTime = TimeUtils.nanosToMillis(TimeUtils.nanoTime() - startTime);
             return elapsedTime;
         }
         else{
