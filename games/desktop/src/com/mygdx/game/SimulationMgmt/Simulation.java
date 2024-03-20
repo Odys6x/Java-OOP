@@ -6,8 +6,13 @@ import com.badlogic.gdx.scenes.scene2d.ui.List;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.mygdx.game.AiControllerMgmt.AIControllerManager;
+import com.mygdx.game.BehaviourMgmt.Behaviour;
+import com.mygdx.game.BehaviourMgmt.BehaviourManager;
 import com.mygdx.game.CollisionMgmt.CollisionManager;
+import com.mygdx.game.EntityMgmt.Appliance;
 import com.mygdx.game.EntityMgmt.EntityManager;
+import com.mygdx.game.EntityMgmt.Microwave;
+import com.mygdx.game.EntityMgmt.Player;
 import com.mygdx.game.SceneMgmt.SceneScreen;
 import com.mygdx.game.InputMgmt.InputManager;
 import com.mygdx.game.InputMgmt.KeyboardInput;
@@ -16,6 +21,8 @@ import com.mygdx.game.InputMgmt.MouseInput;
 
 public class Simulation {
 
+    private Microwave Microwave;
+    private BehaviourManager behaviourManager;
     private SceneScreen Scenes; // implementing in future
     private SpriteBatch batch;
     private EntityManager entities;
@@ -28,6 +35,7 @@ public class Simulation {
 
     public void initialise() {
         // start making the objects in the game, from create
+
         entities = new EntityManager();
         batch = new SpriteBatch();
         collisionManager = new CollisionManager(entities);
@@ -37,7 +45,13 @@ public class Simulation {
         aiControllerManager = new AIControllerManager(entities);
         entities.createPlayer();
         entities.createAI();
+
+        Microwave = new Microwave();
+        entities.addEntity(Microwave);
         System.out.println(entities.getEntityList());
+       
+        behaviourManager = new BehaviourManager(entities);
+
         isrunning = true;
         startTime = TimeUtils.nanoTime(); // Initialize the start time
     }
@@ -50,7 +64,7 @@ public class Simulation {
         entities.updatePlayerAnimations(pressedKeys);
         collisionManager.update();
         aiControllerManager.moveAIControlledEntities();
-
+        behaviourManager.updateBehaviours();
     }
     public void end() {
         //dispose what was created
