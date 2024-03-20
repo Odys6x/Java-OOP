@@ -3,7 +3,7 @@ package com.mygdx.game.EntityMgmt;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-public abstract class Entity  implements GameObject {
+public abstract class Entity implements GameObject {
     private float x,y;
 
     private Texture texture;

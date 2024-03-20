@@ -11,13 +11,13 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
-public class EndScreen extends SceneScreen {
+public class OptionScreen extends SceneScreen {
     private SceneManager sceneManager;
     private Simulation simulation; 
     private Texture background;
     private Stage stage;
-
-    public EndScreen(SceneManager sceneManager){
+    
+    public OptionScreen(SceneManager sceneManager){
         this.sceneManager = sceneManager;
         show();
     }
@@ -27,27 +27,33 @@ public class EndScreen extends SceneScreen {
     @Override
     public void show() {
         stage = new Stage(new ScreenViewport());
-        background = new Texture(Gdx.files.internal("end.png"));
+        background = new Texture(Gdx.files.internal("option.jpeg"));
 
         Image backgroundImage = new Image(background);
         stage.addActor(backgroundImage);
         Gdx.input.setInputProcessor(stage);
         backgroundImage.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         Skin skin = new Skin(Gdx.files.internal("uiskin.json"));
-
-        TextButton playButton = new TextButton("Play Again?", skin);
-        TextButton exitButton = new TextButton("Exit", skin);
-
+        TextButton playButton = new TextButton("Let's Play", skin);
+        TextButton menuButton = new TextButton("Back To Menu", skin);
         final float buttonWidth = 200;
         final float buttonHeight = 50;
         final float buttonSpacing = 20;
         playButton.setSize(buttonWidth, buttonHeight);
         playButton.setPosition(Gdx.graphics.getWidth() / 2 - buttonWidth / 2, 
-                               Gdx.graphics.getHeight() / 2 + buttonHeight / 2 + buttonSpacing);  
-        exitButton.setSize(buttonWidth, buttonHeight);
-        exitButton.setPosition(Gdx.graphics.getWidth() / 2 - buttonWidth / 2, 
-                            Gdx.graphics.getHeight() / 2 - buttonHeight / 2);
+                               Gdx.graphics.getHeight() / 2 + buttonHeight / 2 + buttonSpacing - 100);  
+        menuButton.setSize(buttonWidth, buttonHeight);
+        menuButton.setPosition(Gdx.graphics.getWidth() / 2 - buttonWidth / 2, 
+                                Gdx.graphics.getHeight() / 2 - buttonHeight / 2 - 100);
         playButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                if (sceneManager != null) {
+                    sceneManager.setScene(new GameScreen(sceneManager)); // Transition to GameScreen
+                }
+            }
+        });
+        menuButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 if (sceneManager != null) {
@@ -55,16 +61,9 @@ public class EndScreen extends SceneScreen {
                 }
             }
         });
-        exitButton.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                Gdx.app.exit(); // Exits the application
-            }
-        });
         stage.addActor(playButton);
-        stage.addActor(exitButton);
+        stage.addActor(menuButton);
     }
-
     @Override
     public void render(float delta) {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);

@@ -90,13 +90,13 @@ public class EntityManager{
 
 
     public List<GameObject> getEntities() {
-        List<GameObject> collidableEntities = new ArrayList<>();
+        List<GameObject> Entities = new ArrayList<>();
 
         List<Entity> entities = getEntityList();
 
-        collidableEntities.addAll(entities);
+        Entities.addAll(entities);
 
-        return collidableEntities;
+        return Entities;
     }
     public void updatePlayerAnimations(List<Integer> pressedKeys) {
         for (Entity entity : entityList) {

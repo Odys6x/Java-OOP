@@ -20,6 +20,7 @@ public class Player extends Entity{
     private int energyLevel;
     private float Iradius;
 
+
     public Player(){
         stateTime = 0f;
     }
@@ -30,15 +31,7 @@ public class Player extends Entity{
         this.direction = direction;
         this.energyLevel = 100;
         this.hp = 1000;
-        Texture spriteSheet = new Texture("Player.png");
-        TextureRegion[][] tmp = TextureRegion.split(spriteSheet, spriteSheet.getWidth() / 10, spriteSheet.getHeight() / 2);
-        TextureRegion[] framesForward = new TextureRegion[9]; // Frames for walking forward
-        TextureRegion[] framesBackward = new TextureRegion[9]; // Frames for walking backward
-        System.arraycopy(tmp[0], 1, framesForward, 0, 9); // Start from index 1 for walking forward
-        System.arraycopy(tmp[1], 1, framesBackward, 0, 9); // Start from index 1 for walking backward
-        walkAnimationForward = new Animation<>(0.1f, framesForward); // Animation for walking forward
-        walkAnimationBackward = new Animation<>(0.1f, framesBackward);
-        standAnimation = new Animation<>(0.1f, tmp[0][0]); // Standing frame
+        initialisePlayer();
     }
     public void updateAnimations(List<Integer> pressedKeys) {
         if (pressedKeys.contains(Keys.LEFT)) {
@@ -48,6 +41,18 @@ public class Player extends Entity{
         } else {
             direction = null;
         }
+    }
+
+    public void initialisePlayer(){
+        Texture spriteSheet = new Texture("Player.png");
+        TextureRegion[][] tmp = TextureRegion.split(spriteSheet, spriteSheet.getWidth() / 10, spriteSheet.getHeight() / 2);
+        TextureRegion[] framesForward = new TextureRegion[9]; // Frames for walking forward
+        TextureRegion[] framesBackward = new TextureRegion[9]; // Frames for walking backward
+        System.arraycopy(tmp[0], 1, framesForward, 0, 9); // Start from index 1 for walking forward
+        System.arraycopy(tmp[1], 1, framesBackward, 0, 9); // Start from index 1 for walking backward
+        walkAnimationForward = new Animation<>(0.1f, framesForward); // Animation for walking forward
+        walkAnimationBackward = new Animation<>(0.1f, framesBackward);
+        standAnimation = new Animation<>(0.1f, tmp[0][0]); // Standing frame
     }
 
     public float getSpeed() {
