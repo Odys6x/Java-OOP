@@ -87,4 +87,8 @@ public class Appliance extends Entity {
     public float getActivationRange(){
         return activationRange;
     }
+    public boolean getState(){
+        return isActivated;
+    }
+
 }

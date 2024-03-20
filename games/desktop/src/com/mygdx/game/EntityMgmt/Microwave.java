@@ -17,7 +17,7 @@ public class Microwave extends Appliance {
     public Microwave() {
         // Call the constructor of the superclass with default values
 
-        super("Microwave", "microwave_on.png", 50, 50, 20,50, null, 0, 0);
+        super("Microwave", "microwave_on.png", 50, 50, 20,200, null, 0, 0);
         offTexture = new Texture("microwave_off.png");
         onTexture = new Texture("microwave_on.png");
         this.texture = new TextureRegion(onTexture);
