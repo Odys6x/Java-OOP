@@ -21,7 +21,7 @@ public class CollisionManager {
                 GameObject c1 = entities.get(i);
                 GameObject c2 = entities.get(j);
                 if (Collision.checkCollision(c1, c2)) {
-                    Collision.applyKnockback(c1, c2);
+                    Collision.stopAtCollision(c1, c2);
                     notifyCollision(c1, c2);
                 }
             }
