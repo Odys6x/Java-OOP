@@ -12,6 +12,7 @@ import com.mygdx.game.CollisionMgmt.CollisionManager;
 import com.mygdx.game.EntityMgmt.Appliance;
 import com.mygdx.game.EntityMgmt.EntityManager;
 import com.mygdx.game.EntityMgmt.Microwave;
+import com.mygdx.game.EntityMgmt.Chicken;
 import com.mygdx.game.EntityMgmt.Player;
 import com.mygdx.game.SceneMgmt.SceneScreen;
 import com.mygdx.game.InputMgmt.InputManager;
@@ -20,7 +21,8 @@ import com.mygdx.game.InputMgmt.MouseInput;
 
 
 public class Simulation {
-
+    
+    private Chicken Chicken;
     private Microwave Microwave;
     private BehaviourManager behaviourManager;
     private SceneScreen Scenes; // implementing in future
@@ -47,7 +49,9 @@ public class Simulation {
         entities.createAI();
 
         Microwave = new Microwave();
+        Chicken = new Chicken();
         entities.addEntity(Microwave);
+        entities.addEntity(Chicken);
         System.out.println(entities.getEntityList());
        
         behaviourManager = new BehaviourManager(entities);

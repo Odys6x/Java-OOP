@@ -4,22 +4,22 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
-public class Microwave extends Appliance {
+public class Chicken extends Appliance {
     private Texture offTexture;
     private Texture onTexture;
     private TextureRegion texture;
-
-    public Microwave(String type, String path, float x, float y, float energyConsumption, float activationRange,
+    
+    public Chicken(String type, String path, float x, float y, float energyConsumption, float activationRange,
             TextureRegion texture, float scoreValue, float interactionTime) {
         super(type, path, x, y, energyConsumption, activationRange, texture, scoreValue, interactionTime);
     }
 
-    public Microwave() {
+    public Chicken() {
         // Call the constructor of the superclass with default values
-
-        super("Microwave", "microwave_on.png", 50, 50, 20, 200, null, 0, 0);
-        offTexture = new Texture("microwave_off.png");
-        onTexture = new Texture("microwave_on.png");
+        // can disuse the activation range, this behaviour handled in behaviour
+        super("Chicken", "cock.jpg", 500, 50, 20,200, null, 0, 0);
+        offTexture = new Texture("cock_off.jpg");
+        onTexture = new Texture("cock.jpg");
         this.texture = new TextureRegion(offTexture);
     }
 
@@ -39,5 +39,10 @@ public class Microwave extends Appliance {
         offTexture.dispose();
         onTexture.dispose();
     }
-
+    public int getWidth(TextureRegion texture){
+        return texture.getRegionWidth();
+    }
+    public int getHeight(TextureRegion texture){
+        return texture.getRegionHeight();
+    }
 }

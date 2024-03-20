@@ -17,7 +17,7 @@ public class Appliance extends Entity {
     private boolean isActivated;
 
     public Appliance(String type, String path, float x, float y, float energyConsumption, float activationRange,
-                     TextureRegion texture, float scoreValue, float interactionTime) {
+            TextureRegion texture, float scoreValue, float interactionTime) {
         super(path, x, y);
         this.type = type;
         this.energyConsumption = energyConsumption;
@@ -84,10 +84,11 @@ public class Appliance extends Entity {
         return scoreValue;
     }
 
-    public float getActivationRange(){
+    public float getActivationRange() {
         return activationRange;
     }
-    public boolean getState(){
+
+    public boolean getState() {
         return isActivated;
     }
 
