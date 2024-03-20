@@ -27,6 +27,9 @@ public class KeyboardInput implements InputHandler {
                 case MOVE_RIGHT:
                     deltaX += speed * Gdx.graphics.getDeltaTime();
                     break;
+                case INTERACT:
+                	System.out.println("Interacting LIAO");
+                	break;
                 default:
                     break;
             }

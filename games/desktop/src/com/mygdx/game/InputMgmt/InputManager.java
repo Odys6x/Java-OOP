@@ -25,10 +25,8 @@ public class InputManager {
                 keyboardInput.handleInput(InputCommand.MOVE_LEFT);
             } else if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
                 keyboardInput.handleInput(InputCommand.MOVE_RIGHT);
-            } else if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
-                keyboardInput.handleInput(InputCommand.MOVE_UP);
-            } else if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
-                keyboardInput.handleInput(InputCommand.MOVE_DOWN);
+            } else if (Gdx.input.isKeyPressed(Input.Keys.E)) {
+                keyboardInput.handleInput(InputCommand.INTERACT);
             } else if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
                 mouseInput.handleInput(InputCommand.MOUSE_LEFT_CLICK);
             } else if (Gdx.input.isButtonPressed(Input.Buttons.RIGHT)) {
