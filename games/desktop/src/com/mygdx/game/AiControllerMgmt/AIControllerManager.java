@@ -1,7 +1,6 @@
 package com.mygdx.game.AiControllerMgmt;
 
 import java.util.List;
-
 import com.mygdx.game.EntityMgmt.EntityManager;
 import com.mygdx.game.EntityMgmt.GameObject;
 
@@ -16,7 +15,7 @@ public class AIControllerManager {
     public void moveAIControlledEntities() {
         List<GameObject> allEntities = entityManager.getEntities();
         for (GameObject entity : allEntities) {
-            AIMovement.updateAIMovement(entity); // Call AI movement logic for all entities
+            AIMovement.updateAIMovement(entity);
         }
     }
 }
