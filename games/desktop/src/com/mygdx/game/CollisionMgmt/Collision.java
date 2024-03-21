@@ -1,8 +1,8 @@
 package com.mygdx.game.CollisionMgmt;
 
 import com.mygdx.game.EntityMgmt.GameObject;
-import com.mygdx.game.EntityMgmt.Player;
-import com.mygdx.game.EntityMgmt.AI;
+import com.mygdx.game.EntityMgmt.Player.Player;
+import com.mygdx.game.EntityMgmt.AI.AI;
 
 public class Collision {
 

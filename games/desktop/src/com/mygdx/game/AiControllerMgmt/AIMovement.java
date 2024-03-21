@@ -1,7 +1,7 @@
 package com.mygdx.game.AiControllerMgmt;
 
 import com.badlogic.gdx.Gdx;
-import com.mygdx.game.EntityMgmt.AI;
+import com.mygdx.game.EntityMgmt.AI.AI;
 import com.mygdx.game.EntityMgmt.GameObject;
 
 public class AIMovement {

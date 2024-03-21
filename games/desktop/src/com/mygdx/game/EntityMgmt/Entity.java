@@ -47,7 +47,7 @@ public abstract class Entity implements GameObject {
     public float getHeight(){
         return texture.getHeight();
     }
-    Texture getTexture() {
+    protected Texture getTexture() {
         return texture;
     }
 

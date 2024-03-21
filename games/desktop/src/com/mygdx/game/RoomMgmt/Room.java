@@ -1,29 +1,22 @@
 package com.mygdx.game.RoomMgmt;
 
-import com.mygdx.game.EntityMgmt.EntityManager;
 import com.mygdx.game.EntityMgmt.GameObject;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Room {
-    private String type;
-    private EntityManager entityManager;
+    private List<GameObject> entities;
 
     public Room() {
-        entityManager = new EntityManager();
+        entities = new ArrayList<>();
     }
 
-    public void addEntity(List<GameObject> entities) {
-        entityManager.getEntities().addAll(entities);
+    public void addEntity(GameObject entity) {
+        entities.add(entity);
     }
 
-    public String getType() {
-        return type;
+    public List<GameObject> getEntities() {
+        return entities;
     }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
 }

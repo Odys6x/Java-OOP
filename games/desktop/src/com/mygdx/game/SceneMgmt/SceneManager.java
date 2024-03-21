@@ -2,7 +2,7 @@ package com.mygdx.game.SceneMgmt;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 
-public class SceneManager {
+public class    SceneManager {
     private SceneScreen currentScene;
     private static SceneManager instance;
     private Game game;

@@ -10,15 +10,20 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image; 
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener; 
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.mygdx.game.SoundMgmt.Sound;
+
 
 public class MenuScreen extends SceneScreen{
     private SceneManager sceneManager;
     private Texture background;
     private Stage stage;
     private Skin skin;
+    private Sound sound= new Sound("games/assets/song.wav");
+
     public MenuScreen (SceneManager sceneManager){
         super();
         this.sceneManager = sceneManager;
+        sound.play();
     }
     
     @Override
@@ -62,6 +67,7 @@ public class MenuScreen extends SceneScreen{
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 if (sceneManager != null) {
+                    
                     sceneManager.setScene(new GameScreen(sceneManager)); // Transition to GameScreen
                 }
             }
@@ -104,6 +110,7 @@ public class MenuScreen extends SceneScreen{
         background.dispose();
         skin.dispose();
         stage.dispose();
+
     }
 
 }

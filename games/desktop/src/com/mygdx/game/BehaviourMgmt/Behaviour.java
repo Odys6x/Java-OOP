@@ -1,13 +1,8 @@
 package com.mygdx.game.BehaviourMgmt;
 
 import com.mygdx.game.EntityMgmt.*;
-import com.mygdx.game.InputMgmt.InputCommand;
-import com.mygdx.game.InputMgmt.KeyboardInput;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
+import com.mygdx.game.EntityMgmt.Appliances.Appliance;
 import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.ui.List;
 
 public class Behaviour {
     private String type;
@@ -63,7 +58,7 @@ public class Behaviour {
         if (entityRightBound >= applianceLeftBound && entityLeftBound <= applianceRightBound &&
                 entityDownBound >= applianceUpBound && entityUpBound <= applianceDownBound) {
             interacted = true;
-            System.out.println("in range, " + appliance + " and " + entity);
+            //System.out.println("in range, " + appliance + " and " + entity);
 
             // for making appliance "vibrate" when near
             // Calculate random displacement within a small range
@@ -80,7 +75,7 @@ public class Behaviour {
 
     public void updateApplianceBehaviour(Appliance appliance, GameObject entity, boolean interactPressed) {
         long currentTime = System.currentTimeMillis(); // Get the current time
-        System.err.println("interactPressed is" + interactPressed);
+        //System.err.println("interactPressed is" + interactPressed);
 
         // Check if the player is within interaction range and the E key is pressed
         // Gdx.input.isKeyJustPressed(Input.Keys.E)
