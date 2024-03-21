@@ -1,5 +1,4 @@
 package com.mygdx.game.SceneMgmt;
-import com.mygdx.game.SimulationMgmt.Simulation;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -13,13 +12,13 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 public class EndScreen extends SceneScreen {
     private SceneManager sceneManager;
-    private Simulation simulation; 
     private Texture background;
     private Stage stage;
+    private Skin skin;
 
     public EndScreen(SceneManager sceneManager){
+        super();
         this.sceneManager = sceneManager;
-        show();
     }
     public void init(){
     }
@@ -33,7 +32,7 @@ public class EndScreen extends SceneScreen {
         stage.addActor(backgroundImage);
         Gdx.input.setInputProcessor(stage);
         backgroundImage.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        Skin skin = new Skin(Gdx.files.internal("uiskin.json"));
+        skin = new Skin(Gdx.files.internal("uiskin.json"));
 
         TextButton playButton = new TextButton("Play Again?", skin);
         TextButton exitButton = new TextButton("Exit", skin);
@@ -74,6 +73,8 @@ public class EndScreen extends SceneScreen {
 
     @Override
     public void dispose() {
+        stage.dispose();
         background.dispose();
+        skin.dispose();
     }
 }

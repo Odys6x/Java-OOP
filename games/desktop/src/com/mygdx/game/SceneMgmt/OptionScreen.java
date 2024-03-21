@@ -1,5 +1,4 @@
 package com.mygdx.game.SceneMgmt;
-import com.mygdx.game.SimulationMgmt.Simulation;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -13,9 +12,9 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 public class OptionScreen extends SceneScreen {
     private SceneManager sceneManager;
-    private Simulation simulation; 
     private Texture background;
     private Stage stage;
+    private Skin skin;
     
     public OptionScreen(SceneManager sceneManager){
         this.sceneManager = sceneManager;
@@ -33,7 +32,7 @@ public class OptionScreen extends SceneScreen {
         stage.addActor(backgroundImage);
         Gdx.input.setInputProcessor(stage);
         backgroundImage.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        Skin skin = new Skin(Gdx.files.internal("uiskin.json"));
+        skin = new Skin(Gdx.files.internal("uiskin.json"));
         TextButton playButton = new TextButton("Let's Play", skin);
         TextButton menuButton = new TextButton("Back To Menu", skin);
         final float buttonWidth = 200;
@@ -74,5 +73,7 @@ public class OptionScreen extends SceneScreen {
     @Override
     public void dispose() {
         background.dispose();
+        skin.dispose();
+        stage.dispose();
     }
 }

@@ -23,7 +23,7 @@ public class SceneManager {
             Gdx.app.log("SceneManager", "Game instance is null. Cannot change screen."); // also error handling
         }
         if (currentScene != null) {
-            currentScene.hide(); // Ensure the current screen is properly hidden
+            // currentScene.hide(); // Ensure the current screen is properly hidden
             currentScene.dispose(); // Dispose resources of the current screen
         }
         currentScene = scene;

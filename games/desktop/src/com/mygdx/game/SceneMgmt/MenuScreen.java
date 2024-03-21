@@ -15,6 +15,7 @@ public class MenuScreen extends SceneScreen{
     private SceneManager sceneManager;
     private Texture background;
     private Stage stage;
+    private Skin skin;
     public MenuScreen (SceneManager sceneManager){
         super();
         this.sceneManager = sceneManager;
@@ -30,7 +31,7 @@ public class MenuScreen extends SceneScreen{
         backgroundImage.setFillParent(true);
         stage.addActor(backgroundImage);
     
-        Skin skin = new Skin(Gdx.files.internal("uiskin.json"));
+        skin = new Skin(Gdx.files.internal("uiskin.json"));
     
         // Create buttons
         TextButton playButton = new TextButton("Play", skin);
@@ -101,6 +102,8 @@ public class MenuScreen extends SceneScreen{
     @Override
     public void dispose(){
         background.dispose();
+        skin.dispose();
+        stage.dispose();
     }
 
 }
