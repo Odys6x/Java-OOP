@@ -1,15 +1,17 @@
 package com.mygdx.game.RoomMgmt;
 
+import com.mygdx.game.EntityMgmt.EntityManager;
 import com.mygdx.game.EntityMgmt.GameObject;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Room {
+    private EntityManager entityManager;
     private List<GameObject> entities;
 
     public Room() {
-        entities = new ArrayList<>();
+        entities = entityManager.getEntities();
     }
 
     public void addEntity(GameObject entity) {

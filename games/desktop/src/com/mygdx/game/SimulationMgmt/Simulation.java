@@ -47,6 +47,8 @@ public class Simulation {
         entities.createAI();
         entities.createAppliance("Chicken");
         entities.createAppliance("Microwave");
+        entities.createWalls("WallH");
+        entities.createWalls("WallV");
 
         isrunning = true;
         startTime = TimeUtils.nanoTime(); // Initialize the start time

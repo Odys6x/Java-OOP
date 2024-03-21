@@ -9,6 +9,7 @@ import com.mygdx.game.EntityMgmt.AI.AI;
 import com.mygdx.game.EntityMgmt.Appliances.ApplianceFactory;
 import com.mygdx.game.EntityMgmt.Player.Player;
 import com.mygdx.game.EntityMgmt.Player.PlayerFactory;
+import com.mygdx.game.EntityMgmt.Wall.WallFactory;
 
 
 public class EntityManager{
@@ -63,6 +64,13 @@ public class EntityManager{
         Entity applianceEntity = applianceFactory.createEntity(entityType);
         addEntity(applianceEntity); // Add the created entity to the entityList
         return applianceEntity; // Return the created entity
+    }
+
+    public Entity createWalls(String entityType) {
+        EntityFactory wallFactory = new WallFactory();
+        Entity wallFactoryEntity = wallFactory.createEntity(entityType);
+        addEntity(wallFactoryEntity); // Add the created entity to the entityList
+        return wallFactoryEntity; // Return the created entity
     }
 
     public void createAI() {

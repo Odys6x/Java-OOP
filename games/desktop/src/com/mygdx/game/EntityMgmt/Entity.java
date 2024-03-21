@@ -51,4 +51,6 @@ public abstract class Entity implements GameObject {
         return texture;
     }
 
+    protected String getPath(){ return path;}
+
 }
