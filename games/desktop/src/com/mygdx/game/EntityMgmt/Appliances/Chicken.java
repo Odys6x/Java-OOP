@@ -17,7 +17,7 @@ public class Chicken extends Appliance {
     public Chicken() {
         // Call the constructor of the superclass with default values
         // can disuse the activation range, this behaviour handled in behaviour
-        super("Chicken", "cock.jpg", 500, 50, 20,200, null, 0, 0);
+        super("Chicken", "cock.jpg", 1000, 50, 20,200, null, 0, 0);
         offTexture = new Texture("cock_off.jpg");
         onTexture = new Texture("cock.jpg");
         this.texture = new TextureRegion(offTexture);
@@ -34,11 +34,12 @@ public class Chicken extends Appliance {
     public void turnOff() {
         this.texture = new TextureRegion(offTexture);
     }
-
+    /*
     public void dispose() {
         offTexture.dispose();
         onTexture.dispose();
     }
+     */
     public int getWidth(TextureRegion texture){
         return texture.getRegionWidth();
     }

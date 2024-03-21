@@ -20,14 +20,14 @@ public class Simulation {
     private Chicken Chicken;
     private Microwave Microwave;
     private BehaviourManager behaviourManager;
-    private SceneScreen Scenes; // implementing in future
+    private SceneScreen Scenes; // implementing in future2
     private SpriteBatch batch;
     private EntityManager entities;
     private InputManager inputManager;
     private CollisionManager collisionManager;
     private AIControllerManager aiControllerManager;
     private long startTime;
-    //for any activity to run within a loop, where condition is game running or not
+    // for any activity to run within a loop, where condition is game running or not
     private boolean isrunning;
 
     public void initialise() {
@@ -36,7 +36,7 @@ public class Simulation {
         entities = new EntityManager();
         batch = new SpriteBatch();
         collisionManager = new CollisionManager(entities);
-        //behaviourManager = new BehaviourManager(entities, inputManager);
+        // behaviourManager = new BehaviourManager(entities, inputManager);
 
         KeyboardInput keyboardInput = new KeyboardInput(entities);
         MouseInput mouseInput = new MouseInput(entities);
@@ -48,12 +48,14 @@ public class Simulation {
         entities.createAppliance("Chicken");
         entities.createAppliance("Microwave");
 
-
         isrunning = true;
         startTime = TimeUtils.nanoTime(); // Initialize the start time
+
     }
+
     public void update() {
-        //render
+        // render
+
         ScreenUtils.clear(0, 0, 0.2f, 1);
         entities.draw(batch);
         inputManager.update();
@@ -64,22 +66,22 @@ public class Simulation {
         behaviourManager.updateBehaviours(pressedKeys);
     }
     public void end() {
-        //dispose what was created
+        // dispose what was created
         isrunning = false;
         batch.dispose();
         entities.dispose();
     }
-    public long getTime(){
+
+    public long getTime() {
         // Calculate elapsed time in milliseconds le
-        //time stops when the simulation is disposed in gamemaster
+        // time stops when the simulation is disposed in gamemaster
         // to print time, add
-        //System.err.println(Simulation.getTime() + "seconds le.");
+        // System.err.println(Simulation.getTime() + "seconds le.");
         // to simulation update
-        if (isrunning){
+        if (isrunning) {
             long elapsedTime = TimeUtils.nanosToMillis(TimeUtils.nanoTime() - startTime);
             return elapsedTime;
-        }
-        else{
+        } else {
             return 0;
         }
     }
