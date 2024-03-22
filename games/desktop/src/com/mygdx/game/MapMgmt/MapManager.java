@@ -2,10 +2,10 @@ package com.mygdx.game.MapMgmt;
 
 import com.mygdx.game.EntityMgmt.EntityManager;
 
+
 import java.util.Random;
 
 public class MapManager {
-    private Map map;
 
     public void LoadMap(EntityManager entityManager, int numWalls,int numAI,int numAppliances) {
         for (int i = 0; i < numAI; i++) {
@@ -19,6 +19,8 @@ public class MapManager {
         for (int i = 0; i < numWalls; i++) {
             entityManager.createWalls("WallH");
         }
+
+
     }
     public void LoadPlayers(EntityManager entityManager, int numPlayers) {
         // Use the provided number of walls to create the specified number of walls
