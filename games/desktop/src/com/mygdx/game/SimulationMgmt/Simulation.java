@@ -9,6 +9,7 @@ import com.mygdx.game.CollisionMgmt.CollisionManager;
 import com.mygdx.game.EntityMgmt.EntityManager;
 import com.mygdx.game.EntityMgmt.Appliances.Microwave;
 import com.mygdx.game.EntityMgmt.Appliances.Chicken;
+import com.mygdx.game.MapMgmt.MapManager;
 import com.mygdx.game.SceneMgmt.SceneScreen;
 import com.mygdx.game.InputMgmt.InputManager;
 import com.mygdx.game.InputMgmt.KeyboardInput;
@@ -23,6 +24,8 @@ public class Simulation {
     private SceneScreen Scenes; // implementing in future2
     private SpriteBatch batch;
     private EntityManager entities;
+
+    private MapManager map;
     private InputManager inputManager;
     private CollisionManager collisionManager;
     private AIControllerManager aiControllerManager;
@@ -35,6 +38,7 @@ public class Simulation {
 
         entities = new EntityManager();
         batch = new SpriteBatch();
+        map = new MapManager();
         collisionManager = new CollisionManager(entities);
         // behaviourManager = new BehaviourManager(entities, inputManager);
 
@@ -43,10 +47,9 @@ public class Simulation {
         inputManager = new InputManager(entities, keyboardInput, mouseInput);
         behaviourManager = new BehaviourManager(entities, inputManager);
         aiControllerManager = new AIControllerManager(entities);
-        entities.createPlayer("Player");
-        entities.createAI();
-        entities.createAppliance("Chicken");
-        entities.createAppliance("Microwave");
+        map.LoadMap(entities,3,3,2);
+        map.LoadPlayers(entities,1);
+
 
         isrunning = true;
         startTime = TimeUtils.nanoTime(); // Initialize the start time

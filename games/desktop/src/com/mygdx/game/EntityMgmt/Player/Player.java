@@ -46,7 +46,7 @@ public class Player extends Entity {
     }
 
     public void initialisePlayer(){
-        Texture spriteSheet = new Texture("Player.png");
+        Texture spriteSheet = new Texture(getPath());
         TextureRegion[][] tmp = TextureRegion.split(spriteSheet, spriteSheet.getWidth() / 10, spriteSheet.getHeight() / 2);
         TextureRegion[] framesForward = new TextureRegion[9]; // Frames for walking forward
         TextureRegion[] framesBackward = new TextureRegion[9]; // Frames for walking backward
