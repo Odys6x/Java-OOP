@@ -9,4 +9,6 @@ public interface GameObject {
     void setX(float v);
 
     void setY(float v);
+
+    GameObjectType getType();
 }

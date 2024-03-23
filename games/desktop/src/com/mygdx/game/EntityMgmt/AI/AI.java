@@ -2,6 +2,7 @@ package com.mygdx.game.EntityMgmt.AI;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.EntityMgmt.Entity;
+import com.mygdx.game.EntityMgmt.GameObjectType;
 
 public class AI extends Entity {
     private float speed;
@@ -20,8 +21,9 @@ public class AI extends Entity {
         this.speed = speed;
     }
 
-    public AI createAI() {
-        return new AI("droplet.png", 300, 400, 200);
+    @Override
+    public GameObjectType getType() {
+        return GameObjectType.AI;
     }
     @Override
     public void draw(SpriteBatch batch) {

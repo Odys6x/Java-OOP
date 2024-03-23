@@ -24,16 +24,20 @@ public class AIBehaviour extends Behaviour {
         //modify this to control the speed the ai moves towards the appliance
         //slower speeds mean it is easier to keep everything on
         aiSpeed = 500f;
-        
+
 
         for (GameObject entity : entities.getEntities()) {
-            if (entity instanceof Appliance) {
-                appliances.add((Appliance) entity);
-            } else if (entity instanceof AI) {
-                AIControlled.add((AI) entity);
-
+            switch (entity.getType()) {
+                case APPLIANCE:
+                    appliances.add((Appliance) entity);
+                    break;
+                case AI:
+                    AIControlled.add((AI) entity);
+                    break;
+                // handle other types if needed
             }
         }
+
         System.err.println("Appliances are"+appliances);
         System.err.println("AI are"+AIControlled    );
 

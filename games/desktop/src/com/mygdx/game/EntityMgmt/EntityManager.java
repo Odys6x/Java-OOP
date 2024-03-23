@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.mygdx.game.EntityMgmt.AI.AI;
+import com.mygdx.game.EntityMgmt.AI.AIFactory;
 import com.mygdx.game.EntityMgmt.Appliances.ApplianceFactory;
 import com.mygdx.game.EntityMgmt.Player.Player;
 import com.mygdx.game.EntityMgmt.Player.PlayerFactory;
@@ -73,10 +74,11 @@ public class EntityManager{
         return wallFactoryEntity; // Return the created entity
     }
 
-    public void createAI() {
-        AI text = new AI();
-        addEntity(text.createAI());
-
+    public Entity createAI(String entityType) {
+        EntityFactory AIFactory = new AIFactory();
+        Entity AIEntity = AIFactory.createEntity(entityType);
+        addEntity(AIEntity); // Add the created entity to the entityList
+        return AIEntity; // Return the created entity
     }
 
     public float getSpeed() {

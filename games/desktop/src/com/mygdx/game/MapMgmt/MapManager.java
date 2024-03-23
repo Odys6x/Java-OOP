@@ -9,7 +9,7 @@ public class MapManager {
 
     public void LoadMap(EntityManager entityManager, int numWalls,int numAI,int numAppliances) {
         for (int i = 0; i < numAI; i++) {
-            entityManager.createAI();
+            entityManager.createAI("AI");
         }
 
         for (int i = 0; i < numAppliances; i++) {
