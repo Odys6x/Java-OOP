@@ -5,6 +5,10 @@ import com.mygdx.game.EntityMgmt.Appliances.Appliance;
 import com.mygdx.game.EntityMgmt.EntityManager;
 import com.mygdx.game.EntityMgmt.GameObject;
 import com.mygdx.game.InputMgmt.InputManager;
+import com.mygdx.game.BehaviourMgmt.*;
+import com.mygdx.game.AiControllerMgmt.*;
+
+
 
 import java.util.List;
 
@@ -51,4 +55,8 @@ public class BehaviourManager {
     public boolean getInteractPressed(){
         return interactPressed;
     }
+    // public void behaviourswitch(AIBehaviour aiBehaviour, AIControllerManager aiControllerManager){
+    //     if (AIBehaviour.allAppliancesOn())
+
+    // }
 }

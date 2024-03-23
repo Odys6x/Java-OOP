@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Timer;
 import com.mygdx.game.EntityMgmt.Entity;
+import com.mygdx.game.EntityMgmt.GameObjectType;
 import com.mygdx.game.EntityMgmt.Player.Player;
 
 public class Appliance extends Entity {
@@ -28,6 +29,7 @@ public class Appliance extends Entity {
         this.isOn = false;
         this.isActivated = false;
     }
+
 
     public void draw(SpriteBatch batch) {
         batch.draw(texture, getX(), getY());
@@ -97,6 +99,10 @@ public class Appliance extends Entity {
 
     public boolean getState() {
         return isActivated;
+    }
+    @Override
+    public GameObjectType getType() {
+        return GameObjectType.APPLIANCE;
     }
 
 }

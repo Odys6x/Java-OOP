@@ -9,15 +9,11 @@ public class Microwave extends Appliance{
     private Texture onTexture;
     private TextureRegion texture;
 
+
+
     public Microwave(String type, String path, float x, float y, float energyConsumption, float activationRange,
             TextureRegion texture, float scoreValue, float interactionTime) {
         super(type, path, x, y, energyConsumption, activationRange, texture, scoreValue, interactionTime);
-    }
-
-    public Microwave() {
-        // Call the constructor of the superclass with default values
-
-        super("Microwave", "microwave_on.png", 50, 50, 20, 200, null, 0, 0);
         offTexture = new Texture("microwave_off.png");
         onTexture = new Texture("microwave_on.png");
         this.texture = new TextureRegion(offTexture);

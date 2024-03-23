@@ -4,6 +4,7 @@ import com.mygdx.game.EntityMgmt.*;
 import com.mygdx.game.EntityMgmt.Appliances.Appliance;
 import com.badlogic.gdx.math.MathUtils;
 
+
 public class Behaviour {
     private String type;
     private boolean isOn;
@@ -39,7 +40,7 @@ public class Behaviour {
 
     }
 
-    private boolean isWithinInteractionRange2(Appliance appliance, GameObject entity) {
+    protected boolean isWithinInteractionRange2(Appliance appliance, GameObject entity) {
         boolean interacted = false;
         int bound = 35;
         // Calculate bounds for the appliance
@@ -58,7 +59,7 @@ public class Behaviour {
         if (entityRightBound >= applianceLeftBound && entityLeftBound <= applianceRightBound &&
                 entityDownBound >= applianceUpBound && entityUpBound <= applianceDownBound) {
             interacted = true;
-            //System.out.println("in range, " + appliance + " and " + entity);
+            System.out.println("in range, " + appliance + " and " + entity);
 
             // for making appliance "vibrate" when near
             // Calculate random displacement within a small range

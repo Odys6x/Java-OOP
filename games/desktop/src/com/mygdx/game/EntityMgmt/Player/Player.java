@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.mygdx.game.EntityMgmt.Appliances.Appliance;
 import com.mygdx.game.EntityMgmt.Entity;
+import com.mygdx.game.EntityMgmt.GameObjectType;
 
 public class Player extends Entity {
     private float speed;
@@ -150,5 +151,9 @@ public class Player extends Entity {
     }
 
     public void decreaseEnergy(float energyConsumption) {
+    }
+    @Override
+    public GameObjectType getType() {
+        return GameObjectType.PLAYER;
     }
 }

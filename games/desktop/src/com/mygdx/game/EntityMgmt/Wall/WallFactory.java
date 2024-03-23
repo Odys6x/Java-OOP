@@ -6,24 +6,17 @@ import com.mygdx.game.EntityMgmt.EntityFactory;
 
 public class WallFactory implements EntityFactory {
     @Override
-    public Entity createEntity(String entityType) {
+    public Entity createEntity(String entityType,float x, float y) {
         if ("WallH".equalsIgnoreCase(entityType)) {
-            return new Wall("brickH.jpg", getRandomX(), getRandomY());
+            return new Wall("brickH.jpg", x, y);
         }
         else if("WallV".equalsIgnoreCase(entityType)){
-            return new Wall("brickV.jpg", getRandomX(), getRandomY());
+            return new Wall("brickV.jpg", x, y);
         }
         else {
             return null;
         }
     }
 
-    private int getRandomX() {
-        return MathUtils.random(0, 500);
-    }
-
-    private int getRandomY() {
-        return MathUtils.random(0, 500);
-    }
 
 }
