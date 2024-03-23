@@ -11,4 +11,5 @@ public interface GameObject {
     void setY(float v);
 
     GameObjectType getType();
+
 }

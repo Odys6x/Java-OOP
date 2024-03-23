@@ -5,7 +5,7 @@ import com.mygdx.game.EntityMgmt.EntityFactory;
 
 public class ApplianceFactory implements EntityFactory {
     @Override
-    public Entity createEntity(String entityType) {
+    public Entity createEntity(String entityType,float x, float y) {
         if ("Microwave".equalsIgnoreCase(entityType)) {
             return new Microwave();
         } else if ("Chicken".equalsIgnoreCase(entityType)) {
