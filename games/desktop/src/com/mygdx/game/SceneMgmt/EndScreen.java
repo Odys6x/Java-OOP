@@ -51,6 +51,7 @@ public class EndScreen extends SceneScreen {
             public void clicked(InputEvent event, float x, float y) {
                 if (sceneManager != null) {
                     sceneManager.setScene(new MenuScreen(sceneManager)); // Transition to GameScreen
+                    sceneManager = null;
                 }
             }
         });

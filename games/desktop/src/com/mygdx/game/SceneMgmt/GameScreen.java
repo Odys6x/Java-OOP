@@ -21,7 +21,6 @@ public class GameScreen extends SceneScreen {
         this.sceneManager = sceneManager;
     }
     public void init(){
-        
     }
 
     @Override
@@ -44,6 +43,7 @@ public class GameScreen extends SceneScreen {
                 System.out.println("Next Screen (End Screen)");
                 if (sceneManager != null) {
                     sceneManager.setScene(new EndScreen(sceneManager)); 
+                    sceneManager = null;
                 } else {
                     System.out.println("SceneManager is null"); 
                 }
@@ -65,6 +65,8 @@ public class GameScreen extends SceneScreen {
     public void dispose() {
         if (simulation != null) {
             simulation.end(); // disposing the resources
+            simulation = null;
+            System.out.println("simu" + simulation);
         }
         stage.dispose();
         background.dispose();

@@ -73,7 +73,12 @@ public class Simulation {
         isrunning = false;
         batch.dispose();
         entities.dispose();
-    }
+        inputManager = null;
+        behaviourManager = null;
+        map = null;
+        collisionManager = null;
+        aiControllerManager = null;
+        }
 
     public long getTime() {
         // Calculate elapsed time in milliseconds le

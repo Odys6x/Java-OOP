@@ -11,6 +11,7 @@ public class    SceneManager {
         if (instance == null) {
             instance = new SceneManager();
         }
+        System.out.println("instance" + instance);
         return instance;
     }
         public void setGame(Game game) {
