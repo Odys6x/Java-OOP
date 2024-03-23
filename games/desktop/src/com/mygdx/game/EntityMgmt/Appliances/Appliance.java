@@ -30,6 +30,7 @@ public class Appliance extends Entity {
         this.isActivated = false;
     }
 
+
     public void draw(SpriteBatch batch) {
         batch.draw(texture, getX(), getY());
     }

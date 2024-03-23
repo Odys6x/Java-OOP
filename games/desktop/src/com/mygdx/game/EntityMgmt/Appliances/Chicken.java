@@ -12,16 +12,11 @@ public class Chicken extends Appliance {
     public Chicken(String type, String path, float x, float y, float energyConsumption, float activationRange,
             TextureRegion texture, float scoreValue, float interactionTime) {
         super(type, path, x, y, energyConsumption, activationRange, texture, scoreValue, interactionTime);
-    }
-
-    public Chicken() {
-        // Call the constructor of the superclass with default values
-        // can disuse the activation range, this behaviour handled in behaviour
-        super("Chicken", "cock.jpg", 1000, 50, 20,200, null, 0, 0);
         offTexture = new Texture("cock_off.jpg");
         onTexture = new Texture("cock.jpg");
         this.texture = new TextureRegion(offTexture);
     }
+
 
     public void draw(SpriteBatch batch) {
         batch.draw(texture, getX(), getY());

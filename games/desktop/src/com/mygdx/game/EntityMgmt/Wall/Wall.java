@@ -14,6 +14,7 @@ public class Wall extends Entity {
         this.texture = new Texture(path);
     }
 
+
     public void draw(SpriteBatch batch) {
         batch.draw(texture, getX(), getY());
     }

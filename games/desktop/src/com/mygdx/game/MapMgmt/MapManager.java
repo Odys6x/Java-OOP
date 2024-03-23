@@ -47,6 +47,12 @@ public class MapManager {
         Random random = new Random();
         int randomIndex = random.nextInt(2); // Randomly choose between 0 and 1
         String[] appliances = {"Chicken", "Microwave"};
-        entityManager.createAppliance(appliances[randomIndex],0,0);
+
+        // Generate random x and y coordinates within a specified range
+        int randomX = random.nextInt(700); // MAX_X is the maximum value for x
+        int randomY = random.nextInt(700); // MAX_Y is the maximum value for y
+
+        entityManager.createAppliance(appliances[randomIndex], randomX, randomY);
     }
+
 }
