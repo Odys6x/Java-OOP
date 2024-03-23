@@ -1,6 +1,7 @@
 package com.mygdx.game.CollisionMgmt;
 
 import com.mygdx.game.EntityMgmt.GameObject;
+import com.mygdx.game.EntityMgmt.GameObjectType;
 import com.mygdx.game.EntityMgmt.Player.Player;
 import com.mygdx.game.EntityMgmt.AI.AI;
 
@@ -21,43 +22,49 @@ public class Collision {
         return c1Right > c2Left && c1Left < c2Right && c1Top > c2Bottom && c1Bottom < c2Top;
     }
 
-    public static void stopAtCollision(GameObject movingEntity, GameObject staticEntity) {
-        // Calculate current overlaps
-        float overlapLeft = movingEntity.getX() + movingEntity.getWidth() - staticEntity.getX();
-        float overlapRight = staticEntity.getX() + staticEntity.getWidth() - movingEntity.getX();
-        float overlapTop = staticEntity.getY() + staticEntity.getHeight() - movingEntity.getY();
-        float overlapBottom = movingEntity.getY() + movingEntity.getHeight() - staticEntity.getY();
 
-        // Determine the direction of the smallest overlap
-        float minOverlap = Math.min(Math.min(overlapLeft, overlapRight), Math.min(overlapTop, overlapBottom));
+    // *note* currently all entities are not movable, should we want to make entities movable, it can be done 
+    // in case we wna change as player might get stuck if unbale to phase through certain obejcts
+    // logic added to adjust position of entities in case of collision as well
 
-        // Check if the teardrop is colliding with the player from above
-        if ((movingEntity instanceof AI && staticEntity instanceof Player) || (staticEntity instanceof AI && movingEntity instanceof Player)) {
-            AI teardrop = (movingEntity instanceof AI) ? (AI)movingEntity : (AI)staticEntity;
-            GameObject player = (staticEntity instanceof Player) ? staticEntity : movingEntity;
-            
-            // Only stop the teardrop if the collision is from above
-            if (minOverlap == overlapBottom) {
-                stopTeardropAtPlayer(teardrop, player);
-                return; // Prevent further position adjustments after handling teardrop-player collision
-            }
-        }
-        
-        // General collision resolution for all entities, including teardrop from sides
-        if (minOverlap == overlapLeft) {
-            movingEntity.setX(staticEntity.getX() - movingEntity.getWidth());
-        } else if (minOverlap == overlapRight) {
-            movingEntity.setX(staticEntity.getX() + staticEntity.getWidth());
-        } else if (minOverlap == overlapTop) {
-            movingEntity.setY(staticEntity.getY() + staticEntity.getHeight());
-        } else if (minOverlap == overlapBottom) {
-            movingEntity.setY(staticEntity.getY() - movingEntity.getHeight());
+    public static void resolveCollision(GameObject c1, GameObject c2) {
+        // Check if both entities are movable.
+        boolean c1Movable = isMovable(c1);
+        boolean c2Movable = isMovable(c2);
+
+        if (c1Movable && !c2Movable) {
+            adjustPosition(c1, c2);
+        } else if (!c1Movable && c2Movable) {
+            adjustPosition(c2, c1);
+        } else if (c1Movable && c2Movable) {
         }
     }
 
-    private static void stopTeardropAtPlayer(AI teardrop, GameObject player) {
-        // Adjust the teardrop's Y position to stop just above the player, not altering its position for side collisions
-        float newYPosition = player.getY() + player.getHeight();
-        teardrop.setY(newYPosition);
+    private static boolean isMovable(GameObject entity) {
+        return entity.getType() != GameObjectType.WALL && entity.getType() != GameObjectType.APPLIANCE && entity.getType() != GameObjectType.AI;
+    }
+    
+
+    private static void adjustPosition(GameObject movable, GameObject immovable) {
+        // Calculate overlap in both x and y directions.
+        float overlapX = Math.min(movable.getX() + movable.getWidth(), immovable.getX() + immovable.getWidth()) - Math.max(movable.getX(), immovable.getX());
+        float overlapY = Math.min(movable.getY() + movable.getHeight(), immovable.getY() + immovable.getHeight()) - Math.max(movable.getY(), immovable.getY());
+
+        
+        if (overlapX < overlapY) {
+            // Horizontal collision
+            if (movable.getX() < immovable.getX()) {
+                movable.setX(movable.getX() - overlapX);
+            } else {
+                movable.setX(movable.getX() + overlapX);
+            }
+        } else {
+            // Vertical collision
+            if (movable.getY() < immovable.getY()) {
+                movable.setY(movable.getY() - overlapY);
+            } else {
+                movable.setY(movable.getY() + overlapY);
+            }
+        }
     }
 }
