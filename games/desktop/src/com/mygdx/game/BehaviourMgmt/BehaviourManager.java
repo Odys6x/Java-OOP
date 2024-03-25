@@ -30,7 +30,7 @@ public class BehaviourManager {
         // Get the player entity
         GameObject playerEntity = entityManager.getUserControlledEntity();
         Appliance appliance = null;
-        System.out.println(pressedKeys);
+        //System.out.println(pressedKeys);
         if (pressedKeys.contains(Input.Keys.E))
         {
         	interactPressed = true;

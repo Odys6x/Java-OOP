@@ -41,6 +41,10 @@ public class Player extends Entity {
             direction = "LEFT";
         } else if (pressedKeys.contains(Keys.RIGHT)) {
             direction = "RIGHT";
+        } else if (pressedKeys.contains(Keys.DOWN)) {
+            direction = "DOWN";
+        } else if (pressedKeys.contains(Keys.UP)) {
+            direction = "UP";
         } else {
             direction = null;
         }
