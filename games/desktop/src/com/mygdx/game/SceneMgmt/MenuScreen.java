@@ -111,7 +111,7 @@ public class MenuScreen extends SceneScreen{
         background.dispose();
         skin.dispose();
         stage.dispose();
-
+        sound.close();
     }
 
 }

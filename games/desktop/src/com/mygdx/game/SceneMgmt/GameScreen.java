@@ -1,5 +1,6 @@
 package com.mygdx.game.SceneMgmt;
 import com.mygdx.game.SimulationMgmt.Simulation;
+import com.mygdx.game.SoundMgmt.Sound;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -9,17 +10,23 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.mygdx.game.SoundMgmt.Sound;
+
 
 public class GameScreen extends SceneScreen {
     private SceneManager sceneManager;
     private Simulation simulation; 
     private Texture background;
     private Stage stage;
+    private Sound sound = new Sound("games/assets/music.wav");
+
 
 
     public GameScreen(SceneManager sceneManager) {
         super();
         this.sceneManager = sceneManager;
+        sound.play();
+        sound.setVolume(0.2f);
     }
     public void init(){
     }
@@ -29,10 +36,7 @@ public class GameScreen extends SceneScreen {
         stage = new Stage(new ScreenViewport());
         background = new Texture(Gdx.files.internal("gamescreen.png"));
         Image backgroundImage = new Image(background);
-        // Manually set the image size to match the screen dimensions
         backgroundImage.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        // Optionally, center the image if needed (not necessary if filling the screen)
-        backgroundImage.setPosition(0, 0);
         stage.addActor(backgroundImage);
         Gdx.input.setInputProcessor(stage);
         System.out.println("Screen Width: " + Gdx.graphics.getWidth() + ", Height: " + Gdx.graphics.getHeight());
@@ -73,6 +77,7 @@ public class GameScreen extends SceneScreen {
         }
         stage.dispose();
         background.dispose();
+        sound.close();
     }
 
 }
