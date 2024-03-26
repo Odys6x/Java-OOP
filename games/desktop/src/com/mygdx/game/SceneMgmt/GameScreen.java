@@ -66,7 +66,6 @@ public class GameScreen extends SceneScreen {
         if (simulation != null) {
             simulation.end(); // disposing the resources
             simulation = null;
-            System.out.println("simu" + simulation);
         }
         stage.dispose();
         background.dispose();

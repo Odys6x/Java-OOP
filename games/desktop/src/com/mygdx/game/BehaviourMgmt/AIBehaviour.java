@@ -40,8 +40,8 @@ public class AIBehaviour extends Behaviour {
             }
         }
 
-        System.err.println("Appliances are" + appliances);
-        System.err.println("AI are" + AIControlled);
+        //System.err.println("Appliances are" + appliances);
+        //System.err.println("AI are" + AIControlled);
 
     }
 
@@ -72,7 +72,7 @@ public class AIBehaviour extends Behaviour {
     }
 
     private void moveTowardsAppliance(Appliance appliance, Entity entity) {
-        System.err.println(entity + "is moving to" + appliance);
+        //System.err.println(entity + "is moving to" + appliance);
         float targetX = appliance.getX();
         float targetY = appliance.getY();
         float entityX = entity.getX();

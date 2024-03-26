@@ -85,7 +85,7 @@ public class Behaviour {
             if (currentTime - lastInteractionTime >= COOLDOWN_MILLIS || lastInteractionTime == 0) {
                 interactWithAppliance(appliance, entity);
                 lastInteractionTime = currentTime; // Update the last interaction time
-                System.out.println("Interacted le");
+                //System.out.println("Interacted le");
             }
         } else {
 
