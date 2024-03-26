@@ -42,7 +42,7 @@ public class Behaviour {
 
     protected boolean isWithinInteractionRange2(Appliance appliance, GameObject entity) {
         boolean interacted = false;
-        int bound = 35;
+        float bound = appliance.getActivationRange();
         // Calculate bounds for the appliance
         float applianceLeftBound = appliance.getX() - (appliance.getWidth() / 2) - bound;
         float applianceRightBound = appliance.getX() + (appliance.getWidth() / 2) + bound;
@@ -59,7 +59,7 @@ public class Behaviour {
         if (entityRightBound >= applianceLeftBound && entityLeftBound <= applianceRightBound &&
                 entityDownBound >= applianceUpBound && entityUpBound <= applianceDownBound) {
             interacted = true;
-            System.out.println("in range, " + appliance + " and " + entity);
+            //System.out.println("in range, " + appliance + " and " + entity);
 
             // for making appliance "vibrate" when near
             // Calculate random displacement within a small range
