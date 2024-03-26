@@ -60,6 +60,7 @@ public class AIBehaviour extends Behaviour {
                         if (isWithinInteractionRange2(appliance, ai) && !appliance.getState()) {
                             interactWithAppliance(appliance, ai);
                             appliance.activate();
+                            break;
                         }
                     }
                 }
