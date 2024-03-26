@@ -4,5 +4,5 @@ public enum GameObjectType {
     APPLIANCE,
     AI,
     PLAYER,
-    WALL
+    FURNITURE
 }

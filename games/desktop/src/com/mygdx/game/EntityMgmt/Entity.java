@@ -2,11 +2,14 @@ package com.mygdx.game.EntityMgmt;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public abstract class Entity implements GameObject {
     private float x,y;
 
     private Texture texture;
+
+    private TextureRegion textureRegion;
 
     private String path;
 
@@ -19,7 +22,6 @@ public abstract class Entity implements GameObject {
         this.path = path;
         this.texture = new Texture(path);
     }
-
     public float getX() {
         return x;
     }

@@ -1,16 +1,20 @@
-package com.mygdx.game.EntityMgmt.Wall;
+package com.mygdx.game.EntityMgmt.Furniture;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.utils.Timer;
 import com.mygdx.game.EntityMgmt.Entity;
 import com.mygdx.game.EntityMgmt.GameObjectType;
+import com.mygdx.game.EntityMgmt.Player.Player;
 
-
-public class Wall extends Entity {
+public class Furniture extends Entity {
+    private String type;
     private Texture texture;
 
-    public Wall(String path, float x, float y) {
+    public Furniture(String type, String path, float x, float y) {
         super(path, x, y);
+        this.type = type;
         this.texture = new Texture(path);
     }
 
@@ -19,9 +23,10 @@ public class Wall extends Entity {
         batch.draw(texture, getX(), getY());
     }
 
+
     @Override
     public GameObjectType getType() {
-        return GameObjectType.WALL;
+        return GameObjectType.FURNITURE;
     }
 
 }

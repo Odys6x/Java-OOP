@@ -5,12 +5,11 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.mygdx.game.EntityMgmt.AI.AI;
 import com.mygdx.game.EntityMgmt.AI.AIFactory;
 import com.mygdx.game.EntityMgmt.Appliances.ApplianceFactory;
 import com.mygdx.game.EntityMgmt.Player.Player;
 import com.mygdx.game.EntityMgmt.Player.PlayerFactory;
-import com.mygdx.game.EntityMgmt.Wall.WallFactory;
+import com.mygdx.game.EntityMgmt.Furniture.FurnitureFactory;
 
 
 public class EntityManager{
@@ -53,32 +52,29 @@ public class EntityManager{
         return null; // Return null if no user-controlled entity is found
     }
 
-    public Entity createPlayer(String entityType,float x, float y) {
+    public void createPlayer(String entityType,float x, float y) {
         EntityFactory playerFactory = new PlayerFactory();
         Entity playerEntity = playerFactory.createEntity(entityType,x,y);
         addEntity(playerEntity); // Add the created entity to the entityList
-        return playerEntity; // Return the created entity
     }
 
-    public Entity createAppliance(String entityType,float x, float y) {
+    public void createAppliance(String entityType,float x, float y) {
         EntityFactory applianceFactory = new ApplianceFactory();
         Entity applianceEntity = applianceFactory.createEntity(entityType,x,y);
         addEntity(applianceEntity); // Add the created entity to the entityList
-        return applianceEntity; // Return the created entity
     }
 
-    public Entity createWalls(String entityType,float x, float y) {
-        EntityFactory wallFactory = new WallFactory();
-        Entity wallFactoryEntity = wallFactory.createEntity(entityType,x,y);
-        addEntity(wallFactoryEntity); // Add the created entity to the entityList
-        return wallFactoryEntity; // Return the created entity
+    public void createFurniture(String entityType,float x, float y) {
+        EntityFactory furnitureFactory = new FurnitureFactory();
+        Entity furnitureFactoryEntity = furnitureFactory.createEntity(entityType,x,y);
+        addEntity(furnitureFactoryEntity); // Add the created entity to the entityList
     }
 
-    public Entity createAI(String entityType,float x, float y) {
+
+    public void createAI(String entityType,float x, float y) {
         EntityFactory AIFactory = new AIFactory();
         Entity AIEntity = AIFactory.createEntity(entityType,x,y);
         addEntity(AIEntity); // Add the created entity to the entityList
-        return AIEntity; // Return the created entity
     }
 
     public float getSpeed() {

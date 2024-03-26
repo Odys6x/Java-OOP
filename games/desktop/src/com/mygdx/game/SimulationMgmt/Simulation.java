@@ -7,8 +7,6 @@ import com.mygdx.game.BehaviourMgmt.AIBehaviour;
 import com.mygdx.game.BehaviourMgmt.BehaviourManager;
 import com.mygdx.game.CollisionMgmt.CollisionManager;
 import com.mygdx.game.EntityMgmt.EntityManager;
-import com.mygdx.game.EntityMgmt.Appliances.Microwave;
-import com.mygdx.game.EntityMgmt.Appliances.Basin;
 import com.mygdx.game.MapMgmt.MapManager;
 import com.mygdx.game.SceneMgmt.SceneScreen;
 import com.mygdx.game.InputMgmt.InputManager;
@@ -17,8 +15,6 @@ import com.mygdx.game.InputMgmt.MouseInput;
 
 public class Simulation {
 
-    private Basin Basin;
-    private Microwave Microwave;
     private BehaviourManager behaviourManager;
     private SceneScreen Scenes; // implementing in future2
     private SpriteBatch batch;
@@ -46,7 +42,7 @@ public class Simulation {
         inputManager = new InputManager(entities, keyboardInput, mouseInput);
         behaviourManager = new BehaviourManager(entities, inputManager);
         aiControllerManager = new AIControllerManager(entities);
-        map.LoadMap(entities, 1);
+        map.LoadMap(entities, 1,7);
         map.LoadPlayers(entities, 1);
 
         isrunning = true;
