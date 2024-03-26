@@ -99,6 +99,14 @@ public class EntityManager{
         return width;
     }
 
+    public void incrementScores(float scores){
+        for (Entity entity : entityList) {
+            if (entity instanceof Player) {
+                ((Player) entity).setScore(scores);
+            }
+        }
+    }
+
     public void dispose(){
         for (Entity entity : entityList) {
             entity.dispose();

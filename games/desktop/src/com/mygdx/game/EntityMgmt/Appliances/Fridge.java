@@ -4,16 +4,16 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
-public class Chicken extends Appliance {
+public class Fridge extends Appliance {
     private Texture offTexture;
     private Texture onTexture;
     private TextureRegion texture;
-    
-    public Chicken(String type, String path, float x, float y, float energyConsumption, float activationRange,
-            TextureRegion texture, float scoreValue, float interactionTime) {
+
+    public Fridge(String type, String path, float x, float y, float energyConsumption, float activationRange,
+                 TextureRegion texture, float scoreValue, float interactionTime) {
         super(type, path, x, y, energyConsumption, activationRange, texture, scoreValue, interactionTime);
-        offTexture = new Texture("cock_off.jpg");
-        onTexture = new Texture("cock.jpg");
+        offTexture = new Texture("18.png");
+        onTexture = new Texture("19.png");
         this.texture = new TextureRegion(offTexture);
     }
 
