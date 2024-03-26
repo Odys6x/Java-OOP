@@ -26,7 +26,7 @@ public class OptionScreen extends SceneScreen {
     @Override
     public void show() {
         stage = new Stage(new ScreenViewport());
-        background = new Texture(Gdx.files.internal("option.jpeg"));
+        background = new Texture(Gdx.files.internal("option.png"));
 
         Image backgroundImage = new Image(background);
         stage.addActor(backgroundImage);
