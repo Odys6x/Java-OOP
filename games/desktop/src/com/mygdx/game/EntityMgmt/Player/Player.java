@@ -82,7 +82,7 @@ public class Player extends Entity {
     }
 
     public void setDirection(String direction){
-        direction = direction;
+        this.direction = direction;
     }
 
     public float getEnergy(){
