@@ -24,6 +24,7 @@ public class MenuScreen extends SceneScreen{
         super();
         this.sceneManager = sceneManager;
         sound.play();
+        sound.setVolume(0.2f);
     }
     
     @Override
