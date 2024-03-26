@@ -18,7 +18,7 @@ public class MenuScreen extends SceneScreen{
     private Texture background;
     private Stage stage;
     private Skin skin;
-    private Sound sound= new Sound("games/assets/song.wav");
+    private Sound sound= new Sound("games/assets/music.wav");
 
     public MenuScreen (SceneManager sceneManager){
         super();
