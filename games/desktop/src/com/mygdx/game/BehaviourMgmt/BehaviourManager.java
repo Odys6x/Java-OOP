@@ -7,7 +7,7 @@ import com.mygdx.game.EntityMgmt.GameObject;
 import com.mygdx.game.InputMgmt.InputManager;
 import com.mygdx.game.BehaviourMgmt.*;
 import com.mygdx.game.AiControllerMgmt.*;
-
+import com.mygdx.game.ScoreMgmt.ScoreManager;
 
 
 import java.util.List;
