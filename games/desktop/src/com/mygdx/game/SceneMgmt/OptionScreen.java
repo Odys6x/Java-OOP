@@ -49,6 +49,7 @@ public class OptionScreen extends SceneScreen {
             public void clicked(InputEvent event, float x, float y) {
                 if (sceneManager != null) {
                     sceneManager.setScene(new GameScreen(sceneManager)); // Transition to GameScreen
+                    
                 }
             }
         });

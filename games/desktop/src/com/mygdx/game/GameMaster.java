@@ -23,6 +23,5 @@ public class GameMaster extends Game { //changed from application adapter to gam
     @Override
     public void dispose() {
         Simulation.end();
-        sceneManager.dispose();
     }
 }

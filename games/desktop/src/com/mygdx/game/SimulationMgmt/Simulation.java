@@ -1,6 +1,7 @@
 package com.mygdx.game.SimulationMgmt;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.mygdx.game.AiControllerMgmt.AIControllerManager;
@@ -18,6 +19,8 @@ import com.mygdx.game.InputMgmt.InputManager;
 import com.mygdx.game.InputMgmt.KeyboardInput;
 import com.mygdx.game.InputMgmt.MouseInput;
 import com.mygdx.game.EntityMgmt.Entity;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
 
 
 import java.util.ArrayList;
@@ -66,8 +69,6 @@ public class Simulation {
 
     public void update() {
         // render
-
-        ScreenUtils.clear(0, 0, 0.2f, 1);
         entities.draw(batch);
         inputManager.update();
         java.util.List<Integer> pressedKeys = inputManager.getPressedKeys();
