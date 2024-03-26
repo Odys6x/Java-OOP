@@ -1,18 +1,36 @@
 package com.mygdx.game.EntityMgmt.AI;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.mygdx.game.EntityMgmt.Entity;
 import com.mygdx.game.EntityMgmt.GameObjectType;
 
 public class AI extends Entity {
     private float speed;
+    private Animation<TextureRegion> walkAnimationForward;
+    private float stateTime;
 
     public AI(){}
 
     public AI(String path, float x, float y, float speed){
         super(path, x, y);
         this.speed = speed;
+        initialiseAI();
     }
+
+    public void initialiseAI() {
+        Texture spriteSheet = new Texture(getPath());
+        TextureRegion[][] tmp = TextureRegion.split(spriteSheet, spriteSheet.getWidth() / 2, spriteSheet.getHeight());
+        TextureRegion[] frames = new TextureRegion[2]; // Frames for animation
+        System.arraycopy(tmp[0], 0, frames, 0, 2); // Copy both frames
+
+        // Assign frames to animation
+        walkAnimationForward = new Animation<>(0.1f, frames);
+    }
+
 
     public float getSpeed() {
         return speed;
@@ -27,6 +45,14 @@ public class AI extends Entity {
     }
     @Override
     public void draw(SpriteBatch batch) {
-        batch.draw(getTexture(), getX(), getY(), getWidth(),getHeight());
+        // Get the current frame of the animation
+        stateTime += Gdx.graphics.getDeltaTime(); // Update the state time
+        TextureRegion currentFrame = null;
+
+            currentFrame = walkAnimationForward.getKeyFrame(stateTime, true);
+            System.out.println("RIGHT ANI");
+
+        // Draw the current frame
+        batch.draw(currentFrame, getX(), getY());
     }
 }

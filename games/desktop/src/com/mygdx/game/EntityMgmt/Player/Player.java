@@ -28,12 +28,13 @@ public class Player extends Entity {
         stateTime = 0f;
     }
 
-    public Player(String path, float x, float y, float speed,String direction){
+    public Player(String path, float x, float y, float speed,String direction,float score){
         super(path, x, y);
         this.speed = speed;
         this.direction = direction;
         this.energyLevel = 100;
         this.hp = 1000;
+        this.score = score;
         initialisePlayer();
     }
     public void updateAnimations(List<Integer> pressedKeys) {
@@ -74,9 +75,12 @@ public class Player extends Entity {
     }
 
     public void setScore(float score){
-        score += score;
+        this.score += score;
     }
 
+    public void reduceScore(float score){
+        this.score -= score;
+    }
     public String getDirection(){
         return direction;
     }
@@ -102,14 +106,7 @@ public class Player extends Entity {
         return super.getWidth()/10;
     }
 
-    public Player createPlayer() {
-        // Create a player with specific properties
-        float initialX = 300;
-        float initialY = 0;
-        float playerSpeed = 200;
 
-        return new Player("Player.png", initialX, initialY, playerSpeed,null);
-    }
     @Override
     public void draw(SpriteBatch batch) {
         // Get the current frame of the animation

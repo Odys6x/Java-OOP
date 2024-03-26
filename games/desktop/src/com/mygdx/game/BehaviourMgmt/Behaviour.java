@@ -3,9 +3,11 @@ package com.mygdx.game.BehaviourMgmt;
 import com.mygdx.game.EntityMgmt.*;
 import com.mygdx.game.EntityMgmt.Appliances.Appliance;
 import com.badlogic.gdx.math.MathUtils;
+import com.mygdx.game.EntityMgmt.Player.Player;
 
 
 public class Behaviour {
+    private EntityManager entityManager; // Add this field
     private String type;
     private boolean isOn;
     private float energyConsumption;
@@ -13,6 +15,8 @@ public class Behaviour {
     private float score;
     private float interactionTime;
     private float energyLevel;
+
+    private Player player;
     private long lastInteractionTime = 0; // Keeps track of the last interaction time
     private static final long COOLDOWN_MILLIS = 200; // Cooldown period in milliseconds (adjust as needed)
 
@@ -24,19 +28,26 @@ public class Behaviour {
 
             appliance.turnOff();
             appliance.deactivate();
-
-            System.out.println("Turn off le");
+            //System.out.println("Turn off le");
         } else { // if appliance is off, turn it on
             appliance.turnOn();
             appliance.activate();
 
-            System.out.println("Turn on le");
+            ///System.out.println("Turn on le");
         }
+
 
         // Update player's attributes accordingly (e.g., decrease energy level, increase score)
         energyLevel -= appliance.getEnergyConsumption();
-        
-        score += appliance.getScore();
+
+        float scoreIncreaseAmount = 10.0f; // Determine this value based on your game's rules
+
+        // Optionally, update the player's score directly if needed
+        if (entity instanceof Player) {
+            Player player = (Player) entity;
+            player.setScore(scoreIncreaseAmount); // Assume incrementScore() updates the player's score
+            System.out.println(player.getScore());
+        }
 
     }
 
@@ -83,7 +94,7 @@ public class Behaviour {
         if (isWithinInteractionRange2(appliance, entity) && interactPressed == true) {
             // Check if the cooldown period has elapsed or if it's the first interaction
             if (currentTime - lastInteractionTime >= COOLDOWN_MILLIS || lastInteractionTime == 0) {
-                interactWithAppliance(appliance, entity);
+                    interactWithAppliance(appliance, entity);
                 lastInteractionTime = currentTime; // Update the last interaction time
                 //System.out.println("Interacted le");
             }
