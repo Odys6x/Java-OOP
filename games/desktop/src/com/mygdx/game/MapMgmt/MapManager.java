@@ -7,33 +7,15 @@ import java.util.Random;
 
 public class MapManager {
 
-    public void LoadMap(EntityManager entityManager, int numWalls, int numAI, int numAppliances) {
+    public void LoadMap(EntityManager entityManager, int numAI) {
         for (int i = 0; i < numAI; i++) {
             entityManager.createAI("AI", 500, 500);
         }
 
-        for (int i = 0; i < numAppliances; i++) {
-            createRandomAppliance(entityManager);
-        }
-
-        float x = 0; // Starting x-coordinate for the first row
-        float y1 = 0; // Y-coordinate for the first row
-        float y2 = 700; // Y-coordinate for the second row
-
-        // Create the first row of walls
-        for (int i = 0; i < numWalls; i++) {
-            x += 500; // Increment x-coordinate to position walls horizontally
-            entityManager.createWalls("WallH", x, y1);
-        }
-
-        // Reset x-coordinate for the second row
-        x = 0;
-
-        // Create the second row of walls
-        for (int i = 0; i < numWalls; i++) {
-            x += 500; // Increment x-coordinate to position walls horizontally
-            entityManager.createWalls("WallH", x, y2);
-        }
+        entityManager.createAppliance("Basin",475,700);
+        entityManager.createAppliance("Microwave",388,700);
+        entityManager.createAppliance("Fridge",100,700);
+        entityManager.createAppliance("Bathtub", 1000,300);
     }
 
 
