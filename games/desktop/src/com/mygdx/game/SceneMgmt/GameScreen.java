@@ -26,6 +26,7 @@ public class GameScreen extends SceneScreen {
     private BitmapFont font;
     private ScoreManager scoreManager;
     private SpriteBatch spriteBatch;
+    private static final float Target_Score = 0;
 
 
 
@@ -80,7 +81,7 @@ public class GameScreen extends SceneScreen {
         font.draw(spriteBatch, "Score: " + scoreManager.getScore(), 20, Gdx.graphics.getHeight() - 20);
         spriteBatch.end();
         simulation.update(); // then update and render the simul here
-        if (scoreManager.getScore() == 0) {
+        if (scoreManager.getScore() == Target_Score) {
             sceneManager.setScene(new GameScreen2(sceneManager));
         }
     }
