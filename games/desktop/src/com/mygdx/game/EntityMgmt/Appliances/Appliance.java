@@ -19,6 +19,8 @@ public class Appliance extends Entity {
     private boolean isActivated;
     private Texture offTexture;
     private Texture onTexture;
+    private float OriginalY;
+    private float OriginalX;
 
     public Appliance(String type, String pathon, String pathoff, float x, float y, float energyConsumption, float activationRange
             , float scoreValue, float interactionTime) {
@@ -33,6 +35,8 @@ public class Appliance extends Entity {
         this.interactionTime = interactionTime;
         this.isOn = false;
         this.isActivated = false;
+        this.OriginalX = x;
+        this.OriginalY = y;
     }
 
 
@@ -117,4 +121,17 @@ public class Appliance extends Entity {
         return texture.getRegionHeight();
     }
 
+    public void AIInteract(Appliance appliance){
+        if (appliance.getState() == false){
+            appliance.activate();
+            appliance.turnOn();
+        }
+    }
+
+    public float getOGX(){
+        return OriginalX;
+    }
+    public float getOGY(){
+        return OriginalY;
+    }
 }
