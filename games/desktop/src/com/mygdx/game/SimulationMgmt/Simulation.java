@@ -4,21 +4,19 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.mygdx.game.AiControllerMgmt.AIControllerManager;
 import com.mygdx.game.BehaviourMgmt.AIBehaviour;
+import com.mygdx.game.BehaviourMgmt.Behaviour;
 import com.mygdx.game.BehaviourMgmt.BehaviourManager;
 import com.mygdx.game.CollisionMgmt.CollisionManager;
 import com.mygdx.game.EntityMgmt.EntityManager;
-import com.mygdx.game.EntityMgmt.Appliances.Microwave;
-import com.mygdx.game.EntityMgmt.Appliances.Basin;
 import com.mygdx.game.MapMgmt.MapManager;
 import com.mygdx.game.SceneMgmt.SceneScreen;
 import com.mygdx.game.InputMgmt.InputManager;
 import com.mygdx.game.InputMgmt.KeyboardInput;
 import com.mygdx.game.InputMgmt.MouseInput;
+import com.mygdx.game.ScoreMgmt.ScoreManager;
 
 public class Simulation {
 
-    private Basin Basin;
-    private Microwave Microwave;
     private BehaviourManager behaviourManager;
     private SceneScreen Scenes; // implementing in future2
     private SpriteBatch batch;
@@ -28,10 +26,13 @@ public class Simulation {
     private InputManager inputManager;
     private CollisionManager collisionManager;
     private AIControllerManager aiControllerManager;
+
+    private ScoreManager scoreManager;
     private long startTime;
     // for any activity to run within a loop, where condition is game running or not
     private boolean isrunning;
     private AIBehaviour aiBehaviour;
+    private Behaviour behaviour;
 
     public void initialise() {
         // start making the objects in the game, from create
@@ -39,6 +40,7 @@ public class Simulation {
         entities = new EntityManager();
         batch = new SpriteBatch();
         map = new MapManager();
+        scoreManager = new ScoreManager();
         collisionManager = new CollisionManager(entities);
 
         KeyboardInput keyboardInput = new KeyboardInput(entities);
@@ -46,7 +48,7 @@ public class Simulation {
         inputManager = new InputManager(entities, keyboardInput, mouseInput);
         behaviourManager = new BehaviourManager(entities, inputManager);
         aiControllerManager = new AIControllerManager(entities);
-        map.LoadMap(entities, 1);
+        map.LoadMap(entities, 1,7);
         map.LoadPlayers(entities, 1);
 
         isrunning = true;

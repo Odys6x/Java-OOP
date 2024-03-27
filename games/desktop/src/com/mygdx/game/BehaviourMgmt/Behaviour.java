@@ -4,10 +4,13 @@ import com.mygdx.game.EntityMgmt.*;
 import com.mygdx.game.EntityMgmt.Appliances.Appliance;
 import com.badlogic.gdx.math.MathUtils;
 import com.mygdx.game.EntityMgmt.Player.Player;
+import com.mygdx.game.ScoreMgmt.ScoreManager;
 
 
 public class Behaviour {
     private EntityManager entityManager; // Add this field
+
+    private ScoreManager scoreManager;
     private String type;
     private boolean isOn;
     private float energyConsumption;
@@ -19,6 +22,10 @@ public class Behaviour {
     private Player player;
     private long lastInteractionTime = 0; // Keeps track of the last interaction time
     private static final long COOLDOWN_MILLIS = 200; // Cooldown period in milliseconds (adjust as needed)
+
+    public Behaviour() {
+        this.scoreManager = new ScoreManager();
+    }
 
     public void interactWithAppliance(Appliance appliance, GameObject entity) {
         // Check if the player is within range to interact with the appliance
@@ -39,15 +46,19 @@ public class Behaviour {
 
         // Update player's attributes accordingly (e.g., decrease energy level, increase score)
         energyLevel -= appliance.getEnergyConsumption();
+        score = appliance.getScore();
 
-        float scoreIncreaseAmount = 10.0f; // Determine this value based on your game's rules
+
+        scoreManager.incrementScore(score);
+        System.out.println(scoreManager.getScore());
+
 
         // Optionally, update the player's score directly if needed
-        if (entity instanceof Player) {
-            Player player = (Player) entity;
-            player.setScore(scoreIncreaseAmount); // Assume incrementScore() updates the player's score
-            System.out.println(player.getScore());
-        }
+//        if (entity instanceof Player) {
+//            Player player = (Player) entity;
+//            player.setScore(score); // Assume incrementScore() updates the player's score
+//            System.out.println(player.getScore());
+//        }
 
     }
 

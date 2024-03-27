@@ -1,5 +1,6 @@
 package com.mygdx.game.EntityMgmt.Appliances;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Timer;
@@ -16,14 +17,18 @@ public class Appliance extends Entity {
     private float scoreValue;
     private float interactionTime;
     private boolean isActivated;
+    private Texture offTexture;
+    private Texture onTexture;
 
-    public Appliance(String type, String path, float x, float y, float energyConsumption, float activationRange,
-                     TextureRegion texture, float scoreValue, float interactionTime) {
-        super(path, x, y);
+    public Appliance(String type, String pathon, String pathoff, float x, float y, float energyConsumption, float activationRange
+            , float scoreValue, float interactionTime) {
+        super(pathon, x, y); // Pass pathon to the Entity constructor
         this.type = type;
+        this.offTexture = new Texture(pathoff);
+        this.onTexture = new Texture(pathon);
         this.energyConsumption = energyConsumption;
         this.activationRange = activationRange;
-        this.texture = texture;
+        this.texture = new TextureRegion(offTexture); // Initialize texture with offTexture
         this.scoreValue = scoreValue;
         this.interactionTime = interactionTime;
         this.isOn = false;
@@ -37,12 +42,12 @@ public class Appliance extends Entity {
 
     public void turnOn() {
         isOn = true;
-        // Start animation, play sound effect, etc.
+        this.texture = new TextureRegion(onTexture);
     }
 
     public void turnOff() {
         isOn = false;
-        // Start animation, play sound effect, etc.
+        this.texture = new TextureRegion(offTexture);
     }
 
     public void activate() {
@@ -103,6 +108,13 @@ public class Appliance extends Entity {
     @Override
     public GameObjectType getType() {
         return GameObjectType.APPLIANCE;
+    }
+
+    public int getWidth(TextureRegion texture){
+        return texture.getRegionWidth();
+    }
+    public int getHeight(TextureRegion texture){
+        return texture.getRegionHeight();
     }
 
 }

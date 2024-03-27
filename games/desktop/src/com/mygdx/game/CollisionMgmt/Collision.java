@@ -41,7 +41,7 @@ public class Collision {
     }
 
     private static boolean isMovable(GameObject entity) {
-        return entity.getType() != GameObjectType.WALL && entity.getType() != GameObjectType.APPLIANCE && entity.getType() != GameObjectType.AI;
+        return entity.getType() != GameObjectType.FURNITURE && entity.getType() != GameObjectType.APPLIANCE && entity.getType() != GameObjectType.AI;
     }
     
 
