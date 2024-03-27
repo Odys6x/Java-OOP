@@ -42,6 +42,7 @@ public class Simulation {
 
         entities = new EntityManager();
         batch = new SpriteBatch();
+        scoreManager = new ScoreManager();
         map = new MapManager();
         scoreManager = new ScoreManager();
         collisionManager = new CollisionManager(entities);
