@@ -17,7 +17,6 @@ public class PlayerBehaviour {
     }
 
     public void update() {
-        // Explicitly specify the type of the variable
         List<Integer> pressedKeys = inputManager.getPressedKeys();
 
         float newX = player.getX();
@@ -36,11 +35,11 @@ public class PlayerBehaviour {
             newY += player.getSpeed() * Gdx.graphics.getDeltaTime();
         }
 
-        // Enforce game boundaries
+        
         newX = Math.max(0, Math.min(newX, Gdx.graphics.getWidth() - player.getWidth()));
         newY = Math.max(0, Math.min(newY, Gdx.graphics.getHeight() - player.getHeight()));
 
-        // Update player position
+        
         player.setX(newX);
         player.setY(newY);
     }
