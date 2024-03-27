@@ -61,6 +61,9 @@ public class Behaviour {
 
     protected boolean isWithinInteractionRange2(Appliance appliance, GameObject entity) {
         boolean interacted = false;
+        // get the original appliance location so that it does not wander off when vibrating
+        float originalX = appliance.getOGX();
+        float originalY = appliance.getOGY();
         float bound = appliance.getActivationRange();
         // Calculate bounds for the appliance
         float applianceLeftBound = appliance.getX() - (appliance.getWidth() / 2) - bound;
@@ -88,6 +91,12 @@ public class Behaviour {
             // Apply the displacement to the appliance's position
             appliance.setX(appliance.getX() + displacementX);
             appliance.setY(appliance.getY() + displacementY);
+            if (Math.abs(appliance.getX() - originalX) > 1) {
+                appliance.setX(originalX);
+            }
+            if (Math.abs(appliance.getY() - originalY) > 1) {
+                appliance.setY(originalY);
+            }
         }
 
         return interacted;
