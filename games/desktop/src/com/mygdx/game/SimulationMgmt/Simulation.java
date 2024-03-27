@@ -4,10 +4,12 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.mygdx.game.AiControllerMgmt.AIControllerManager;
 import com.mygdx.game.BehaviourMgmt.AIBehaviour;
+import com.mygdx.game.BehaviourMgmt.PlayerBehaviour;
 import com.mygdx.game.BehaviourMgmt.Behaviour;
 import com.mygdx.game.BehaviourMgmt.BehaviourManager;
 import com.mygdx.game.CollisionMgmt.CollisionManager;
 import com.mygdx.game.EntityMgmt.EntityManager;
+import com.mygdx.game.EntityMgmt.Player.Player;
 import com.mygdx.game.MapMgmt.MapManager;
 import com.mygdx.game.SceneMgmt.SceneScreen;
 import com.mygdx.game.InputMgmt.InputManager;
@@ -32,6 +34,7 @@ public class Simulation {
     // for any activity to run within a loop, where condition is game running or not
     private boolean isrunning;
     private AIBehaviour aiBehaviour;
+    private PlayerBehaviour playerBehaviour;
     private Behaviour behaviour;
 
     public void initialise() {
@@ -55,6 +58,8 @@ public class Simulation {
         startTime = TimeUtils.nanoTime(); // Initialize the start time
 
         aiBehaviour = new AIBehaviour(entities);
+        Player player = (Player) entities.getUserControlledEntity(); // Cast might be necessary
+        playerBehaviour = new PlayerBehaviour(player, inputManager);
 
     }
 
@@ -67,6 +72,7 @@ public class Simulation {
         collisionManager.update();
         behaviourManager.updateBehaviours(pressedKeys);
         aiBehaviour.updateAIBehaviour2();
+        playerBehaviour.update();
         //aiControllerManager.moveAIControlledEntities();
         
     }
