@@ -76,8 +76,10 @@ public class GameScreen extends SceneScreen {
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
         stage.draw();
         spriteBatch.begin();
+        String scoreText = "Score: " + scoreManager.getScore();
         font.draw(spriteBatch, "Score: " + scoreManager.getScore(), 20, Gdx.graphics.getHeight() - 20);
         spriteBatch.end();
+        System.out.println(scoreText); 
         simulation.update(); // then update and render the simul here
     }
     @Override
