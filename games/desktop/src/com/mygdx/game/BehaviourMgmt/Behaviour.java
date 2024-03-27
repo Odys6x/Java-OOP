@@ -32,9 +32,9 @@ public class Behaviour {
         boolean isOn = appliance.getState();
 
         if (isOn) { // if appliance is on, turn it off
-
             appliance.turnOff();
             appliance.deactivate();
+            scoreManager.incrementScore(100);
             //System.out.println("Turn off le");
         } else { // if appliance is off, turn it on
             appliance.turnOn();
@@ -47,9 +47,6 @@ public class Behaviour {
         // Update player's attributes accordingly (e.g., decrease energy level, increase score)
         energyLevel -= appliance.getEnergyConsumption();
         score = appliance.getScore();
-
-
-        scoreManager.incrementScore(score);
         System.out.println(scoreManager.getScore());
 
 

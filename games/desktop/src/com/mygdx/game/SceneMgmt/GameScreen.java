@@ -1,6 +1,7 @@
 package com.mygdx.game.SceneMgmt;
 import com.mygdx.game.SimulationMgmt.Simulation;
 import com.mygdx.game.SoundMgmt.Sound;
+import com.mygdx.game.EntityMgmt.EntityManager;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -11,6 +12,9 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.mygdx.game.SoundMgmt.Sound;
+import com.mygdx.game.ScoreMgmt.ScoreManager;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 
 public class GameScreen extends SceneScreen {
@@ -19,6 +23,9 @@ public class GameScreen extends SceneScreen {
     private Texture background;
     private Stage stage;
     private Sound sound = new Sound("games/assets/music.wav");
+    private BitmapFont font;
+    private ScoreManager scoreManager;
+    private SpriteBatch spriteBatch;
 
 
 
@@ -34,13 +41,14 @@ public class GameScreen extends SceneScreen {
     @Override
     public void show() {
         stage = new Stage(new ScreenViewport());
+        font = new BitmapFont();
+        spriteBatch = new SpriteBatch();
+        scoreManager = new ScoreManager();
         background = new Texture(Gdx.files.internal("gamescreen.png"));
         Image backgroundImage = new Image(background);
         backgroundImage.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         stage.addActor(backgroundImage);
         Gdx.input.setInputProcessor(stage);
-        System.out.println("Screen Width: " + Gdx.graphics.getWidth() + ", Height: " + Gdx.graphics.getHeight());
-        System.out.println("Background Image Width: " + backgroundImage.getWidth() + ", Height: " + backgroundImage.getHeight());
         
         simulation = new Simulation();
         simulation.initialise();
@@ -67,6 +75,9 @@ public class GameScreen extends SceneScreen {
     
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
         stage.draw();
+        spriteBatch.begin();
+        font.draw(spriteBatch, "Score: " + scoreManager.getScore(), 20, Gdx.graphics.getHeight() - 20);
+        spriteBatch.end();
         simulation.update(); // then update and render the simul here
     }
     @Override
