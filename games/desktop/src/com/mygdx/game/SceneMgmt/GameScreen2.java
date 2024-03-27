@@ -17,7 +17,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 
-public class GameScreen extends SceneScreen {
+public class GameScreen2 extends SceneScreen {
     private SceneManager sceneManager;
     private Simulation simulation; 
     private Texture background;
@@ -29,7 +29,7 @@ public class GameScreen extends SceneScreen {
 
 
 
-    public GameScreen(SceneManager sceneManager) {
+    public GameScreen2(SceneManager sceneManager) {
         super();
         this.sceneManager = sceneManager;
         sound.play();
@@ -60,7 +60,7 @@ public class GameScreen extends SceneScreen {
                 Gdx.app.log("GameScreen", "Screen clicked, attempting to transition to EndScreen.");
                 System.out.println("Next Screen (End Screen)");
                 if (sceneManager != null) {
-                    sceneManager.setScene(new GameScreen2(sceneManager)); 
+                    sceneManager.setScene(new EndScreen(sceneManager)); 
                 } else {
                     System.out.println("SceneManager is null"); 
                 }
@@ -79,33 +79,14 @@ public class GameScreen extends SceneScreen {
         String scoreText = "Score: " + scoreManager.getScore();
         font.draw(spriteBatch, "Score: " + scoreManager.getScore(), 20, Gdx.graphics.getHeight() - 20);
         spriteBatch.end();
+        System.out.println(scoreText); 
         simulation.update(); // then update and render the simul here
-        if (scoreManager.getScore() == 0 && !transitionedToGameScreen2) {
-            sceneManager.setScene(new GameScreen2(sceneManager));
-            transitionedToGameScreen2 = true; // Prevent further transitions
-        }
     }
     @Override
     public void dispose() {
-        if (simulation != null) {
-            simulation.end(); // Make sure to dispose of the simulation resources
-            simulation = null;
-        }
-        if (sound != null) {
-            sound.close(); // Make sure to close the sound
-        }
-        if (spriteBatch != null) {
-            spriteBatch.dispose(); // Dispose of spriteBatch
-        }
-        if (font != null) {
-            font.dispose(); // Dispose of font
-        }
-        if (background != null) {
-            background.dispose(); // Dispose of background texture
-        }
-        if (stage != null) {
-            stage.dispose(); // Dispose of stage
-        }
+        stage.dispose();
+        background.dispose();
+        sound.close();
     }
-}
 
+}
