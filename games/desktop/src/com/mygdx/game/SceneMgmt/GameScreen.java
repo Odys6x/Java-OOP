@@ -80,9 +80,8 @@ public class GameScreen extends SceneScreen {
         font.draw(spriteBatch, "Score: " + scoreManager.getScore(), 20, Gdx.graphics.getHeight() - 20);
         spriteBatch.end();
         simulation.update(); // then update and render the simul here
-        if (scoreManager.getScore() == 0 && !transitionedToGameScreen2) {
+        if (scoreManager.getScore() == 0) {
             sceneManager.setScene(new GameScreen2(sceneManager));
-            transitionedToGameScreen2 = true; // Prevent further transitions
         }
     }
     @Override
