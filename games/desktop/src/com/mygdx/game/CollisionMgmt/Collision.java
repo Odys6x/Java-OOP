@@ -8,19 +8,25 @@ import com.mygdx.game.EntityMgmt.AI.AI;
 public class Collision {
 
     public static boolean checkCollision(GameObject c1, GameObject c2) {
-        // Collision detection logic
+        // collision only applies to player
+        if ((c1.getType() == GameObjectType.AI && c2.getType() != GameObjectType.PLAYER) ||
+            (c2.getType() == GameObjectType.AI && c1.getType() != GameObjectType.PLAYER)) {
+            return false;
+        }
+    
         float c1Left = c1.getX();
         float c1Right = c1.getX() + c1.getWidth();
         float c1Top = c1.getY() + c1.getHeight();
         float c1Bottom = c1.getY();
-
+    
         float c2Left = c2.getX();
         float c2Right = c2.getX() + c2.getWidth();
         float c2Top = c2.getY() + c2.getHeight();
         float c2Bottom = c2.getY();
-
+    
         return c1Right > c2Left && c1Left < c2Right && c1Top > c2Bottom && c1Bottom < c2Top;
     }
+    
 
 
     // *note* currently all entities are not movable, should we want to make entities movable, it can be done 
