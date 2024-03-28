@@ -21,6 +21,7 @@ public class AIBehaviour extends Behaviour {
     private float changeDirectionTime = 0;
     private float directionX = 0;
     private float directionY = 0;
+    private float waitTime = 2;
 
     public AIBehaviour(EntityManager entityManager) {
         this.entities = entityManager;
@@ -50,7 +51,11 @@ public class AIBehaviour extends Behaviour {
         for (AI ai : AIControlled) {
             Appliance nearestAppliance = null;
             double nearestDistance = Double.MAX_VALUE;
-    
+            if(ai.hasWalkingLocations())
+            {
+            	Vector2 targetLocation = ai.getNextTargetLocation();
+            	moveTowardsTargetLocation(targetLocation, ai);
+            }
             for (Appliance appliance : appliances) {
                 if (!appliance.getState()) { // Check if the appliance is off
                     double distance = calculateDistance(appliance, ai);
@@ -62,11 +67,18 @@ public class AIBehaviour extends Behaviour {
             }
     
             if (nearestAppliance != null) {
-                moveTowardsAppliance(nearestAppliance, ai);
-                System.err.println("I am moving towards the appliance");
-                if (isWithinInteractionRange2(nearestAppliance, ai)) {
-                    nearestAppliance.AIInteract(nearestAppliance);
-                    System.err.println("Ghost turn on le");
+            	if (waitTime > 0) {
+                    // AI is waiting, decrement the wait time
+                    waitTime -= Gdx.graphics.getDeltaTime();
+                    System.err.println("I am waiting");
+                } else {
+                    // Wait time is over, move towards the appliance
+                    moveTowardsAppliance(nearestAppliance, ai);
+                    System.err.println("I am moving towards the appliance");
+                    if (isWithinInteractionRange2(nearestAppliance, ai)) {
+                        nearestAppliance.AIInteract(nearestAppliance);
+                        System.err.println("Ghost turn on le");
+                    }
                 }
             } else {
                 performWanderingBehavior(ai);
@@ -148,6 +160,29 @@ public class AIBehaviour extends Behaviour {
         double xDistance = appliance.getX() - ai.getX();
         double yDistance = appliance.getY() - ai.getY();
         return Math.sqrt(xDistance * xDistance + yDistance * yDistance);
+    }
+    private void moveTowardsTargetLocation(Vector2 targetLocation, Entity entity) {
+        if (targetLocation != null) {
+            // Calculate movement towards the target location
+            float entityX = entity.getX();
+            float entityY = entity.getY();
+
+            float deltaX = targetLocation.x - entityX;
+            float deltaY = targetLocation.y - entityY;
+
+            float distance = (float) Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+            float movementSpeed = aiSpeed;
+
+            if (distance > 0) {
+                float normalizedDeltaX = deltaX / distance;
+                float normalizedDeltaY = deltaY / distance;
+
+                float moveX = normalizedDeltaX * movementSpeed * Gdx.graphics.getDeltaTime();
+                float moveY = normalizedDeltaY * movementSpeed * Gdx.graphics.getDeltaTime();
+
+                entities.updateEntityPosition(entity, moveX, moveY);
+            }
+        }
     }
 
 }
