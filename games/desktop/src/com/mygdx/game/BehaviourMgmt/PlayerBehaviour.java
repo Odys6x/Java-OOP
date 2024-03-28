@@ -6,7 +6,7 @@ import com.mygdx.game.EntityMgmt.Player.Player;
 import com.mygdx.game.InputMgmt.InputManager;
 import java.util.List;
 
-public class PlayerBehaviour {
+public class PlayerBehaviour extends Behaviour{
 
     private Player player;
     private InputManager inputManager;
