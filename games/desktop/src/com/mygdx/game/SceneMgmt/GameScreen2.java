@@ -21,7 +21,7 @@ public class GameScreen2 extends SceneScreen {
     private Simulation simulation; 
     private Texture background;
     private Stage stage;
-    private Sound sound = new Sound("game/assets/music.wav");
+    private Sound sound = new Sound("games/assets/music.wav");
     private BitmapFont font;
     private ScoreManager scoreManager;
     private SpriteBatch spriteBatch;
