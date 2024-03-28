@@ -43,7 +43,7 @@ public class Simulation {
         entities = new EntityManager();
         batch = new SpriteBatch();
         scoreManager = new ScoreManager();
-        map = new MapManager();
+        map = new MapManager(1);
         scoreManager = new ScoreManager();
         collisionManager = new CollisionManager(entities);
 
@@ -52,7 +52,7 @@ public class Simulation {
         inputManager = new InputManager(entities, keyboardInput, mouseInput);
         behaviourManager = new BehaviourManager(entities, inputManager,scoreManager);
         aiControllerManager = new AIControllerManager(entities);
-        map.LoadMap(entities, 1,7);
+        map.LoadMap(entities);
         map.LoadPlayers(entities, 1);
 
         isrunning = true;
