@@ -28,7 +28,7 @@ public class AI extends Entity {
         initialiseAI();
     }
 
-    public void initialiseAI() {
+    private void initialiseAI() {
         Texture spriteSheet = new Texture(getPath());
         TextureRegion[][] tmp = TextureRegion.split(spriteSheet, spriteSheet.getWidth() / 2, spriteSheet.getHeight());
         TextureRegion[] frames = new TextureRegion[2]; // Frames for animation
@@ -39,31 +39,39 @@ public class AI extends Entity {
     }
 
 
-    public float getSpeed() {
+    protected float getSpeed() {
         return speed;
     }
-    public void setSpeed(float speed) {
+    protected void setSpeed(float speed) {
         this.speed = speed;
     }
-    public void setWalkingLocations(List<Vector2> walkingLocations) {
+    protected List<Vector2> getWalkingLocations() {
+        return walkingLocations;
+    }
+    protected void setWalkingLocations(List<Vector2> walkingLocations) {
         this.walkingLocations = walkingLocations;
     }
 
-    public boolean hasWalkingLocations() {
-    	if (!walkingLocations.isEmpty())
-    		return true;
-    	else
-    		return false;
+
+    @Override
+    public float getX() {
+        return super.getX();
     }
 
-    public Vector2 getNextTargetLocation(float mapWidth, float mapHeight) {
-    	// Generate random coordinates within the map boundaries
-        float randomX = MathUtils.random(0, mapWidth);
-        float randomY = MathUtils.random(0, mapHeight);
-        
-        return new Vector2(randomX, randomY);
+    @Override
+    public void setX(float x) {
+        super.setX(x);
     }
 
+    @Override
+    public float getY() {
+        return super.getY();
+    }
+
+    @Override
+    public void setY(float y) {
+        super.setY(y);
+    }
     @Override
     public GameObjectType getType() {
         return GameObjectType.AI;
@@ -79,5 +87,9 @@ public class AI extends Entity {
 
         // Draw the current frame
         batch.draw(currentFrame, getX(), getY());
+    }
+    @Override
+    public void dispose() {
+        walkAnimationForward = null;
     }
 }

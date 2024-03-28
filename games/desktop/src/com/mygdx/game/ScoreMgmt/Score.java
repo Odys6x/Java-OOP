@@ -1,9 +1,9 @@
 package com.mygdx.game.ScoreMgmt;
 
-public class ScoreManager {
+public class Score {
     private float score;
 
-    public ScoreManager() {
+    public Score() {
         this.score = 0;
     }
 

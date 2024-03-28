@@ -52,7 +52,7 @@ public class AIBehaviour extends Behaviour {
             double nearestDistance = Double.MAX_VALUE;
             closestAI = null;
 
-            Vector2 targetLocation = aiTargetLocations.getOrDefault(ai, ai.getNextTargetLocation(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
+            Vector2 targetLocation = aiTargetLocations.getOrDefault(ai,getNextTargetLocation(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
             aiTargetLocations.putIfAbsent(ai, targetLocation);
             System.out.println(aiTargetLocations);
 
@@ -92,7 +92,7 @@ public class AIBehaviour extends Behaviour {
                 // Check if AI reaches the target location
                 if (isAtTargetLocation(targetLocation, ai)) {
                     // AI reached the target location, reset current target location
-                    targetLocation = ai.getNextTargetLocation(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+                    targetLocation = getNextTargetLocation(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
                     aiTargetLocations.put(ai, targetLocation);
                     waitTime = 0;
                 }
@@ -128,6 +128,14 @@ public class AIBehaviour extends Behaviour {
 
     public boolean allAppliancesOn() {
         return appliancesOn;
+    }
+
+    public Vector2 getNextTargetLocation(float mapWidth, float mapHeight) {
+        // Generate random coordinates within the map boundaries
+        float randomX = MathUtils.random(0, mapWidth);
+        float randomY = MathUtils.random(0, mapHeight);
+
+        return new Vector2(randomX, randomY);
     }
 
     

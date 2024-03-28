@@ -22,7 +22,7 @@ public class Appliance extends Entity {
     private float OriginalY;
     private float OriginalX;
 
-    public Appliance(String type, String pathon, String pathoff, float x, float y, float energyConsumption, float activationRange
+    protected Appliance(String type, String pathon, String pathoff, float x, float y, float energyConsumption, float activationRange
             , float scoreValue, float interactionTime) {
         super(pathon, x, y); // Pass pathon to the Entity constructor
         this.type = type;
@@ -32,7 +32,6 @@ public class Appliance extends Entity {
         this.activationRange = activationRange;
         this.texture = new TextureRegion(offTexture); // Initialize texture with offTexture
         this.scoreValue = scoreValue;
-        this.interactionTime = interactionTime;
         this.isOn = false;
         this.isActivated = false;
         this.OriginalX = x;
@@ -41,7 +40,7 @@ public class Appliance extends Entity {
 
 
     public void draw(SpriteBatch batch) {
-        batch.draw(texture, getX(), getY());
+        batch.draw(texture, x, y);
     }
 
     public void turnOn() {
@@ -64,36 +63,6 @@ public class Appliance extends Entity {
         // Reset interaction timer, perform any other necessary actions
     }
 
-    public void interact(Player player) {
-        if (isWithinRange(player)) {
-            activate();
-            // Wait for interaction time before completing the interaction
-            Timer.schedule(new Timer.Task() {
-                @Override
-                public void run() {
-                    performInteraction(player);
-                    deactivate();
-                }
-            }, interactionTime);
-        }
-    }
-
-    private void performInteraction(Player player) {
-        // Interaction logic based on appliance type
-        if ("Chicken".equals(type)) {
-            player.incrementScore(scoreValue);
-        } else if ("Microwave".equals(type)) {
-            player.interactWithAppliance(this);
-        } else if ("Fridge".equals(type)) {
-            player.turnOffAppliance(this);
-        }
-    }
-
-    private boolean isWithinRange(Player player) {
-        float distance = (float) Math.sqrt(Math.pow(player.getX() - getX(), 2) + Math.pow(player.getY() - getY(), 2));
-        return distance <= activationRange;
-    }
-
     public float getEnergyConsumption() {
         return energyConsumption;
     }
@@ -108,6 +77,26 @@ public class Appliance extends Entity {
 
     public boolean getState() {
         return isActivated;
+    }
+
+    @Override
+    public float getX() {
+        return super.getX();
+    }
+
+    @Override
+    public void setX(float x) {
+        super.setX(x);
+    }
+
+    @Override
+    public float getY() {
+        return super.getY();
+    }
+
+    @Override
+    public void setY(float y) {
+        super.setY(y);
     }
     @Override
     public GameObjectType getType() {
@@ -134,4 +123,10 @@ public class Appliance extends Entity {
     public float getOGY(){
         return OriginalY;
     }
+    @Override
+    public void dispose() {
+        offTexture.dispose();
+        onTexture.dispose();
+    }
+
 }

@@ -9,12 +9,12 @@ import com.mygdx.game.BehaviourMgmt.BehaviourManager;
 import com.mygdx.game.CollisionMgmt.CollisionManager;
 import com.mygdx.game.EntityMgmt.EntityManager;
 import com.mygdx.game.EntityMgmt.Player.Player;
-import com.mygdx.game.MapMgmt.MapManager;
+import com.mygdx.game.MapMgmt.Map;
 import com.mygdx.game.SceneMgmt.SceneScreen;
 import com.mygdx.game.InputMgmt.InputManager;
 import com.mygdx.game.InputMgmt.KeyboardInput;
 import com.mygdx.game.InputMgmt.MouseInput;
-import com.mygdx.game.ScoreMgmt.ScoreManager;
+import com.mygdx.game.ScoreMgmt.Score;
 
 public class Simulation {
 
@@ -24,11 +24,11 @@ public class Simulation {
     private EntityManager entities;
     private int level;
     private int currentLevel;
-    private MapManager map;
+    private Map map;
     private InputManager inputManager;
     private CollisionManager collisionManager;
 
-    private ScoreManager scoreManager;
+    private Score scoreManager;
     private long startTime;
     // for any activity to run within a loop, where condition is game running or not
     private boolean isrunning;
@@ -41,8 +41,8 @@ public class Simulation {
 
         entities = new EntityManager();
         batch = new SpriteBatch();
-        scoreManager = new ScoreManager();
-        map = new MapManager(level);
+        scoreManager = new Score();
+        map = new Map(level);
         collisionManager = new CollisionManager(entities);
 
         KeyboardInput keyboardInput = new KeyboardInput(entities);
@@ -79,11 +79,11 @@ public class Simulation {
         playerBehaviour.update();
         if (getScore() >= 0 && currentLevel != 2) {
             currentLevel = 2; // Update the current level to 2
-            map = new MapManager(currentLevel); // Load the new level configuration
+            map = new Map(currentLevel); // Load the new level configuration
             // Additional logic to re-initialize or transition to the new level
         } else if (currentLevel != 1) { // Assuming you might have more than 2 levels in the future
             currentLevel = 1; // Default to level 1 configuration
-            map = new MapManager(currentLevel);
+            map = new Map(currentLevel);
             // Re-initialize as needed for level 1
         }
  
