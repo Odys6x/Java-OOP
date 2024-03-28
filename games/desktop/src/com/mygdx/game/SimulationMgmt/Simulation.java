@@ -23,7 +23,8 @@ public class Simulation {
     private SceneScreen Scenes; // implementing in future2
     private SpriteBatch batch;
     private EntityManager entities;
-
+    private int level;
+    private int currentLevel;
     private MapManager map;
     private InputManager inputManager;
     private CollisionManager collisionManager;
@@ -43,8 +44,7 @@ public class Simulation {
         entities = new EntityManager();
         batch = new SpriteBatch();
         scoreManager = new ScoreManager();
-        map = new MapManager(1);
-        scoreManager = new ScoreManager();
+        map = new MapManager(level);
         collisionManager = new CollisionManager(entities);
 
         KeyboardInput keyboardInput = new KeyboardInput(entities);
@@ -63,6 +63,10 @@ public class Simulation {
         playerBehaviour = new PlayerBehaviour(player, inputManager);
 
     }
+    public Simulation(int level) {
+        this.level = level;
+        initialise(); // Consider removing from here if you need more control over when it's called
+    }
     public float getScore() {
         return this.scoreManager.getScore();
     }
@@ -76,6 +80,16 @@ public class Simulation {
         behaviourManager.updateBehaviours(pressedKeys);
         aiBehaviour.updateAIBehaviour2();
         playerBehaviour.update();
+        if (getScore() >= 0 && currentLevel != 2) {
+            currentLevel = 2; // Update the current level to 2
+            map = new MapManager(currentLevel); // Load the new level configuration
+            // Additional logic to re-initialize or transition to the new level
+        } else if (currentLevel != 1) { // Assuming you might have more than 2 levels in the future
+            currentLevel = 1; // Default to level 1 configuration
+            map = new MapManager(currentLevel);
+            // Re-initialize as needed for level 1
+        }
+ 
         //aiControllerManager.moveAIControlledEntities();
         
     }

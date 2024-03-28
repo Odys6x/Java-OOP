@@ -10,7 +10,7 @@ public class GameMaster extends Game { //changed from application adapter to gam
     
     @Override
     public void create() {
-        Simulation = new Simulation();
+        Simulation = new Simulation(1);
         Simulation.initialise();
         SceneManager sceneManager = SceneManager.getInstance();
         sceneManager.setGame(this); // Pass the GameMaster instance to SceneManager

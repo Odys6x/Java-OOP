@@ -11,7 +11,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 
-public class GameScreen2 extends SceneScreen {
+public class GameScreen3 extends SceneScreen {
     private SceneManager sceneManager;
     private Simulation simulation; 
     private Texture background;
@@ -19,10 +19,10 @@ public class GameScreen2 extends SceneScreen {
     private Sound sound = new Sound("games/assets/music.wav");
     private BitmapFont font;
     private SpriteBatch spriteBatch;
-    private static final float Target_Score = 1500;
+    private static final float Target_Score = 2000;
 
 
-    public GameScreen2(SceneManager sceneManager, Simulation simulation, Sound sound) {
+    public GameScreen3(SceneManager sceneManager, Simulation simulation, Sound sound) {
         super();
         this.sceneManager = sceneManager;
         this.simulation = simulation; // Save the simulation instance
@@ -43,8 +43,7 @@ public class GameScreen2 extends SceneScreen {
         backgroundImage.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         stage.addActor(backgroundImage);
         Gdx.input.setInputProcessor(stage);
-        
-        simulation = new Simulation(2);
+        simulation = new Simulation(3);
         simulation.initialise();
     }
     
@@ -59,7 +58,7 @@ public class GameScreen2 extends SceneScreen {
         spriteBatch.end();
         simulation.update(); // then update and render the simul here
         if (simulation.getScore() == Target_Score) {
-            sceneManager.setScene(new GameScreen3(sceneManager,simulation,sound));
+            sceneManager.setScene(new EndScreen(sceneManager));
         }
     }
     
@@ -67,6 +66,7 @@ public class GameScreen2 extends SceneScreen {
     public void dispose() {
         stage.dispose();
         background.dispose();
+        sound.stop();
     }
 
 }

@@ -1,17 +1,12 @@
 package com.mygdx.game.SceneMgmt;
 import com.mygdx.game.SimulationMgmt.Simulation;
 import com.mygdx.game.SoundMgmt.Sound;
-import com.mygdx.game.EntityMgmt.EntityManager;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage; 
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import com.mygdx.game.ScoreMgmt.ScoreManager;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -23,7 +18,6 @@ public class GameScreen extends SceneScreen {
     private Stage stage;
     private Sound sound = new Sound("music.wav");
     private BitmapFont font;
-    private ScoreManager scoreManager;
     private SpriteBatch spriteBatch;
     private static final float Target_Score = 1000;
 
@@ -44,7 +38,6 @@ public class GameScreen extends SceneScreen {
         stage = new Stage(new ScreenViewport());
         font = new BitmapFont();
         spriteBatch = new SpriteBatch();
-        scoreManager = new ScoreManager();
         background = new Texture(Gdx.files.internal("gamescreen.png"));
         Image backgroundImage = new Image(background);
         backgroundImage.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
@@ -52,22 +45,8 @@ public class GameScreen extends SceneScreen {
         Gdx.input.setInputProcessor(stage);
         Sound sound = this.sound;
         
-        simulation = new Simulation();
+        simulation = new Simulation(1);
         simulation.initialise();
-        stage.addListener(new ClickListener(){ // adds a listener to the stage for touch events
-
-            // when clicked will transition to the next scene
-            @Override
-            public void clicked(InputEvent event, float x, float y){
-                Gdx.app.log("GameScreen", "Screen clicked, attempting to transition to EndScreen.");
-                System.out.println("Next Screen (End Screen)");
-                if (sceneManager != null) {
-                    sceneManager.setScene(new GameScreen2(sceneManager, simulation, sound)); 
-                } else {
-                    System.out.println("SceneManager is null"); 
-                }
-                            }
-        });
     }
     
     @Override
