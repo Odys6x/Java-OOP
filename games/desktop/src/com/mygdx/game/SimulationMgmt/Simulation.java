@@ -50,7 +50,7 @@ public class Simulation {
         KeyboardInput keyboardInput = new KeyboardInput(entities);
         MouseInput mouseInput = new MouseInput(entities);
         inputManager = new InputManager(entities, keyboardInput, mouseInput);
-        behaviourManager = new BehaviourManager(entities, inputManager);
+        behaviourManager = new BehaviourManager(entities, inputManager,scoreManager);
         aiControllerManager = new AIControllerManager(entities);
         map.LoadMap(entities, 1,7);
         map.LoadPlayers(entities, 1);

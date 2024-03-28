@@ -24,7 +24,10 @@ public class Behaviour {
     private static final long COOLDOWN_MILLIS = 200; // Cooldown period in milliseconds (adjust as needed)
 
     public Behaviour() {
-        this.scoreManager = new ScoreManager();
+
+    }
+    public Behaviour(ScoreManager scoreManager) {
+        this.scoreManager = scoreManager;
     }
 
     public void interactWithAppliance(Appliance appliance, GameObject entity) {
