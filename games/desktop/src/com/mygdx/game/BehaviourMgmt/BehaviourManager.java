@@ -20,9 +20,9 @@ public class BehaviourManager {
     private boolean interactPressed;
 
 
-    public BehaviourManager(EntityManager entityManager, InputManager inputManager) {
+    public BehaviourManager(EntityManager entityManager, InputManager inputManager, ScoreManager scoreManager) {
         this.entityManager = entityManager;
-        this.behaviour = new Behaviour();
+        this.behaviour = new Behaviour(scoreManager);
         this.inputManager = inputManager;
     }
 

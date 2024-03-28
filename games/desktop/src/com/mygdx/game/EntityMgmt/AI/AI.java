@@ -1,5 +1,8 @@
 package com.mygdx.game.EntityMgmt.AI;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
@@ -7,10 +10,13 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.mygdx.game.EntityMgmt.Entity;
 import com.mygdx.game.EntityMgmt.GameObjectType;
+import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Vector2;
 
 public class AI extends Entity {
     private float speed;
     private Animation<TextureRegion> walkAnimationForward;
+    private List<Vector2> walkingLocations;
     private float stateTime;
 
     public AI(){}
@@ -18,6 +24,7 @@ public class AI extends Entity {
     public AI(String path, float x, float y, float speed){
         super(path, x, y);
         this.speed = speed;
+        walkingLocations = new ArrayList<>();
         initialiseAI();
     }
 
@@ -37,6 +44,24 @@ public class AI extends Entity {
     }
     public void setSpeed(float speed) {
         this.speed = speed;
+    }
+    public void setWalkingLocations(List<Vector2> walkingLocations) {
+        this.walkingLocations = walkingLocations;
+    }
+
+    public boolean hasWalkingLocations() {
+    	if (!walkingLocations.isEmpty())
+    		return true;
+    	else
+    		return false;
+    }
+
+    public Vector2 getNextTargetLocation(float mapWidth, float mapHeight) {
+    	// Generate random coordinates within the map boundaries
+        float randomX = MathUtils.random(0, mapWidth);
+        float randomY = MathUtils.random(0, mapHeight);
+        
+        return new Vector2(randomX, randomY);
     }
 
     @Override
