@@ -22,7 +22,7 @@ public class GameScreen2 extends SceneScreen {
     private Simulation simulation; 
     private Texture background;
     private Stage stage;
-    private Sound sound = new Sound("game/ssets/music.wav");
+    private Sound sound = new Sound("music.wav");
     private BitmapFont font;
     private ScoreManager scoreManager;
     private SpriteBatch spriteBatch;
@@ -91,7 +91,7 @@ public class GameScreen2 extends SceneScreen {
     public void dispose() {
         stage.dispose();
         background.dispose();
-        sound.close();
+        sound.stop();
     }
 
 }
