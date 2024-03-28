@@ -2,7 +2,6 @@ package com.mygdx.game.SimulationMgmt;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.TimeUtils;
-import com.mygdx.game.AiControllerMgmt.AIControllerManager;
 import com.mygdx.game.BehaviourMgmt.AIBehaviour;
 import com.mygdx.game.BehaviourMgmt.PlayerBehaviour;
 import com.mygdx.game.BehaviourMgmt.Behaviour;
@@ -28,7 +27,6 @@ public class Simulation {
     private MapManager map;
     private InputManager inputManager;
     private CollisionManager collisionManager;
-    private AIControllerManager aiControllerManager;
 
     private ScoreManager scoreManager;
     private long startTime;
@@ -51,7 +49,6 @@ public class Simulation {
         MouseInput mouseInput = new MouseInput(entities);
         inputManager = new InputManager(entities, keyboardInput, mouseInput);
         behaviourManager = new BehaviourManager(entities, inputManager,scoreManager);
-        aiControllerManager = new AIControllerManager(entities);
         map.LoadMap(entities);
         map.LoadPlayers(entities, 1);
 
@@ -103,7 +100,6 @@ public class Simulation {
         behaviourManager = null;
         map = null;
         collisionManager = null;
-        aiControllerManager = null;
         }
 
     public long getTime() {
