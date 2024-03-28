@@ -22,19 +22,21 @@ public class GameScreen2 extends SceneScreen {
     private Simulation simulation; 
     private Texture background;
     private Stage stage;
-    private Sound sound = new Sound("game/ssets/music.wav");
+    private Sound sound;
     private BitmapFont font;
     private ScoreManager scoreManager;
     private SpriteBatch spriteBatch;
     private static final float Target_Score = 1000;
 
 
-    public GameScreen2(SceneManager sceneManager, Simulation simulation) {
+    public GameScreen2(SceneManager sceneManager, Simulation simulation, Sound sound) {
         super();
         this.sceneManager = sceneManager;
         this.simulation = simulation; // Save the simulation instance
+        this.sound = sound;
         sound.play();
         sound.setVolume(0.2f);
+        System.err.println(sound);
     }
     public void init(){
     }
