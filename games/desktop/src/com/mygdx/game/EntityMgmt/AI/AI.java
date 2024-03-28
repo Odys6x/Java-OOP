@@ -50,11 +50,18 @@ public class AI extends Entity {
     }
 
     public boolean hasWalkingLocations() {
-        return !walkingLocations.isEmpty();
+    	if (!walkingLocations.isEmpty())
+    		return true;
+    	else
+    		return false;
     }
 
-    public Vector2 getNextTargetLocation() {
-        return walkingLocations.get(MathUtils.random(0, walkingLocations.size() - 1));
+    public Vector2 getNextTargetLocation(float mapWidth, float mapHeight) {
+    	// Generate random coordinates within the map boundaries
+        float randomX = MathUtils.random(0, mapWidth);
+        float randomY = MathUtils.random(0, mapHeight);
+        
+        return new Vector2(randomX, randomY);
     }
 
     @Override

@@ -7,7 +7,6 @@ import com.mygdx.game.EntityMgmt.EntityManager;
 import com.mygdx.game.EntityMgmt.GameObject;
 import com.mygdx.game.EntityMgmt.Entity;
 import com.badlogic.gdx.math.*;
-import com.badlogic.gdx.utils.Null;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,12 +15,10 @@ public class AIBehaviour extends Behaviour {
     private List<Appliance> appliances;
     private List<AI> AIControlled;
     private EntityManager entities;
+    private Vector2 currentTargetLocation;
     private float aiSpeed;
     private boolean appliancesOn;
-    private float changeDirectionTime = 0;
-    private float directionX = 0;
-    private float directionY = 0;
-    private float waitTime = 2;
+    private float waitTime;
 
     public AIBehaviour(EntityManager entityManager) {
         this.entities = entityManager;
@@ -51,10 +48,9 @@ public class AIBehaviour extends Behaviour {
         for (AI ai : AIControlled) {
             Appliance nearestAppliance = null;
             double nearestDistance = Double.MAX_VALUE;
-            if(ai.hasWalkingLocations())
+            if (currentTargetLocation == null)
             {
-            	Vector2 targetLocation = ai.getNextTargetLocation();
-            	moveTowardsTargetLocation(targetLocation, ai);
+                currentTargetLocation = ai.getNextTargetLocation(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
             }
             for (Appliance appliance : appliances) {
                 if (!appliance.getState()) { // Check if the appliance is off
@@ -81,11 +77,25 @@ public class AIBehaviour extends Behaviour {
                     }
                 }
             } else {
-                performWanderingBehavior(ai);
-                System.err.println("I am wandering");
+            	if (waitTime > 0) {
+                    // AI is waiting, decrement the wait time
+                    waitTime -= Gdx.graphics.getDeltaTime();
+                    System.err.println("I am waiting");
+            	}
+            	else
+            	{
+            	// Wait time is over, move towards the current target location
+                moveTowardsTargetLocation(currentTargetLocation, ai);
+                System.err.println("I am moving towards the target location");
+                // Check if AI reaches the target location
+                if (isAtTargetLocation(currentTargetLocation, ai)) {
+                    // AI reached the target location, reset current target location
+                    currentTargetLocation = null;
+                }
+            	}
+            }
             }
         }
-    }
 
     private void moveTowardsAppliance(Appliance appliance, Entity entity) {
         // System.err.println(entity + "is moving to" + appliance);
@@ -116,51 +126,13 @@ public class AIBehaviour extends Behaviour {
         return appliancesOn;
     }
 
-    private void performWanderingBehavior(AI ai) {
-
-        int mapWidth = Gdx.graphics.getWidth();
-        int mapHeight = Gdx.graphics.getHeight();
-        float deltaTime = Gdx.graphics.getDeltaTime();
-        changeDirectionTime -= deltaTime;
-
-        // If it's time to change direction
-        if (changeDirectionTime <= 0) {
-            // Choose a random direction
-            directionX = MathUtils.random(-1f, 1f);
-            directionY = MathUtils.random(-1f, 1f);
-
-            // Normalize the direction vector to ensure consistent speed
-            float len = (float) Math.sqrt(directionX * directionX + directionY * directionY);
-            directionX /= len;
-            directionY /= len;
-
-            // Choose a random time until the next direction change (between 1 and 3
-            // seconds)
-            changeDirectionTime = MathUtils.random(2f, 6f);
-        }
-
-        // Calculate the new position
-        float newX = ai.getX() + directionX * ai.getSpeed() * deltaTime;
-        float newY = ai.getY() + directionY * ai.getSpeed() * deltaTime;
-
-        // Check if the new position is within the map boundaries
-        if (newX < 0)
-            newX = 0;
-        if (newY < 0)
-            newY = 0;
-        if (newX > mapWidth)
-            newX = mapWidth;
-        if (newY > mapHeight)
-            newY = mapHeight;
-
-        // Update the AI's position
-        entities.updateEntityPosition(ai, newX - ai.getX(), newY - ai.getY());
-    }
+    
     public double calculateDistance(Appliance appliance, AI ai) {
         double xDistance = appliance.getX() - ai.getX();
         double yDistance = appliance.getY() - ai.getY();
         return Math.sqrt(xDistance * xDistance + yDistance * yDistance);
     }
+
     private void moveTowardsTargetLocation(Vector2 targetLocation, Entity entity) {
         if (targetLocation != null) {
             // Calculate movement towards the target location
@@ -183,6 +155,11 @@ public class AIBehaviour extends Behaviour {
                 entities.updateEntityPosition(entity, moveX, moveY);
             }
         }
+    }
+    private boolean isAtTargetLocation(Vector2 targetLocation, Entity entity) {
+        float distanceThreshold = 10; // Adjust as needed
+        float distance = targetLocation.dst(entity.getX(), entity.getY());
+        return distance <= distanceThreshold;
     }
 
 }

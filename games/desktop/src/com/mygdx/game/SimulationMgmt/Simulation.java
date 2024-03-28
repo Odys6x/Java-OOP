@@ -52,7 +52,7 @@ public class Simulation {
         inputManager = new InputManager(entities, keyboardInput, mouseInput);
         behaviourManager = new BehaviourManager(entities, inputManager);
         aiControllerManager = new AIControllerManager(entities);
-        map.LoadMap(entities, 2,7);
+        map.LoadMap(entities, 2,0);
         map.LoadPlayers(entities, 1);
 
         isrunning = true;
