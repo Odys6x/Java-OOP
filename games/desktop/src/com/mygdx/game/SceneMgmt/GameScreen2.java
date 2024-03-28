@@ -93,7 +93,7 @@ public class GameScreen2 extends SceneScreen {
     public void dispose() {
         stage.dispose();
         background.dispose();
-        sound.close();
+        sound.stop();
     }
 
 }
