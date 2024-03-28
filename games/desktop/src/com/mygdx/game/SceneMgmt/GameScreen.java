@@ -22,17 +22,18 @@ public class GameScreen extends SceneScreen {
     private Simulation simulation; 
     private Texture background;
     private Stage stage;
-    private Sound sound = new Sound("music.wav");
+    private Sound sound = new Sound("games/assets/music.wav");
     private BitmapFont font;
     private ScoreManager scoreManager;
     private SpriteBatch spriteBatch;
-    private static final float Target_Score = 0;
+    private static final float Target_Score = 1000;
 
 
 
-    public GameScreen(SceneManager sceneManager) {
+    public GameScreen(SceneManager sceneManager, Simulation simulation) {
         super();
         this.sceneManager = sceneManager;
+        this.simulation = simulation; // Save the simulation instance
         sound.play();
         sound.setVolume(0.2f);
     }
@@ -61,7 +62,7 @@ public class GameScreen extends SceneScreen {
                 Gdx.app.log("GameScreen", "Screen clicked, attempting to transition to EndScreen.");
                 System.out.println("Next Screen (End Screen)");
                 if (sceneManager != null) {
-                    sceneManager.setScene(new GameScreen2(sceneManager)); 
+                    sceneManager.setScene(new GameScreen2(sceneManager, simulation)); 
                 } else {
                     System.out.println("SceneManager is null"); 
                 }
@@ -77,12 +78,11 @@ public class GameScreen extends SceneScreen {
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
         stage.draw();
         spriteBatch.begin();
-        String scoreText = "Score: " + scoreManager.getScore();
-        font.draw(spriteBatch, "Score: " + scoreManager.getScore(), 20, Gdx.graphics.getHeight() - 20);
+        font.draw(spriteBatch, "Score: " + simulation.getScore(), 20, Gdx.graphics.getHeight() - 20);
         spriteBatch.end();
         simulation.update(); // then update and render the simul here
-        if (scoreManager.getScore() == Target_Score) {
-            sceneManager.setScene(new GameScreen2(sceneManager));
+        if (simulation.getScore() == Target_Score) {
+            sceneManager.setScene(new GameScreen2(sceneManager, simulation));
         }
     }
     @Override

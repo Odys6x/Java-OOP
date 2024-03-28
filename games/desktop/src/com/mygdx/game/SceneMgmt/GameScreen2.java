@@ -22,16 +22,17 @@ public class GameScreen2 extends SceneScreen {
     private Simulation simulation; 
     private Texture background;
     private Stage stage;
-    private Sound sound = new Sound("music.wav");
+    private Sound sound = new Sound("game/ssets/music.wav");
     private BitmapFont font;
     private ScoreManager scoreManager;
     private SpriteBatch spriteBatch;
+    private static final float Target_Score = 1000;
 
 
-
-    public GameScreen2(SceneManager sceneManager) {
+    public GameScreen2(SceneManager sceneManager, Simulation simulation) {
         super();
         this.sceneManager = sceneManager;
+        this.simulation = simulation; // Save the simulation instance
         sound.play();
         sound.setVolume(0.2f);
     }
@@ -76,12 +77,16 @@ public class GameScreen2 extends SceneScreen {
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
         stage.draw();
         spriteBatch.begin();
-        String scoreText = "Score: " + scoreManager.getScore();
-        font.draw(spriteBatch, "Score: " + scoreManager.getScore(), 20, Gdx.graphics.getHeight() - 20);
+        String scoreText = "Score: " + simulation.getScore();
+        font.draw(spriteBatch, "Score: " + simulation.getScore(), 20, Gdx.graphics.getHeight() - 20);
         spriteBatch.end();
         System.out.println(scoreText); 
         simulation.update(); // then update and render the simul here
+        if (simulation.getScore() == Target_Score) {
+            sceneManager.setScene(new EndScreen(sceneManager));
+        }
     }
+    
     @Override
     public void dispose() {
         stage.dispose();

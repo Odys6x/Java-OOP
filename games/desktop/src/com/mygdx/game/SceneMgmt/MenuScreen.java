@@ -10,10 +10,12 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image; 
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener; 
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.mygdx.game.SimulationMgmt.Simulation;
 
 
 public class MenuScreen extends SceneScreen{
     private SceneManager sceneManager;
+    private Simulation simulation;
     private Texture background;
     private Stage stage;
     private Skin skin;
@@ -65,7 +67,7 @@ public class MenuScreen extends SceneScreen{
             public void clicked(InputEvent event, float x, float y) {
                 if (sceneManager != null) {
                     
-                    sceneManager.setScene(new GameScreen(sceneManager)); // Transition to GameScreen
+                    sceneManager.setScene(new GameScreen(sceneManager, simulation)); // Transition to GameScreen
                 }
             }
         });

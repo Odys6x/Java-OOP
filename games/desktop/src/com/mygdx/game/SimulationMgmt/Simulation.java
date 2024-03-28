@@ -63,7 +63,9 @@ public class Simulation {
         playerBehaviour = new PlayerBehaviour(player, inputManager);
 
     }
-
+    public float getScore() {
+        return this.scoreManager.getScore();
+    }
     public void update() {
         // render
         entities.draw(batch);

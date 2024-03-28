@@ -9,9 +9,11 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.mygdx.game.SimulationMgmt.Simulation;;
 
 public class OptionScreen extends SceneScreen {
     private SceneManager sceneManager;
+    private Simulation simulation;
     private Texture background;
     private Stage stage;
     private Skin skin;
@@ -48,7 +50,7 @@ public class OptionScreen extends SceneScreen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 if (sceneManager != null) {
-                    sceneManager.setScene(new GameScreen(sceneManager)); // Transition to GameScreen
+                    sceneManager.setScene(new GameScreen(sceneManager, simulation)); // Transition to GameScreen
                     
                 }
             }
