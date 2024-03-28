@@ -92,9 +92,9 @@ public class GameScreen extends SceneScreen {
             simulation.end(); // Make sure to dispose of the simulation resources
             simulation = null;
         }
-        if (sound != null) {
-            sound.stop(); // Make sure to close the sound
-        }
+        // if (sound != null) {
+        //     sound.stop(); // Make sure to close the sound
+        // }
         if (spriteBatch != null) {
             spriteBatch.dispose(); // Dispose of spriteBatch
         }
