@@ -21,7 +21,7 @@ public class GameScreen extends SceneScreen {
     private Simulation simulation; 
     private Texture background;
     private Stage stage;
-    private Sound sound = new Sound("games/assets/music.wav");
+    private Sound sound = new Sound("music.wav");
     private BitmapFont font;
     private ScoreManager scoreManager;
     private SpriteBatch spriteBatch;
@@ -50,6 +50,7 @@ public class GameScreen extends SceneScreen {
         backgroundImage.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         stage.addActor(backgroundImage);
         Gdx.input.setInputProcessor(stage);
+        Sound sound = this.sound;
         
         simulation = new Simulation();
         simulation.initialise();
@@ -61,7 +62,7 @@ public class GameScreen extends SceneScreen {
                 Gdx.app.log("GameScreen", "Screen clicked, attempting to transition to EndScreen.");
                 System.out.println("Next Screen (End Screen)");
                 if (sceneManager != null) {
-                    sceneManager.setScene(new GameScreen2(sceneManager, simulation)); 
+                    sceneManager.setScene(new GameScreen2(sceneManager, simulation, sound)); 
                 } else {
                     System.out.println("SceneManager is null"); 
                 }
@@ -81,7 +82,7 @@ public class GameScreen extends SceneScreen {
         spriteBatch.end();
         simulation.update(); // then update and render the simul here
         if (simulation.getScore() == Target_Score) {
-            sceneManager.setScene(new GameScreen2(sceneManager, simulation));
+            sceneManager.setScene(new GameScreen2(sceneManager, simulation, this.sound));
         }
     }
     @Override
@@ -90,9 +91,9 @@ public class GameScreen extends SceneScreen {
             simulation.end(); // Make sure to dispose of the simulation resources
             simulation = null;
         }
-        if (sound != null) {
-            sound.close(); // Make sure to close the sound
-        }
+        // if (sound != null) {
+        //     sound.stop(); // Make sure to close the sound
+        // }
         if (spriteBatch != null) {
             spriteBatch.dispose(); // Dispose of spriteBatch
         }

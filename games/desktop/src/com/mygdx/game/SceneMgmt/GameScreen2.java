@@ -28,12 +28,14 @@ public class GameScreen2 extends SceneScreen {
     private static final float Target_Score = 1000;
 
 
-    public GameScreen2(SceneManager sceneManager, Simulation simulation) {
+    public GameScreen2(SceneManager sceneManager, Simulation simulation, Sound sound) {
         super();
         this.sceneManager = sceneManager;
         this.simulation = simulation; // Save the simulation instance
+        this.sound = sound;
         sound.play();
         sound.setVolume(0.2f);
+        System.err.println(sound);
     }
     public void init(){
     }
@@ -90,7 +92,7 @@ public class GameScreen2 extends SceneScreen {
     public void dispose() {
         stage.dispose();
         background.dispose();
-        sound.close();
+        sound.stop();
     }
 
 }
