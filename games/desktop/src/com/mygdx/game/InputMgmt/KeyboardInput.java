@@ -37,7 +37,6 @@ public class KeyboardInput implements InputHandler {
                 	deltaY -= speed * Gdx.graphics.getDeltaTime();
                 	break;
                 case INTERACT:
-                	System.out.println("test");
                 	break;
                 default:
                     break;

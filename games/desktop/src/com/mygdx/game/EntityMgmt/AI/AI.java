@@ -75,7 +75,7 @@ public class AI extends Entity {
         TextureRegion currentFrame = null;
 
             currentFrame = walkAnimationForward.getKeyFrame(stateTime, true);
-            System.out.println("RIGHT ANI");
+            //System.out.println("RIGHT ANI");
 
         // Draw the current frame
         batch.draw(currentFrame, getX(), getY());

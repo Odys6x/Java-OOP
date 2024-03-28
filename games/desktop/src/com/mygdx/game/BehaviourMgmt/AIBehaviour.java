@@ -45,6 +45,7 @@ public class AIBehaviour extends Behaviour {
     }
 
     public void updateAIBehaviour2() {
+        System.out.println(waitTime);
         for (AI ai : AIControlled) {
             Appliance nearestAppliance = null;
             double nearestDistance = Double.MAX_VALUE;
@@ -63,34 +64,36 @@ public class AIBehaviour extends Behaviour {
             }
     
             if (nearestAppliance != null) {
-            	if (waitTime > 0) {
+            	if (waitTime < 2.0f) {
                     // AI is waiting, decrement the wait time
-                    waitTime -= Gdx.graphics.getDeltaTime();
-                    System.err.println("I am waiting");
+                    waitTime += Gdx.graphics.getDeltaTime();
+                    //System.err.println("I am waiting");
                 } else {
                     // Wait time is over, move towards the appliance
                     moveTowardsAppliance(nearestAppliance, ai);
-                    System.err.println("I am moving towards the appliance");
+                    //System.err.println("I am moving towards the appliance");
                     if (isWithinInteractionRange2(nearestAppliance, ai)) {
                         nearestAppliance.AIInteract(nearestAppliance);
-                        System.err.println("Ghost turn on le");
+                        waitTime = 0;
+                        //System.err.println("Ghost turn on le");
                     }
                 }
             } else {
-            	if (waitTime > 0) {
+            	if (waitTime < 0.8f) {
                     // AI is waiting, decrement the wait time
-                    waitTime -= Gdx.graphics.getDeltaTime();
-                    System.err.println("I am waiting");
+                    waitTime += Gdx.graphics.getDeltaTime();
+                    //System.err.println("I am waiting");
             	}
             	else
             	{
             	// Wait time is over, move towards the current target location
                 moveTowardsTargetLocation(currentTargetLocation, ai);
-                System.err.println("I am moving towards the target location");
+                //System.err.println("I am moving towards the target location");
                 // Check if AI reaches the target location
                 if (isAtTargetLocation(currentTargetLocation, ai)) {
                     // AI reached the target location, reset current target location
                     currentTargetLocation = null;
+                    waitTime = 0;
                 }
             	}
             }
