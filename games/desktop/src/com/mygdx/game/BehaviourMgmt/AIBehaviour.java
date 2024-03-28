@@ -10,6 +10,8 @@ import com.badlogic.gdx.math.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class AIBehaviour extends Behaviour {
     private List<Appliance> appliances;
@@ -19,11 +21,15 @@ public class AIBehaviour extends Behaviour {
     private float aiSpeed;
     private boolean appliancesOn;
     private float waitTime;
+    private AI closestAI;
+    private Map<AI, Vector2> aiTargetLocations;
 
     public AIBehaviour(EntityManager entityManager) {
         this.entities = entityManager;
         this.appliances = new ArrayList<>();
         this.AIControlled = new ArrayList<>();
+        closestAI = null;
+        aiTargetLocations = new HashMap();
         // modify this to control the speed the ai moves towards the appliance
         // slower speeds mean it is easier to keep everything on
         aiSpeed = 200f;
@@ -38,61 +44,56 @@ public class AIBehaviour extends Behaviour {
                 // handle other types if needed
             }
         }
-
-        // System.err.println("Appliances are" + appliances);
-        // System.err.println("AI are" + AIControlled);
-
     }
 
     public void updateAIBehaviour2() {
-        System.out.println(waitTime);
         for (AI ai : AIControlled) {
             Appliance nearestAppliance = null;
             double nearestDistance = Double.MAX_VALUE;
-            if (currentTargetLocation == null)
-            {
-                currentTargetLocation = ai.getNextTargetLocation(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-            }
+            closestAI = null;
+
+            Vector2 targetLocation = aiTargetLocations.getOrDefault(ai, ai.getNextTargetLocation(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
+            aiTargetLocations.putIfAbsent(ai, targetLocation);
+            System.out.println(aiTargetLocations);
+
             for (Appliance appliance : appliances) {
                 if (!appliance.getState()) { // Check if the appliance is off
                     double distance = calculateDistance(appliance, ai);
                     if (distance < nearestDistance) {
                         nearestDistance = distance;
+                        closestAI = ai;
                         nearestAppliance = appliance;
                     }
                 }
             }
     
             if (nearestAppliance != null) {
-            	if (waitTime < 2.0f) {
+            	if (waitTime < 1.0f) {
                     // AI is waiting, decrement the wait time
                     waitTime += Gdx.graphics.getDeltaTime();
                     //System.err.println("I am waiting");
                 } else {
                     // Wait time is over, move towards the appliance
-                    moveTowardsAppliance(nearestAppliance, ai);
-                    //System.err.println("I am moving towards the appliance");
-                    if (isWithinInteractionRange2(nearestAppliance, ai)) {
+                    moveTowardsAppliance(nearestAppliance, closestAI);
+                    if (isWithinInteractionRange2(nearestAppliance, closestAI)) {
                         nearestAppliance.AIInteract(nearestAppliance);
                         waitTime = 0;
-                        //System.err.println("Ghost turn on le");
                     }
                 }
             } else {
             	if (waitTime < 0.8f) {
                     // AI is waiting, decrement the wait time
                     waitTime += Gdx.graphics.getDeltaTime();
-                    //System.err.println("I am waiting");
             	}
             	else
             	{
             	// Wait time is over, move towards the current target location
-                moveTowardsTargetLocation(currentTargetLocation, ai);
-                //System.err.println("I am moving towards the target location");
+                moveTowardsTargetLocation(targetLocation, ai);
                 // Check if AI reaches the target location
-                if (isAtTargetLocation(currentTargetLocation, ai)) {
+                if (isAtTargetLocation(targetLocation, ai)) {
                     // AI reached the target location, reset current target location
-                    currentTargetLocation = null;
+                    targetLocation = ai.getNextTargetLocation(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+                    aiTargetLocations.put(ai, targetLocation);
                     waitTime = 0;
                 }
             	}
