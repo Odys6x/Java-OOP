@@ -42,9 +42,7 @@ public class GameScreen extends SceneScreen {
         Image backgroundImage = new Image(background);
         backgroundImage.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         stage.addActor(backgroundImage);
-        Gdx.input.setInputProcessor(stage);
-        Sound sound = this.sound;
-        
+        Gdx.input.setInputProcessor(stage);        
         simulation = new Simulation(1);
         simulation.initialise();
     }

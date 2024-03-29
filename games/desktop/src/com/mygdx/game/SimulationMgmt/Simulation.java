@@ -4,13 +4,11 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.mygdx.game.BehaviourMgmt.AIBehaviour;
 import com.mygdx.game.BehaviourMgmt.PlayerBehaviour;
-import com.mygdx.game.BehaviourMgmt.Behaviour;
 import com.mygdx.game.BehaviourMgmt.BehaviourManager;
 import com.mygdx.game.CollisionMgmt.CollisionManager;
 import com.mygdx.game.EntityMgmt.EntityManager;
 import com.mygdx.game.EntityMgmt.Player.Player;
 import com.mygdx.game.MapMgmt.MapManager;
-import com.mygdx.game.SceneMgmt.SceneScreen;
 import com.mygdx.game.InputMgmt.InputManager;
 import com.mygdx.game.InputMgmt.KeyboardInput;
 import com.mygdx.game.InputMgmt.MouseInput;
@@ -19,7 +17,6 @@ import com.mygdx.game.ScoreMgmt.ScoreManager;
 public class Simulation {
 
     private BehaviourManager behaviourManager;
-    private SceneScreen Scenes; // implementing in future2
     private SpriteBatch batch;
     private EntityManager entities;
     private int level;
@@ -34,7 +31,6 @@ public class Simulation {
     private boolean isrunning;
     private AIBehaviour aiBehaviour;
     private PlayerBehaviour playerBehaviour;
-    private Behaviour behaviour;
 
     public void initialise() {
         // start making the objects in the game, from create
