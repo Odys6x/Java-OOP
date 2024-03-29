@@ -26,12 +26,6 @@ public class Collision {
     
         return c1Right > c2Left && c1Left < c2Right && c1Top > c2Bottom && c1Bottom < c2Top;
     }
-    
-
-
-    // *note* currently all entities are not movable, should we want to make entities movable, it can be done 
-    // in case we wna change as player might get stuck if unbale to phase through certain obejcts
-    // logic added to adjust position of entities in case of collision as well
 
     public static void resolveCollision(GameObject c1, GameObject c2) {
         // Check if both entities are movable.
