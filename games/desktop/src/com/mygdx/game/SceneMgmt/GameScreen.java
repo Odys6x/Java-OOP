@@ -53,9 +53,8 @@ public class GameScreen extends SceneScreen {
         backButton.addListener(new ClickListener() {
             @Override
             public void clicked(com.badlogic.gdx.scenes.scene2d.InputEvent event, float x, float y) {
-                // Handle back button click here
                 if (sound != null) {
-                    sound.stop(); // Optionally stop the sound
+                    sound.stop();
                 }
                 sceneManager.setScene(new MenuScreen(sceneManager));
             }
