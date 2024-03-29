@@ -5,8 +5,6 @@ public enum InputCommand {
     MOVE_RIGHT,
     MOVE_UP,
     MOVE_DOWN,
-    MOUSE_LEFT_CLICK,
-    MOUSE_RIGHT_CLICK,
     INTERACT,
     NONE
 }

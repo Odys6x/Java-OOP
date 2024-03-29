@@ -13,7 +13,6 @@ import com.mygdx.game.MapMgmt.Map;
 import com.mygdx.game.SceneMgmt.SceneScreen;
 import com.mygdx.game.InputMgmt.InputManager;
 import com.mygdx.game.InputMgmt.KeyboardInput;
-import com.mygdx.game.InputMgmt.MouseInput;
 import com.mygdx.game.ScoreMgmt.Score;
 
 public class Simulation {
@@ -46,8 +45,7 @@ public class Simulation {
         collisionManager = new CollisionManager(entities);
 
         KeyboardInput keyboardInput = new KeyboardInput(entities);
-        MouseInput mouseInput = new MouseInput(entities);
-        inputManager = new InputManager(entities, keyboardInput, mouseInput);
+        inputManager = new InputManager(entities, keyboardInput);
         behaviourManager = new BehaviourManager(entities, inputManager,scoreManager);
         map.LoadMap(entities);
         map.LoadPlayers(entities, 1);

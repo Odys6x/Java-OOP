@@ -10,13 +10,11 @@ import com.mygdx.game.EntityMgmt.EntityManager;
 public class InputManager {
 	private EntityManager entityManager;
     private InputHandler keyboardInput;
-    private InputHandler mouseInput;
     private List<Integer> pressedKeys = new ArrayList<>();
 
-    public InputManager(EntityManager entityManager, InputHandler keyboardInput, InputHandler mouseInput) {
+    public InputManager(EntityManager entityManager, InputHandler keyboardInput) {
     	this.entityManager = entityManager;
         this.keyboardInput = keyboardInput;
-        this.mouseInput = mouseInput;
     }
 
     public void update() {
