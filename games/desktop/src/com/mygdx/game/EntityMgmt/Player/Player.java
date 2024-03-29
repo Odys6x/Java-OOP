@@ -18,23 +18,19 @@ public class Player extends Entity {
     private Animation<TextureRegion> walkAnimationForward,walkAnimationBackward,standAnimation;
     private float stateTime;
     private String direction;
-    private float score;
-    private float hp;
     private int energyLevel;
-    private float Iradius;
 
 
     public Player(){
-        stateTime = 0f;
+
     }
 
-    public Player(String path, float x, float y, float speed,String direction,float score){
+    protected Player(String path, float x, float y, float speed,String direction){
         super(path, x, y);
         this.speed = speed;
         this.direction = direction;
         this.energyLevel = 100;
-        this.hp = 1000;
-        this.score = score;
+        this.stateTime = 0f;
         initialisePlayer();
     }
     public void updateAnimations(List<Integer> pressedKeys) {
@@ -70,17 +66,6 @@ public class Player extends Entity {
         this.speed = speed;
     }
 
-    public float getScore(){
-        return score;
-    }
-
-    public void setScore(float score){
-        this.score += score;
-    }
-
-    public void reduceScore(float score){
-        this.score -= score;
-    }
     public String getDirection(){
         return direction;
     }
@@ -94,6 +79,26 @@ public class Player extends Entity {
     }
     public void setEnergy(float energy){
         energyLevel -= energy;
+    }
+
+    @Override
+    public float getX() {
+        return super.getX();
+    }
+
+    @Override
+    public void setX(float x) {
+        super.setX(x);
+    }
+
+    @Override
+    public float getY() {
+        return super.getY();
+    }
+
+    @Override
+    public void setY(float y) {
+        super.setY(y);
     }
 
     @Override
@@ -127,34 +132,15 @@ public class Player extends Entity {
         batch.draw(currentFrame, getX(), getY());
     }
 
-    public void turnOffAppliance(Appliance appliance) {
-        // Logic for turning off the specified appliance
-        // Deduct energy or update score as needed
-    }
-
-    public void interactWithAppliance(Appliance appliance) {
-        if (isWithinInteractionRange(appliance)) {
-            appliance.turnOff();
-            // Update player's attributes
-            setEnergy(getEnergy() - appliance.getEnergyConsumption());
-            setScore(getScore() + appliance.getScore());
-        }
-    }
-
-    private boolean isWithinInteractionRange(Appliance appliance) {
-        float distance = (float) Math.sqrt(Math.pow(getX() - appliance.getX(), 2) + Math.pow(getY() - appliance.getY(), 2));
-        return distance <= Iradius;
-    }
-
-
-    public void incrementScore(float scoreValue) {
-        setScore(scoreValue);
-    }
-
-    public void decreaseEnergy(float energyConsumption) {
-    }
     @Override
     public GameObjectType getType() {
         return GameObjectType.PLAYER;
+    }
+    @Override
+    public void dispose() {
+        // Dispose of the textures used for animations
+        walkAnimationForward = null;
+        walkAnimationBackward = null;
+        standAnimation = null;
     }
 }

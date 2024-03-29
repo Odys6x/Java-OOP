@@ -5,13 +5,11 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public abstract class Entity implements GameObject {
-    private float x,y;
+    protected float x,y;
 
-    private Texture texture;
+    protected Texture texture;
 
-    private TextureRegion textureRegion;
-
-    private String path;
+    protected String path;
 
     public Entity(){
 
@@ -36,11 +34,9 @@ public abstract class Entity implements GameObject {
         this.y = y;
     }
 
-    public void draw(SpriteBatch batch){}
+    public abstract void draw(SpriteBatch batch);
 
-    void dispose() {
-        texture.dispose();
-    }
+    public abstract void dispose();
 
     public float getWidth(){
         return texture.getWidth();
@@ -49,10 +45,10 @@ public abstract class Entity implements GameObject {
     public float getHeight(){
         return texture.getHeight();
     }
-    protected Texture getTexture() {
+    public Texture getTexture() {
         return texture;
     }
 
-    protected String getPath(){ return path;}
+    public String getPath(){ return path;}
 
 }

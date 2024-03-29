@@ -8,7 +8,7 @@ public class PlayerFactory implements EntityFactory {
     public Entity createEntity(String entityType,float x, float y) {
         if ("Player".equalsIgnoreCase(entityType)) {
             // Create a Player instance with default properties
-            return new Player("Player.png", x, y, 200, null,0);
+            return new Player("Player.png", x, y, 200, null);
         } else {
             // Handle unknown entity types or return null, throw exception, etc.
             return null;

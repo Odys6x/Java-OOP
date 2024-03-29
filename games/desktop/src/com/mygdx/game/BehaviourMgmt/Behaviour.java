@@ -4,13 +4,13 @@ import com.mygdx.game.EntityMgmt.*;
 import com.mygdx.game.EntityMgmt.Appliances.Appliance;
 import com.badlogic.gdx.math.MathUtils;
 import com.mygdx.game.EntityMgmt.Player.Player;
-import com.mygdx.game.ScoreMgmt.ScoreManager;
+import com.mygdx.game.ScoreMgmt.Score;
 
 
 public class Behaviour {
     private EntityManager entityManager; // Add this field
 
-    private ScoreManager scoreManager;
+    private Score scoreManager;
     private String type;
     private boolean isOn;
     private float energyConsumption;
@@ -26,7 +26,7 @@ public class Behaviour {
     public Behaviour() {
 
     }
-    public Behaviour(ScoreManager scoreManager) {
+    public Behaviour(Score scoreManager) {
         this.scoreManager = scoreManager;
     }
 

@@ -5,8 +5,7 @@ import com.mygdx.game.EntityMgmt.Appliances.Appliance;
 import com.mygdx.game.EntityMgmt.EntityManager;
 import com.mygdx.game.EntityMgmt.GameObject;
 import com.mygdx.game.InputMgmt.InputManager;
-import com.mygdx.game.BehaviourMgmt.*;
-import com.mygdx.game.ScoreMgmt.ScoreManager;
+import com.mygdx.game.ScoreMgmt.Score;
 
 
 import java.util.List;
@@ -19,7 +18,7 @@ public class BehaviourManager {
     private boolean interactPressed;
 
 
-    public BehaviourManager(EntityManager entityManager, InputManager inputManager, ScoreManager scoreManager) {
+    public BehaviourManager(EntityManager entityManager, InputManager inputManager, Score scoreManager) {
         this.entityManager = entityManager;
         this.behaviour = new Behaviour(scoreManager);
         this.inputManager = inputManager;

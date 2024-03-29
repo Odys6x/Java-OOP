@@ -5,12 +5,12 @@ import com.mygdx.game.EntityMgmt.EntityManager;
 
 import java.util.Random;
 
-public class MapManager {
+public class Map {
     private int level;
 
-    public MapManager(){}
+    public Map(){}
 
-    public MapManager(int level){
+    public Map(int level){
         this.level = level;
     }
 
