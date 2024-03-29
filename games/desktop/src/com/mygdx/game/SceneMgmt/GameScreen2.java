@@ -6,6 +6,9 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Stage; 
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -20,6 +23,7 @@ public class GameScreen2 extends SceneScreen {
     private BitmapFont font;
     private SpriteBatch spriteBatch;
     private static final float Target_Score = 1500;
+    private Skin skin;
 
 
     public GameScreen2(SceneManager sceneManager, Simulation simulation, Sound sound) {
@@ -31,10 +35,12 @@ public class GameScreen2 extends SceneScreen {
         sound.setVolume(0.2f);
     }
     public void init(){
+        skin = new Skin(Gdx.files.internal("uiskin.json"));
     }
 
     @Override
     public void show() {
+        init();
         stage = new Stage(new ScreenViewport());
         font = new BitmapFont();
         spriteBatch = new SpriteBatch();
@@ -42,6 +48,19 @@ public class GameScreen2 extends SceneScreen {
         Image backgroundImage = new Image(background);
         backgroundImage.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         stage.addActor(backgroundImage);
+        TextButton backButton = new TextButton("Back to Menu", skin);
+        backButton.setPosition(20, Gdx.graphics.getHeight() - backButton.getHeight() - 50); // Adjust position as needed
+        backButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(com.badlogic.gdx.scenes.scene2d.InputEvent event, float x, float y) {
+                // Handle back button click here
+                if (sound != null) {
+                    sound.stop(); // Optionally stop the sound
+                }
+                sceneManager.setScene(new MenuScreen(sceneManager));
+            }
+        });
+        stage.addActor(backButton);
         Gdx.input.setInputProcessor(stage);
         
         simulation = new Simulation(2);
