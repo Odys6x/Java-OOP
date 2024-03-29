@@ -50,14 +50,14 @@ public class EndScreen extends SceneScreen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 if (sceneManager != null) {
-                    sceneManager.setScene(new MenuScreen(sceneManager)); // Transition to GameScreen
+                    sceneManager.setScene(new MenuScreen(sceneManager));
                 }
             }
         });
         exitButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                Gdx.app.exit(); // Exits the application
+                Gdx.app.exit();
             }
         });
         stage.addActor(playButton);

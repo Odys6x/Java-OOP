@@ -19,13 +19,12 @@ public class    SceneManager {
     }
 
     public void setScene(SceneScreen scene) {
-        Gdx.app.log("SceneManager", "Attempting to set new scene."); // error handling cos  gamescreen not transitioning
+        Gdx.app.log("SceneManager", "Attempting to set new scene."); // error handling
         if (game == null) {
             Gdx.app.log("SceneManager", "Game instance is null. Cannot change screen."); // also error handling
         }
         if (currentScene != null) {
-            // currentScene.hide(); // Ensure the current screen is properly hidden
-            currentScene.dispose(); // Dispose resources of the current screen
+            currentScene.dispose();
         }
         currentScene = scene;
         currentScene.show();

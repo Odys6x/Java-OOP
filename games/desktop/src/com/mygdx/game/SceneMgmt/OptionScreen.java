@@ -50,7 +50,7 @@ public class OptionScreen extends SceneScreen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 if (sceneManager != null) {
-                    sceneManager.setScene(new GameScreen(sceneManager, simulation)); // Transition to GameScreen
+                    sceneManager.setScene(new GameScreen(sceneManager, simulation));
                     
                 }
             }
@@ -59,7 +59,7 @@ public class OptionScreen extends SceneScreen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 if (sceneManager != null) {
-                    sceneManager.setScene(new MenuScreen(sceneManager)); // Transition to GameScreen
+                    sceneManager.setScene(new MenuScreen(sceneManager));
                 }
             }
         });

@@ -37,31 +37,25 @@ public class MenuScreen extends SceneScreen{
     
         skin = new Skin(Gdx.files.internal("uiskin.json"));
     
-        // Create buttons
+        // creating buttons here
         TextButton playButton = new TextButton("Play", skin);
         TextButton optionButton = new TextButton("Option", skin);
-        TextButton exitButton = new TextButton("Exit", skin); // Create the exit button
+        TextButton exitButton = new TextButton("Exit", skin);
     
         final float buttonWidth = 200;
         final float buttonHeight = 50;
-        final float buttonSpacing = 20; // Space between buttons
+        final float buttonSpacing = 20;
     
-        // Positioning the play button
+        // positioning the buttons
         playButton.setSize(buttonWidth, buttonHeight);
         playButton.setPosition(Gdx.graphics.getWidth() / 2 - buttonWidth / 2, 
                                Gdx.graphics.getHeight() / 2 + buttonHeight / 2 + buttonSpacing);
-    
-        // Positioning the option button below the play button
         optionButton.setSize(buttonWidth, buttonHeight);
         optionButton.setPosition(Gdx.graphics.getWidth() / 2 - buttonWidth / 2, 
                                  Gdx.graphics.getHeight() / 2 - buttonHeight / 2);
-    
-        // Positioning the exit button below the option button
         exitButton.setSize(buttonWidth, buttonHeight);
         exitButton.setPosition(Gdx.graphics.getWidth() / 2 - buttonWidth / 2, 
                                Gdx.graphics.getHeight() / 2 - 3 * buttonHeight / 2 - buttonSpacing);
-    
-        // Play button click listener
         playButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -71,27 +65,20 @@ public class MenuScreen extends SceneScreen{
                 }
             }
         });
-    
-        // Option button click listener
         optionButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 if (sceneManager != null){
                     sceneManager.setScene(new OptionScreen(sceneManager));
                 }
-                // Handle option button click here
             }
         });
-    
-        // Exit button click listener
-        exitButton.addListener(new ClickListener() {
+            exitButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                Gdx.app.exit(); // Exits the application
+                Gdx.app.exit(); 
             }
         });
-    
-        // Add buttons to the stage
         stage.addActor(playButton);
         stage.addActor(optionButton);
         stage.addActor(exitButton);
@@ -99,9 +86,9 @@ public class MenuScreen extends SceneScreen{
     @Override
     public void render(float delta) {
         Gdx.gl.glClearColor(0, 0, 0, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT); // clear screen
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
-        stage.draw(); // draws the stage and the actors
+        stage.draw();
     }
 
     @Override
