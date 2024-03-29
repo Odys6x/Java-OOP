@@ -19,7 +19,6 @@ public class InputManager {
 
     public void update() {
     	// Get user input from input handlers and control user-controlled entities
-    	// holy fucking jank
         if (entityManager.getUserControlledEntity() != null) {
             if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
                 keyboardInput.handleInput(InputCommand.MOVE_LEFT);
