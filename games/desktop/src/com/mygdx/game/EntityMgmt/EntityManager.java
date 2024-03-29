@@ -49,32 +49,32 @@ public class EntityManager{
                 return entity;
             }
         }
-        return null; // Return null if no user-controlled entity is found
+        return null;
     }
 
     public void createPlayer(String entityType,float x, float y) {
         EntityFactory playerFactory = new PlayerFactory();
         Entity playerEntity = playerFactory.createEntity(entityType,x,y);
-        addEntity(playerEntity); // Add the created entity to the entityList
+        addEntity(playerEntity);
     }
 
     public void createAppliance(String entityType,float x, float y) {
         EntityFactory applianceFactory = new ApplianceFactory();
         Entity applianceEntity = applianceFactory.createEntity(entityType,x,y);
-        addEntity(applianceEntity); // Add the created entity to the entityList
+        addEntity(applianceEntity);
     }
 
     public void createFurniture(String entityType,float x, float y) {
         EntityFactory furnitureFactory = new FurnitureFactory();
         Entity furnitureFactoryEntity = furnitureFactory.createEntity(entityType,x,y);
-        addEntity(furnitureFactoryEntity); // Add the created entity to the entityList
+        addEntity(furnitureFactoryEntity);
     }
 
 
     public void createAI(String entityType,float x, float y) {
         EntityFactory AIFactory = new AIFactory();
         Entity AIEntity = AIFactory.createEntity(entityType,x,y);
-        addEntity(AIEntity); // Add the created entity to the entityList
+        addEntity(AIEntity);
     }
 
     public float getSpeed() {

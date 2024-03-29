@@ -14,7 +14,7 @@ public class Score {
     public void decrementScore(float amount) {
         score -= amount;
         if (score < 0) {
-            score = 0; // Ensure score doesn't go negative
+            score = 0;
         }
     }
 

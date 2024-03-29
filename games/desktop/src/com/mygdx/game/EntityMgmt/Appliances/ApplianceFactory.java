@@ -16,7 +16,6 @@ public class ApplianceFactory implements EntityFactory {
         else if ("Bathtub".equalsIgnoreCase(entityType)) {
             return new Appliance("Bathtub", "17.png", "16.png",x, y, 20, 15, 40, 0);
         } else {
-            // Handle unknown entity types or return null, throw exception, etc.
             return null;
         }
     }

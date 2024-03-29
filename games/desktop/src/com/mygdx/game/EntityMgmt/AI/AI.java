@@ -10,7 +10,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.mygdx.game.EntityMgmt.Entity;
 import com.mygdx.game.EntityMgmt.GameObjectType;
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 
 public class AI extends Entity {
@@ -78,14 +77,11 @@ public class AI extends Entity {
     }
     @Override
     public void draw(SpriteBatch batch) {
-        // Get the current frame of the animation
-        stateTime += Gdx.graphics.getDeltaTime(); // Update the state time
+        stateTime += Gdx.graphics.getDeltaTime();
         TextureRegion currentFrame = null;
 
             currentFrame = walkAnimationForward.getKeyFrame(stateTime, true);
-            //System.out.println("RIGHT ANI");
 
-        // Draw the current frame
         batch.draw(currentFrame, getX(), getY());
     }
     @Override

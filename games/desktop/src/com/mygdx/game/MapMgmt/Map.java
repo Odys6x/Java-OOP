@@ -35,16 +35,16 @@ public class Map {
                 break;
             case 2:
                 if (entityType.equals("AI")) {
-                    numEntities += 2; // Add 5 to the initial value for level 2 AI
+                    numEntities += 2;
                 } else if (entityType.equals("Furniture")) {
-                    numEntities += 2; // Add 10 to the initial value for level 2 furniture
+                    numEntities += 2;
                 }
                 break;
             case 3:
                 if (entityType.equals("AI")) {
-                    numEntities += 2; // Add 7 to the initial value for level 3 AI
+                    numEntities += 2;
                 } else if (entityType.equals("Furniture")) {
-                    numEntities += 4; // Add 15 to the initial value for level 3 furniture
+                    numEntities += 4;
                 }
                 break;
             default:
@@ -69,25 +69,22 @@ public class Map {
                 case "Furniture":
                     createRandomAppliance(entityManager);
                     break;
-                // Add cases for other entity types if needed
             }
         }
     }
 
     public void LoadPlayers(EntityManager entityManager, int numPlayers) {
-        // Use the provided number of walls to create the specified number of walls
         for (int i = 0; i < numPlayers; i++) {
             entityManager.createPlayer("Player",300,0);
         }
     }
     private void createRandomAppliance(EntityManager entityManager) {
         Random random = new Random();
-        int randomIndex = random.nextInt(3); // Randomly choose between 0 and 1
+        int randomIndex = random.nextInt(3);
         String[] Furnitures = {"Chair", "Sofa","Table"};
 
-        // Generate random x and y coordinates within a specified range
-        int randomX = random.nextInt(1620); // MAX_X is the maximum value for x
-        int randomY = random.nextInt(600); // MAX_Y is the maximum value for y
+        int randomX = random.nextInt(1620);
+        int randomY = random.nextInt(600);
 
         entityManager.createFurniture(Furnitures[randomIndex], randomX, randomY);
     }

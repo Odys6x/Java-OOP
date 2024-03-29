@@ -3,10 +3,8 @@ package com.mygdx.game.EntityMgmt.Appliances;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.utils.Timer;
 import com.mygdx.game.EntityMgmt.Entity;
 import com.mygdx.game.EntityMgmt.GameObjectType;
-import com.mygdx.game.EntityMgmt.Player.Player;
 
 public class Appliance extends Entity {
     private String type;
@@ -24,13 +22,13 @@ public class Appliance extends Entity {
 
     protected Appliance(String type, String pathon, String pathoff, float x, float y, float energyConsumption, float activationRange
             , float scoreValue, float interactionTime) {
-        super(pathon, x, y); // Pass pathon to the Entity constructor
+        super(pathon, x, y);
         this.type = type;
         this.offTexture = new Texture(pathoff);
         this.onTexture = new Texture(pathon);
         this.energyConsumption = energyConsumption;
         this.activationRange = activationRange;
-        this.texture = new TextureRegion(offTexture); // Initialize texture with offTexture
+        this.texture = new TextureRegion(offTexture);
         this.scoreValue = scoreValue;
         this.isOn = false;
         this.isActivated = false;
@@ -55,12 +53,10 @@ public class Appliance extends Entity {
 
     public void activate() {
         isActivated = true;
-        // Start interaction timer, perform any other necessary actions
     }
 
     public void deactivate() {
         isActivated = false;
-        // Reset interaction timer, perform any other necessary actions
     }
 
     public float getEnergyConsumption() {

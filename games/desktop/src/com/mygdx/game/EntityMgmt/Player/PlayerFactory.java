@@ -10,10 +10,7 @@ public class PlayerFactory implements EntityFactory {
             // Create a Player instance with default properties
             return new Player("Player.png", x, y, 200, null);
         } else {
-            // Handle unknown entity types or return null, throw exception, etc.
             return null;
         }
     }
-
-    // You can add more methods or functionality specific to the PlayerFactory here
 }

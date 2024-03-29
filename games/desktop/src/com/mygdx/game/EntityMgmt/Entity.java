@@ -2,7 +2,6 @@ package com.mygdx.game.EntityMgmt;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public abstract class Entity implements GameObject {
     protected float x,y;
@@ -11,10 +10,10 @@ public abstract class Entity implements GameObject {
 
     protected String path;
 
-    public Entity(){
+    protected Entity(){
 
     }
-    public Entity(String path, float x, float y) {
+    protected Entity(String path, float x, float y) {
         this.x = x;
         this.y = y;
         this.path = path;

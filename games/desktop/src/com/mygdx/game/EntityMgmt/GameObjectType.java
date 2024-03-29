@@ -1,6 +1,6 @@
 package com.mygdx.game.EntityMgmt;
 
-public enum GameObjectType {
+public enum  GameObjectType {
     APPLIANCE,
     AI,
     PLAYER,

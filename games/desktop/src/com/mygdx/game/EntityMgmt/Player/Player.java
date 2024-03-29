@@ -9,7 +9,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.mygdx.game.EntityMgmt.Appliances.Appliance;
 import com.mygdx.game.EntityMgmt.Entity;
 import com.mygdx.game.EntityMgmt.GameObjectType;
 
@@ -21,11 +20,11 @@ public class Player extends Entity {
     private int energyLevel;
 
 
-    public Player(){
+    Player(){
 
     }
 
-    protected Player(String path, float x, float y, float speed,String direction){
+    Player(String path, float x, float y, float speed,String direction){
         super(path, x, y);
         this.speed = speed;
         this.direction = direction;
@@ -114,21 +113,17 @@ public class Player extends Entity {
 
     @Override
     public void draw(SpriteBatch batch) {
-        // Get the current frame of the animation
-        stateTime += Gdx.graphics.getDeltaTime(); // Update the state time
+        stateTime += Gdx.graphics.getDeltaTime();
         TextureRegion currentFrame = null;
         if(direction == "RIGHT"){
             currentFrame = walkAnimationForward.getKeyFrame(stateTime, true);
-            //System.out.println("RIGHT ANI");
         }
         else if(direction == "LEFT"){
             currentFrame = walkAnimationBackward.getKeyFrame(stateTime, true);
-            //System.out.println("LEFT ANI");
         }
         else {
             currentFrame = standAnimation.getKeyFrame(stateTime, true);
         }
-        // Draw the current frame
         batch.draw(currentFrame, getX(), getY());
     }
 
@@ -138,7 +133,6 @@ public class Player extends Entity {
     }
     @Override
     public void dispose() {
-        // Dispose of the textures used for animations
         walkAnimationForward = null;
         walkAnimationBackward = null;
         standAnimation = null;
