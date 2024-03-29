@@ -53,8 +53,5 @@ public class BehaviourManager {
     public boolean getInteractPressed(){
         return interactPressed;
     }
-    // public void behaviourswitch(AIBehaviour aiBehaviour, AIControllerManager aiControllerManager){
-    //     if (AIBehaviour.allAppliancesOn())
 
-    // }
 }

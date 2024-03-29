@@ -102,7 +102,6 @@ public class AIBehaviour extends Behaviour {
         }
 
     private void moveTowardsAppliance(Appliance appliance, Entity entity) {
-        // System.err.println(entity + "is moving to" + appliance);
         float targetX = appliance.getX();
         float targetY = appliance.getY();
         float entityX = entity.getX();
